@@ -1,0 +1,10 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+.DS_Store
+.claude/*
+!.claude/commands/
+data/raw/
+data/output/tests/
+credentials/

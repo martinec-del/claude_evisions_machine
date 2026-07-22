@@ -1,0 +1,46 @@
+[project]
+name = "evisions-content"
+version = "0.1.0"
+description = "evisions.cz blog content creation and multi-model testing"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=1.0",
+    "google-genai>=1.0",
+    "anthropic>=0.40",
+    "python-dotenv>=1.0",
+    "pandas>=2.0",
+    "openpyxl>=3.1",
+    "requests>=2.31",
+    "beautifulsoup4>=4.12",
+    "html2text>=2024.2",
+    "markdown>=3.6",
+    "google-api-python-client>=2.140",
+    "google-auth>=2.34",
+    "python-docx>=1.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.8",
+    "mypy>=1.13",
+    "pytest>=8.0",
+    "pandas-stubs>=2.0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
