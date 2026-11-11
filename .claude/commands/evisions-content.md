@@ -28,23 +28,34 @@ Tento skill je **hlavní vstupní bod** pro veškerou tvorbu a editaci obsahu ev
 
 ## Content Plan — Google Sheet
 
-**Sheet:** [evisions.cz - Content Plan](https://docs.google.com/spreadsheets/d/1W8VTbwT8_HiYuEF62rgJzI6KRTKJ9neI7LU4vt4IC74/edit)
-**File ID:** `1W8VTbwT8_HiYuEF62rgJzI6KRTKJ9neI7LU4vt4IC74`
+**Primární Sheet:** [Content Plan Index Sheet](https://docs.google.com/spreadsheets/d/1QGRBoGYILY-n96j8uvCh1CV4pWRvVksAzFZnn1cga7Q/edit?gid=754600260#gid=754600260)
+**File ID:** `1QGRBoGYILY-n96j8uvCh1CV4pWRvVksAzFZnn1cga7Q`
+**Sekundární Sheet (jen na vyžádání):** původní "evisions.cz - Content Plan", file ID `1ru1ix1NtUmFPT5EFRGUFq5fYeatbyFF3zH_4yRV46TY` — bohatší historická data, skilly z něj automaticky nečtou.
 **Čtení:** přes připojený `mcp__claude_ai_Google_Drive__read_file_content` (autentizováno jako analytics@evisions.cz) — žádný service account potřeba pro čtení.
 
-**Struktura (plochá, žádná kurzová hierarchie):**
+**Struktura (jedna záložka per kategorie, stejná jako `data/output/content_plan_index.xlsx`):**
+
+Záložky podle kategorie (SEO, PPC, Social, AI & SEO, Copywriting, Konference, Marketing, evisions interní, International, Kariéra ×2), každá s vlastním ID prefixem (SEO-XX, PPC-XX, SOC-XX, AI-XX, CW-XX, CONF-XX, MKT-XX, EVI-XX, INTL-XX, PC-XX, CAR-XX). Uvnitř kategorií jsou "Skupina" podskupiny (řádek se štítkem skupiny).
 
 | Sloupec | Pole |
 |---------|------|
-| A | ID (např. `SEO-04`) |
-| B | Kategorie (SEO / PPC / AI & SEO / Analytika / E-commerce / Případovky) |
-| C | Téma / pracovní název |
-| D | Klíčové slovo |
-| E | Search Volume |
-| F | Typ obsahu (Case study / How-to / Trend analýza / Srovnání) |
-| G | Status (TODO / Draft / Review / Published) |
-| H | URL |
-| I | Poznámky |
+| — | Lokace |
+| — | Lekce |
+| — | Kapitola / Nadpis (= **ID**, ne titulek) |
+| — | Obsah kapitoly - podtéma (= skutečný titulek/téma) |
+| — | Typ obsahu |
+| — | zpracoval |
+| — | Článek/Case |
+| — | odhad práce |
+| — | klíčová slova |
+| — | brief |
+| — | složka s výstupy |
+| — | final docs (URL) |
+| — | log |
+| — | Status |
+| — | Počet |
+
+**Jak poznat stav řádku:** prázdné ID + "nový text - lekce" v Typ obsahu → TODO/plánovaný. Vyplněná URL + Status "Published" → živý článek.
 
 Detaily: `data/output/guides/evisions_content_inventory.md`
 
@@ -107,12 +118,32 @@ Detaily: `data/output/guides/evisions_content_inventory.md`
 
 ---
 
+### 5. `/evisions-category-gap`
+
+**Účel:** **Rychlá gap analýza celé kategorie** (SEO / PPC / AI & SEO / Analytika / E-commerce / Případovky) — porovnává naplánovaná + existující témata v Content Planu s reálně hledanými klíčovými slovy a navrhne chybějící témata článků pro lepší Topic Authority kategorie. Neřeší SERP konkurenci ani kanibalizaci (na to slouží `/evisions-topic-cluster`).
+
+**Použij když:**
+- Chceš rychle zkontrolovat, zda kategorie jako celek pokrývá důležitá hledaná podtémata
+- Plánuješ doplnit content plán o nová témata a chceš je nejdřív podložit keyword daty
+- Nepotřebuješ (zatím) hloubkovou SERP/konkurenční analýzu jednotlivého tématu
+
+**Workflow:** Gap analýza + návrh prioritních kws na základě expertízy → STOP na schválení → ověření a rozšíření kws (Ahrefs + Marketing Miner).
+
+**Output:** `data/output/category-gaps/[kategorie-slug]/category_gap_[kategorie-slug]_CZ.md` + `.docx`.
+
+**Tip:** použij jako první, rychlý průchod před `/evisions-topic-cluster`, pokud chceš nejdřív zmapovat, co v kategorii vůbec chybí, než se pustíš do hloubkové analýzy jednoho tématu.
+
+---
+
 ## Decision Tree — který skill zvolit?
 
 ```
-Řeším jeden konkrétní článek, nebo celé téma/cluster?
+Řeším jeden konkrétní článek, celé téma/cluster, nebo celou kategorii?
 │
-├── CELÉ TÉMA / publikační plán
+├── CELÁ KATEGORIE (rychlý gap check proti keyword datům)
+│   └── /evisions-category-gap
+│
+├── CELÉ TÉMA / publikační plán (+ SERP konkurence, kanibalizace)
 │   └── /evisions-topic-cluster
 │
 └── JEDEN ČLÁNEK → existuje už lokálně nebo na webu?
@@ -152,13 +183,16 @@ Detaily jsou v guides:
 Když uživatel zavolá `/evisions-content`:
 
 1. Vypiš krátkou tabulku sub-skillů (název → účel → kdy použít)
-2. Pokud user uvedl argument (URL, slug, ID z Content Plan, téma), zkus odhadnout správný sub-skill a navrhni ho:
+2. Pokud user uvedl argument (URL, slug, ID z Content Plan, téma, kategorie), zkus odhadnout správný sub-skill a navrhni ho:
    - URL z `evisions.cz/blog/` → `/evisions-rewrite-article [URL]`
    - ID z Content Plan Sheetu se Status "TODO" → `/evisions-new-article [ID]`
    - Path k draftu + požadavek "proofread" → `/evisions-proofread [path]`
+   - Název kategorie (SEO / PPC / Social / AI & SEO / Copywriting / Konference / Marketing / evisions interní / International / Kariéra) bez konkrétního tématu → `/evisions-category-gap [kategorie]`
+   - Konkrétní téma + seznam existujících článků k němu → `/evisions-topic-cluster`
 3. **STOP** a počkej na potvrzení uživatele. Tento skill nikdy nespouští sub-skill automaticky.
 
 ## Notes
 
 - Tento router neobsahuje žádný content workflow — všechen workflow je v sub-skillech.
 - Pokud potřebuješ rozšířit o nový typ obsahu (např. glosář marketingových pojmů, newsletter), přidej nový `/evisions-*` skill a zaregistruj ho v tomto routeru — stejný vzor jako `/academy-glossary` u FTMO.
+- **Mimo scope tohoto routeru:** `/evisions-lead-opportunity` — analyzuje evisions.cz jako **celý web** (service/product stránky, ne blog content plán), hledá SEO příležitosti pro navýšení B2B leadů. Použij, když řešíš web jako celek a jeho leadový potenciál, ne konkrétní blog článek/kategorii/téma.

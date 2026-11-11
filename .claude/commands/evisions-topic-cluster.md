@@ -14,7 +14,7 @@ Máš k dispozici Ahrefs MCP nástroje, Google Drive MCP (Content Plan Sheet) a 
 
 | Účel | Cesta / zdroj |
 |------|----------------|
-| Content Plan Sheet | [evisions.cz - Content Plan](https://docs.google.com/spreadsheets/d/1W8VTbwT8_HiYuEF62rgJzI6KRTKJ9neI7LU4vt4IC74/edit) — čti přes `mcp__claude_ai_Google_Drive__read_file_content` (file ID `1W8VTbwT8_HiYuEF62rgJzI6KRTKJ9neI7LU4vt4IC74`) |
+| Content Plan Sheet (primární) | [Content Plan Index Sheet](https://docs.google.com/spreadsheets/d/1QGRBoGYILY-n96j8uvCh1CV4pWRvVksAzFZnn1cga7Q/edit?gid=754600260#gid=754600260) — čti přes `mcp__claude_ai_Google_Drive__read_file_content` (file ID `1QGRBoGYILY-n96j8uvCh1CV4pWRvVksAzFZnn1cga7Q`); sekundární sheet jen na vyžádání, viz `evisions_content_inventory.md` |
 | Content Inventory | `data/output/guides/evisions_content_inventory.md` |
 | ToV Guide | `data/output/guides/evisions_tov_guide_CZ.md` (pro doporučený tón nového obsahu) |
 | Structure Guide | `data/output/guides/evisions_structure_guide_CZ.md` (pro doporučený typ/formát nového obsahu) |

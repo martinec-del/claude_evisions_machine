@@ -101,6 +101,18 @@ Generováno automaticky šablonou (`_html_template()` v `src/step4_html.py`) —
 
 ---
 
+## Docx export (automatický, hned po HTML)
+
+**Po každém `convert_to_html()` volání spustit i `src/export_article_docx.py`** na stejný `article_[slug]_CZ.md`:
+
+```bash
+.venv/Scripts/python.exe src/export_article_docx.py data/output/articles/[slug]/article_[slug]_CZ.md
+```
+
+Vygeneruje `article_[slug]_CZ.docx` ve stejné složce — čitelný Word dokument (nadpisy, tučný text, klikatelné hypertextové odkazy, tabulky, callouty jako "Label: text"), bez webové hlavičky/patičky/CSS šablony. Slouží jako recenzní/handoff kopie pro lidi, kteří nechtějí otvírat HTML. Toto NENÍ volitelný krok — je součástí Kroku HTML konverze stejně jako `.html` a `_log.html`.
+
+---
+
 ## HTML Checklist
 
 - [ ] Struktura stránky v povinném pořadí
@@ -112,6 +124,7 @@ Generováno automaticky šablonou (`_html_template()` v `src/step4_html.py`) —
 - [ ] Meta title 50-60 znaků
 - [ ] Meta popisek 150-160 znaků
 - [ ] Responzivní (max-width 1160px)
+- [ ] `.docx` vygenerován přes `src/export_article_docx.py`
 
 ---
 
@@ -120,3 +133,4 @@ Generováno automaticky šablonou (`_html_template()` v `src/step4_html.py`) —
 | Verze | Datum | Změny |
 |-------|-------|-------|
 | 1.0 | 2026-07-10 | První verze, adaptováno z FTMO Academy step4_html.md |
+| 1.1 | 2026-08-24 | Přidán automatický docx export (`src/export_article_docx.py`) jako povinná součást kroku, ne volitelný doplněk |

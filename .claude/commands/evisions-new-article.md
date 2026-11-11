@@ -8,21 +8,27 @@ Arguments: $ARGUMENTS
 **ToV Guide:** `data/output/guides/evisions_tov_guide_CZ.md`
 **Structure Guide:** `data/output/guides/evisions_structure_guide_CZ.md`
 **Content Inventory:** `data/output/guides/evisions_content_inventory.md` (use ONLY for internal linking decisions in Krok 2 and Krok 7 — NOT for task management)
+**Content Plan Index (dedup ledger):** `data/output/content_plan_index.md` — read FIRST, before anything else, for the mandatory Duplicate Check & ID assignment (workflow guide Krok 0). Source of truth for "does this topic already exist" and "what's the next free ID", since the Drive MCP can only read the Sheet, not write to it.
+**Content Plan Index (xlsx mirror):** `data/output/content_plan_index.xlsx`, generated from the ledger via `src/generate_content_plan_xlsx.py`. Regenerate it (`.venv/Scripts/python.exe src/generate_content_plan_xlsx.py`) any time the ledger changes (Krok 0 ID assignment, Krok 7 Published) so the user has a visual, Sheet-shaped file with new/changed rows highlighted green to copy into the real Google Sheet.
 **HTML template script:** `src/step4_html.py`
+**Docx export script (automatický, hned po HTML):** `src/export_article_docx.py` — generuje čitelný Word export finálního článku vedle `.html`/`_log.html`, viz `prompts/step4_html.md` sekce "Docx export".
 **Keywords template script:** `src/create_keyword_xlsx.py`
+**Marketing Miner cross-check script (optional, Krok 1):** `src/marketing_miner_api.py` — CZ/SK volume cross-check + supplementary keyword ideas, see `prompts/write_step1_research.md` krok 5.5. Skip silently if `MARKETING_MINER_API_KEY` is unset.
 **Generator script (optional external LLM):** `src/model_tester.py`
 
 > **Default:** Claude Code writes the draft directly (Krok 3). If the user wants an external LLM instead, offer a model picker (AskUserQuestion) before Krok 3 and run `.venv/bin/python src/model_tester.py --model [key] ...`.
 
 ### Content Plan — Google Sheet (primary source for topic/category)
 
-**Sheet:** [evisions.cz - Content Plan](https://docs.google.com/spreadsheets/d/1W8VTbwT8_HiYuEF62rgJzI6KRTKJ9neI7LU4vt4IC74/edit)
-**File ID:** `1W8VTbwT8_HiYuEF62rgJzI6KRTKJ9neI7LU4vt4IC74`
+**Primary Sheet:** [Content Plan Index Sheet](https://docs.google.com/spreadsheets/d/1QGRBoGYILY-n96j8uvCh1CV4pWRvVksAzFZnn1cga7Q/edit?gid=754600260#gid=754600260) — file ID `1QGRBoGYILY-n96j8uvCh1CV4pWRvVksAzFZnn1cga7Q`. The user's editable copy of `content_plan_index.xlsx` uploaded to Drive — same structure as the ledger/xlsx (one tab per category).
+**Secondary Sheet (only if the user asks):** the original "evisions.cz - Content Plan", file ID `1ru1ix1NtUmFPT5EFRGUFq5fYeatbyFF3zH_4yRV46TY` — richer historical data (Lokace, zpracoval, klíčová slova, brief) not yet carried over.
 **Read via:** `mcp__claude_ai_Google_Drive__read_file_content` (already authenticated as analytics@evisions.cz — no service account needed)
 
-**Columns:** ID | Kategorie | Téma / pracovní název | Klíčové slovo | Search Volume | Typ obsahu | Status | URL | Poznámky
+**Structure:** editorial-calendar format — separate per-category tables (SEO, PPC, Social, AI & SEO, Copywriting, Konference, Marketing, evisions interní, International, Kariéra), each with its own ID prefix (SEO-XX, PPC-XX, SOC-XX, AI-XX, CW-XX, CONF-XX, MKT-XX, EVI-XX, INTL-XX, CAR-XX), grouped into "Skupina" subgroups (tag `topic_cluster_[slug]_CZ`).
 
-**How to resolve a row:** Read the Sheet via the Drive MCP tool, parse the markdown table, match the user's input against column A (ID) or column C (Téma). If ambiguous (multiple topic matches), ask the user for the exact ID.
+**Columns:** Lokace | Lekce | Kapitola/Nadpis | Obsah kapitoly | Typ obsahu | zpracoval | Článek/Case | odhad práce | klíčová slova | brief | složka s výstupy | final docs | log | Status | Počet
+
+**How to resolve a row:** Read the Sheet via the Drive MCP tool, parse the tables, match the user's input against the ID prefix or Kapitola/Nadpis. A row with empty ID + "nový text - lekce" in Typ obsahu is TODO/planned. If ambiguous (multiple topic matches), ask the user for the exact ID.
 
 ## Prompts
 
@@ -59,7 +65,9 @@ Wait for user input. Do NOT read reference documents or start workflow until inp
 
 ## Workflow
 
-Follow `data/output/guides/evisions_write_workflow_CZ.md` exactly — INIT, then Kroky 1–7, each ending with an explicit STOP for user confirmation (see workflow guide section 15 — step confirmation is mandatory, never skip).
+Follow `data/output/guides/evisions_write_workflow_CZ.md` exactly — **Krok 0 (Duplicate Check & ID assignment against `data/output/content_plan_index.md`) runs first, before INIT reads any other reference doc** — then INIT, then Kroky 1–7, each ending with an explicit STOP for user confirmation (see workflow guide section 15 — step confirmation is mandatory, never skip).
+
+**Never skip Krok 0.** If the requested topic already exists (Published or already in the TODO list under a different entry point), stop and redirect instead of writing a duplicate article.
 
 **Mandatory first action in Krok 5 (Struktura):** paragraph audit — see workflow guide section 10 / structure guide section 4. Split every paragraph over 100 words before any callouts, tables, or H3s.
 

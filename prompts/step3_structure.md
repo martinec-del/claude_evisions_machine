@@ -6,10 +6,28 @@ Formátujete marketingový obsah pro evisions.cz blog. Aplikujte hierarchii nadp
 
 > **PRAVIDLO:** Přidávat formátovací prvky TAM, KAM SE HODÍ do existujícího obsahu.
 > Význam obsahu se NIKDY nemění. Zlepšuje se pouze prezentace.
+> **Jediná výjimka:** Fáze -1 níže, a jen pokud byl v Kroku 1.5 schválen Mód A.
 
-## POVINNÁ PRVNÍ AKCE: Audit odstavců
+## FÁZE -1 (jen Mód A): Doplnění obsahových mezer
 
-Před přidáním jakýchkoli calloutů, tabulek nebo H3 — zkontrolovat každý odstavec na délku. Rozdělit každý odstavec nad 100 slov.
+> **Toto je jediné místo v celém rewrite workflow, kde je povoleno přidat novou informaci** — a jen když v Kroku 1.5 (Konkurenční SERP kontrola) uživatel výslovně zvolil **Mód A**. Pokud byl zvolen Mód B, nebo Krok 1.5 nenašel žádné mezery, tuto fázi úplně přeskoč a v logu ji vůbec nezmiňuj.
+
+Postup (proveď před vším ostatním, i před Auditem odstavců):
+
+1. Vezmi tabulku schválených mezer z logu Kroku 1.5.
+2. Pro každou mezeru napiš konkrétní nový text (odstavec, případně vlastní H3 se sekcí) a vlož ho na místo, kam tematicky patří.
+3. Piš rovnou v evisions ToV (viz `evisions_tov_guide_CZ.md`) — nepiš neutrální draft, který by ještě čekal na Krok 2, protože Krok 2 (ToV) se na tento nový text už normálně nevrací jako na "originál k přepisu".
+4. Zaloguj každou vloženou pasáž samostatně, se štítkem `NOVÝ OBSAH (Mód A)`:
+
+```markdown
+| # | Typ | Vložený text (celý) | Umístění | Zdroj/zdůvodnění |
+|---|-----|----------------------|----------|-------------------|
+| 1 | NOVÝ OBSAH (Mód A) | "..." | Nový odstavec za H2 'X', před H3 'Y' | Mezera #2 z Kroku 1.5 — konkurence (ahrefs.com/...) pokrývá X, náš článek ne |
+```
+
+## POVINNÁ PRVNÍ AKCE (po Fázi -1, pokud proběhla): Audit odstavců
+
+Před přidáním jakýchkoli calloutů, tabulek nebo H3 — zkontrolovat každý odstavec na délku (včetně nově vloženého textu z Fáze -1). Rozdělit každý odstavec nad 100 slov.
 
 ## Hierarchie nadpisů
 
@@ -108,8 +126,9 @@ Standardní blok vkládá `src/step4_html.py` automaticky — neduplikovat ručn
 
 | # | Change Type | Description | Reason |
 |---|-------------|-------------|--------|
-| 1 | H3 přidáno | "Core Web Vitals" pod "Technické SEO" | Structure: logická podsekce |
-| 2 | Tabulka přidána | Srovnání metrik před/po | Formatting: srovnávací data |
+| 1 | NOVÝ OBSAH (Mód A) | Nový odstavec o X vložen za H2 "Y" | Krok 1.5 mezera #2 — jen pokud byl schválen Mód A |
+| 2 | H3 přidáno | "Core Web Vitals" pod "Technické SEO" | Structure: logická podsekce |
+| 3 | Tabulka přidána | Srovnání metrik před/po | Formatting: srovnávací data |
 ```
 
 ## Vstup

@@ -17,7 +17,7 @@ Téma / řádek v Content Plan →  INIT: Načíst reference, log soubor    → 
                             →  Krok 3: Psaní draftu                  →   Plný draft + zdroje
                             →  Krok 4: ToV kontrola                  →   Opravený draft
                             →  Krok 5: Struktura & formátování       →   Formátovaný markdown
-                            →  Krok 6: HTML konverze                 →   article_[slug]_CZ.html
+                            →  Krok 6: HTML konverze                 →   article_[slug]_CZ.html + .docx
                             →  Krok 7: QA + aktualizace Content Plan →   FINÁLNÍ SOUBORY
 ```
 
@@ -63,6 +63,7 @@ Téma / řádek v Content Plan →  INIT: Načíst reference, log soubor    → 
 | `evisions_tov_guide_CZ.md` | Init, Krok 3, Krok 4 |
 | `evisions_structure_guide_CZ.md` | Init, Krok 2, Krok 5 |
 | `evisions_content_inventory.md` | Init, Krok 2 |
+| `data/output/content_plan_index.md` | Krok 0 (Duplicate Check & ID přiřazení), Krok 7 |
 | `prompts/write_step1_research.md` | Krok 1 |
 | `prompts/write_step2_brief.md` | Krok 2 |
 | `prompts/write_step3_draft.md` | Krok 3 |
@@ -74,25 +75,41 @@ Téma / řádek v Content Plan →  INIT: Načíst reference, log soubor    → 
 
 ## 4. Vstupní identifikace — Content Plan řádek
 
-Každý článek má řádek v Google Sheet Content Plánu (sloupec **ID**, např. `SEO-04`). To zabraňuje záměně podobně pojmenovaných článků.
+> **"Google Sheet" v tomto dokumentu vždy znamená primární Content Plan Index Sheet** (viz `evisions_content_inventory.md` — sekundární sheet se čte jen na výslovnou žádost uživatele).
+
+Každý článek má řádek v Google Sheet Content Plánu, identifikovaný **ID** (kategorie-prefix + číslo, např. `SEO-30`). To zabraňuje záměně podobně pojmenovaných článků.
 
 **Přijímané formáty vstupu:**
-- Pouze ID: `/evisions-new-article SEO-04` — vyhledá v Content Plan Sheetu
-- Téma: `/evisions-new-article "SEO pro e-commerce"` — hledá v Sheetu podle názvu (upozorní při nejednoznačnosti)
+- Pouze ID: `/evisions-new-article SEO-30` — vyhledá v Content Plan Sheetu / lokálním ledgeru
+- Téma: `/evisions-new-article "SEO pro e-commerce"` — hledá podle názvu (upozorní při nejednoznačnosti)
 - Bez vstupu: zobrazí interaktivní menu
 
-Pokud řádek v Content Plánu neexistuje, pokračovat stejně (nový článek), ale požádat uživatele o zařazení do Content Plan Sheetu (Kategorie + Klíčové slovo).
+Pokud řádek v Content Plánu neexistuje, pokračovat na **Duplicate Check** níže — teprve po něm se rozhodne, zda jde skutečně o nový článek.
 
 ---
 
 ## 5. Inicializace
 
-Spouští se automaticky. Bez potvrzení uživatele.
+Spouští se automaticky. Bez potvrzení uživatele — **kromě Duplicate Check kroku 2, který může vyžádat rozhodnutí uživatele.**
 
-### Akce
+### Krok 0 — Duplicate Check & ID přiřazení (POVINNÉ, před vším ostatním)
+
+> **Proč:** Google Drive MCP umí Content Plan Sheet jen číst, ne zapisovat. `data/output/content_plan_index.md` je proto lokální ledger existujícího + plánovaného obsahu a zdroj pravdy pro přiřazování ID. Tento krok zabraňuje vytvoření duplicitního článku k tématu, které už je Published nebo už je v Sheetu jako TODO.
+
+1. **Přečíst `data/output/content_plan_index.md`.** Pokud soubor neexistuje nebo je uživatelem označen za zastaralý, přegenerovat ho: přečíst celý Content Plan Sheet přes `mcp__claude_ai_Google_Drive__read_file_content` a projít i lokální složky v `data/output/articles/`, pak přepsat ledger stejnou strukturou (Next ID tabulka, Existující obsah per kategorie, TODO témata, lokální složky, anomálie).
+2. **Porovnat zadané téma/klíčové slovo/ID uživatele** proti ledgeru:
+   - **Shoda na ID nebo URL v sekci "Existující obsah (Published)"** → článek už existuje. STOP, informovat uživatele a nabídnout `/evisions-rewrite-article [URL]` místo pokračování zde.
+   - **Shoda na tématu v sekci "TODO / plánovaná témata"** (stejné nebo silně překrývající se primární klíčové slovo/téma) → téma už je v plánu pod konkrétní Skupinou/kategorií. Pokračovat pod tímto zařazením, ne jako nezávislá nová položka — a upozornit uživatele, pokud řádek má nějakou poznámku (např. už vyplněnou URL — možný náznak, že článek fakticky existuje, jen chybí ID/Status v Sheetu).
+   - **Žádná shoda** → skutečně nové téma, pokračovat na přiřazení ID.
+   - Při nejednoznačné/částečné shodě: krátce shrnout nalezenou shodu a zeptat se uživatele (AskUserQuestion), zda pokračovat jako REWRITE, jako záměrně odlišný NOVÝ úhel, nebo zrušit.
+3. **Přiřadit ID** (jen pokud krok 2 potvrdil skutečně nové téma a Content Plan řádek žádné ID nemá): vzít hodnotu z tabulky "Next ID per kategorie" v ledgeru pro danou kategorii, zapsat ji do ledgeru (nová řádka v "Existující obsah" se Status "In Progress" + zvýšit "Next ID" o 1 pro danou kategorii — Edit tool).
+4. **Regenerovat xlsx mirror:** spustit `.venv/Scripts/python.exe src/generate_content_plan_xlsx.py` (přečte aktualizovaný ledger a přepíše `data/output/content_plan_index.xlsx` — nový/změněný řádek bude zeleně zvýrazněný).
+5. **Vypsat řádek k ručnímu vložení do Google Sheetu** (protože MCP tam zapsat neumí) — přesně ve formátu sloupců Sheetu: ID, Kapitola/Nadpis, Typ obsahu, klíčová slova, složka s výstupy, Status. Zobrazit ho jako součást Init Summary, ne skrytě, a odkázat uživatele na zvýrazněný řádek v `data/output/content_plan_index.xlsx` pro vizuální kontrolu.
+
+### Akce (po Duplicate Check)
 
 1. Přečíst referenční dokumenty: ToV Guide, Structure Guide, Content Inventory
-2. Vyhledat řádek v Content Plan Google Sheetu (Kategorie, Klíčové slovo, Typ obsahu)
+2. Vyhledat/potvrdit řádek v Content Plan Google Sheetu (Kategorie, Klíčové slovo, Typ obsahu)
 3. Určit režim:
    - **NEW:** Zkontrolovat existující soubory v `data/output/articles/[slug]/`. Pokud existují, určit další verzi (v2, v3…), nikdy nepřepisovat. Vytvořit log soubor. Pokračovat na Krok 1.
    - **CONTINUE:** Auto-detekce posledního dokončeného kroku dle existujících souborů (stejná logika jako u FTMO — viz tabulka níže).
@@ -112,10 +129,17 @@ Spouští se automaticky. Bez potvrzení uživatele.
 
 ```
 Téma:          [Název článku]
-Content Plan:  [ID, např. SEO-04]
-Kategorie:     [SEO / PPC / Analytika / AI / E-commerce / Případovky]
+Duplicate Check: OK — žádná shoda v content_plan_index.md | Shoda nalezena, viz níže
+Content Plan:  [ID — nově přiřazené nebo existující, např. SEO-30]
+Kategorie:     [SEO / PPC / Social / AI & SEO / Copywriting / Konference / Marketing / evisions interní / International / Kariéra]
 Slug:          [article-slug]
 Existující ver.: Žádná | [soubor] — vytvoří se vN+1
+
+--- Vlož ručně do Content Plan Sheetu (řádek v odpovídající kategorii) ---
+ID: [SEO-30]  |  Kapitola/Nadpis: [téma]  |  Typ obsahu: nový text - lekce
+klíčová slova: [doplní se v Kroku 1]  |  složka s výstupy: data/output/articles/[slug]/
+Status: In Progress
+---
 
 Keywords: načteno v Kroku 1
 
@@ -135,6 +159,7 @@ Pochopit konkurenční prostředí před psaním. Zúžit rozsah tématu. Sestav
 
 1. **Primární — Ahrefs MCP.** Tento projekt má Ahrefs MCP připojené (`mcp__claude_ai_Ahrefs__*` nástroje). Použít jako výchozí zdroj metrik a keyword discovery.
 2. **Fallback — WebSearch + WebFetch.** Pokud Ahrefs MCP není dostupné, použít built-in WebSearch/WebFetch (funguje vždy, bez API klíče).
+3. **Doplňkový — Marketing Miner.** `src/marketing_miner_api.py` — CZ/SK-laděný cross-check volume dat pro top keywordy + záložní zdroj nápadů, pokud Ahrefs nemá dost CZ pokrytí. Není náhrada Ahrefs, jen druhé mínění. Detailní postup viz `prompts/write_step1_research.md` krok 5.5.
 
 ### Krok 1: Ověření seed klíčového slova
 
@@ -324,8 +349,9 @@ Stejná pravidla jako v Edit Workflow Kroku 3 (`evisions_workflow_CZ.md`) — po
 Generuje se současně:
 1. `article_[slug]_CZ.html` — finální HTML článku
 2. `article_[slug]_CZ_log.html` — stylovaný log
+3. `article_[slug]_CZ.docx` — čitelný Word export článku (ne HTML, ne osnova z Kroku 2)
 
-Použít `src/step4_html.py` (evisions.cz šablona).
+Použít `src/step4_html.py` (evisions.cz šablona) pro HTML, hned poté `src/export_article_docx.py` pro docx — viz `prompts/step4_html.md` sekce "Docx export". Není to volitelný doplněk, generuje se automaticky při každém běhu Kroku 6.
 
 ### Stop podmínka
 
@@ -350,22 +376,26 @@ Stejný checklist jako v Edit Workflow Kroku 5 (`evisions_workflow_CZ.md` sekce 
 - [ ] Zdrojové citace u všech faktických tvrzení
 - [ ] Žádné [SOURCE NEEDED] značky zbylé
 
-### Soubory k uložení — všechny 4 povinné
+### Soubory k uložení — všech 5 povinných
 
 - [ ] `data/output/articles/[slug]/article_[slug]_CZ[_vN].md`
 - [ ] `data/output/articles/[slug]/article_[slug]_CZ[_vN]_log.md`
 - [ ] `data/output/articles/[slug]/article_[slug]_CZ[_vN].html`
 - [ ] `data/output/articles/[slug]/article_[slug]_CZ[_vN]_log.html`
+- [ ] `data/output/articles/[slug]/article_[slug]_CZ[_vN].docx` (vygenerováno v Kroku 6, ne ručně)
 
-### Aktualizace Content Plan Sheetu
+### Aktualizace Content Plan Sheetu a lokálního ledgeru
 
-Po dokončení nastavit **Status** řádku na "Published" a doplnit **URL** sloupec (po skutečném publikování na web).
+1. **Lokální ledger** (`data/output/content_plan_index.md`): přesunout řádek article ID ze stavu "In Progress" na "Published", doplnit URL (po skutečném publikování na web) — Edit tool, okamžitě.
+2. **Regenerovat xlsx mirror:** `.venv/Scripts/python.exe src/generate_content_plan_xlsx.py`.
+3. **Google Sheet:** vypsat uživateli hotový řádek k ručnímu vložení/aktualizaci (ID, Status → Published, URL) — MCP zápis do Sheetu neumí, totéž jako u přiřazení ID v Kroku 0.
 
 ### Stop podmínka
 
 > **Krok 7 dokončen.** QA: [PASS / FAIL].
 > Soubory uloženy: 4/4.
-> Content Plan aktualizován: Status → Published.
+> Lokální ledger aktualizován: Status → Published.
+> **Vlož ručně do Content Plan Sheetu:** ID [X] → Status: Published, URL: [živá URL].
 
 ---
 
@@ -384,7 +414,10 @@ article_[slug]_CZ.md                    # Finální markdown
 article_[slug]_CZ_log.md                # Write log (všechny kroky)
 article_[slug]_CZ.html                  # Finální HTML
 article_[slug]_CZ_log.html              # Log HTML
+article_[slug]_CZ.docx                  # Krok 6: čitelný Word export článku (automatický)
 ```
+
+> **Pozor na jméno:** `article_[slug]_CZ_outline.docx` (Krok 2, osnova) a `article_[slug]_CZ.docx` (Krok 6, hotový článek) jsou dva různé soubory ve stejné složce — nezaměňovat ani nepřepisovat jeden druhým.
 
 Slugy používají pomlčky: `seo-pro-e-commerce`, ne `seo_pro_e_commerce`.
 
@@ -403,6 +436,7 @@ Slugy používají pomlčky: `seo-pro-e-commerce`, ne `seo_pro_e_commerce`.
 | Verze | Datum | Změny |
 |-------|-------|-------|
 | 1.0 | 2026-07-10 | První verze, adaptováno z FTMO Academy write workflow |
+| 1.1 | 2026-08-18 | Přidán Krok 0 — Duplicate Check & ID přiřazení proti `data/output/content_plan_index.md` (lokální ledger, protože Google Drive MCP Sheet jen čte, nezapisuje) |
 
 ---
 

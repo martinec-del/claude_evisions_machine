@@ -31,9 +31,9 @@ copy .env.example .env
 
 ## Content Plan
 
-Zdroj témat: [Google Sheet "evisions.cz - Content Plan"](https://docs.google.com/spreadsheets/d/1W8VTbwT8_HiYuEF62rgJzI6KRTKJ9neI7LU4vt4IC74/edit)
+Zdroj témat (primární): [Content Plan Index Sheet](https://docs.google.com/spreadsheets/d/1QGRBoGYILY-n96j8uvCh1CV4pWRvVksAzFZnn1cga7Q/edit?gid=754600260#gid=754600260) — uživatelova editovatelná kopie `data/output/content_plan_index.xlsx`. Sekundární sheet (bohatší historická data, jen na vyžádání): [původní evisions.cz - Content Plan](https://docs.google.com/spreadsheets/d/1ru1ix1NtUmFPT5EFRGUFq5fYeatbyFF3zH_4yRV46TY/edit?gid=1262896623#gid=1262896623).
 
-Plochá struktura — žádná kurzová hierarchie jako u FTMO Academy. Každý řádek je jeden článek se sloupci: ID, Kategorie, Téma, Klíčové slovo, Search Volume, Typ obsahu, Status, URL, Poznámky.
+Jedna záložka per kategorie (SEO, PPC, Social, AI & SEO, Copywriting, Konference, Marketing, evisions interní, International, Kariéra ×2), každá s vlastním ID prefixem. Detaily: `data/output/guides/evisions_content_inventory.md`.
 
 Sheet byl inicializován s 8 existujícími live články z evisions.cz/blog/ (jako reference) + 1 TODO příkladem. Detaily: `data/output/guides/evisions_content_inventory.md`.
 

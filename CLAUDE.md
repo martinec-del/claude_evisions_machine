@@ -6,7 +6,9 @@ evisions Advertising s.r.o. — pražská digitální marketingová agentura (SE
 
 ### CONTENT PLÁN
 
-Zdroj: [Google Sheet "evisions.cz - Content Plan"](https://docs.google.com/spreadsheets/d/1W8VTbwT8_HiYuEF62rgJzI6KRTKJ9neI7LU4vt4IC74/edit) (file ID `1W8VTbwT8_HiYuEF62rgJzI6KRTKJ9neI7LU4vt4IC74`), čtený přímo přes připojený Google Drive MCP (`mcp__claude_ai_Google_Drive__read_file_content`) — žádná kurzová hierarchie, každý řádek je jeden článek. Sloupce: ID, Kategorie, Téma, Klíčové slovo, Search Volume, Typ obsahu, Status, URL, Poznámky.
+**Primární zdroj (od 2026-08-18):** [Content Plan Index Sheet](https://docs.google.com/spreadsheets/d/1QGRBoGYILY-n96j8uvCh1CV4pWRvVksAzFZnn1cga7Q/edit?gid=754600260#gid=754600260) (file ID `1QGRBoGYILY-n96j8uvCh1CV4pWRvVksAzFZnn1cga7Q`) — uživatelova editovatelná kopie/nástupce `data/output/content_plan_index.xlsx` (vygenerováno přes `src/generate_content_plan_xlsx.py`), nahraná do Google Drive. Struktura: záložka "Legenda" + jedna záložka na kategorii (SEO, PPC, Social, AI & SEO, Copywriting, Konference, Marketing, evisions interní, International, Kariéra ×2), sloupce Lokace, Lekce, Kapitola / Nadpis (= ID), Obsah kapitoly - podtéma (= téma), Typ obsahu, zpracoval, Článek/Case, odhad práce, klíčová slova, brief, složka s výstupy, final docs (URL), log, Status, Počet. Čte se přes `mcp__claude_ai_Google_Drive__read_file_content` (jen čtení, ne zápis).
+
+**Sekundární zdroj (jen na vyžádání, ne automaticky):** [původní "evisions.cz - Content Plan" Sheet](https://docs.google.com/spreadsheets/d/1ru1ix1NtUmFPT5EFRGUFq5fYeatbyFF3zH_4yRV46TY/edit?gid=1262896623#gid=1262896623) (file ID `1ru1ix1NtUmFPT5EFRGUFq5fYeatbyFF3zH_4yRV46TY`) — bohatší data (Lokace, zpracoval, klíčová slova, brief u starších článků), ale skilly z něj už automaticky nečtou. Použít jen když se na něj uživatel výslovně odkáže.
 
 Detaily: `data/output/guides/evisions_content_inventory.md`
 
@@ -23,7 +25,8 @@ Použít, když článek už existuje na živém webu.
 Keywords: data/output/keywords/[slug]_keywords.xlsx
 ```
 
-5-krokový workflow: Klíčová slova → ToV → Struktura → HTML → QA
+6-krokový workflow: Klíčová slova → Konkurenční SERP kontrola (Krok 1.5) → ToV → Struktura → HTML → QA
+Krok 1.5 porovná článek s top rankující konkurencí pro primární klíčová slova a při nalezené obsahové mezeře se ptá na Mód A (konkurenceschopná revize — jediná povolená výjimka z "žádné nové informace", dopisuje se v Kroku 3) nebo Mód B (jen zalogovat, beze změny pravidla).
 Definováno v: `data/output/guides/evisions_workflow_CZ.md`
 
 #### Větev B — Nový článek od nuly (`/evisions-new-article`)
@@ -68,6 +71,9 @@ Automatické přechody mezi kroky jsou ZAKÁZÁNY.
 Před přidáním jakýchkoli calloutů, tabulek nebo H3 — projít každý odstavec a zkontrolovat délku.
 Rozdělit každý odstavec nad 100 slov. Toto je nejčastěji vynechávaná kontrola.
 
+**DUPLICATE CHECK — POVINNÁ PRVNÍ AKCE V `/evisions-new-article`:**
+Před čímkoliv jiným zkontrolovat téma/klíčové slovo proti `data/output/content_plan_index.md` (lokální dedup ledger — Google Drive MCP umí primární Content Plan Index Sheet jen číst, ne zapisovat). Při shodě s existujícím Published článkem přesměrovat na `/evisions-rewrite-article`. Nové téma dostane přiřazené ID podle ledgeru; po každé změně ledgeru se přes `src/generate_content_plan_xlsx.py` regeneruje `data/output/content_plan_index.xlsx` (nové řádky zeleně) k ručnímu vložení do primárního Sheetu.
+
 **JAZYK: ČEŠTINA.** Veškerý obsah se píše přímo v češtině — ne v angličtině s následným překladem. ToV Guide používá vykání s přímým oslovením (viz sekce 5), ne British English pravidla FTMO.
 
 ---
@@ -76,11 +82,13 @@ Rozdělit každý odstavec nad 100 slov. Toto je nejčastěji vynechávaná kont
 
 | Dokument | Účel | Použit v |
 |----------|------|----------|
-| `data/output/guides/evisions_workflow_CZ.md` | Edit workflow (5 kroků) | `/evisions-rewrite-article` |
+| `data/output/guides/evisions_workflow_CZ.md` | Edit workflow (6 kroků, vč. Krok 1.5 konkurenční kontroly) | `/evisions-rewrite-article` |
 | `data/output/guides/evisions_write_workflow_CZ.md` | Write workflow (7 kroků) | `/evisions-new-article` |
 | `data/output/guides/evisions_tov_guide_CZ.md` | Tone of Voice guide | Oba |
 | `data/output/guides/evisions_structure_guide_CZ.md` | Structure & E-E-A-T guide | Oba |
 | `data/output/guides/evisions_content_inventory.md` | Content plán (odkaz na Sheet) | Oba |
+| `data/output/content_plan_index.md` | Dedup ledger — existující/plánovaná témata, next ID per kategorie | `/evisions-new-article` (Krok 0) |
+| `data/output/content_plan_index.xlsx` | Vizuální xlsx mirror ledgeru (generuje `src/generate_content_plan_xlsx.py`), nové řádky zvýrazněné | Ke kontrole uživatelem, kopírování do Sheetu |
 | `data/output/guides/evisions_brand_analysis_CZ.md` | Podklad pro ToV/Structure (analýza živého blogu) | Reference |
 
 ---
@@ -117,9 +125,12 @@ data/output/articles/[slug]/article_[slug]_CZ.md            # Finální markdown
 data/output/articles/[slug]/article_[slug]_CZ_log.md        # Log (první verze)
 data/output/articles/[slug]/article_[slug]_CZ.html          # Finální HTML (první verze)
 data/output/articles/[slug]/article_[slug]_CZ_log.html      # Log HTML (první verze)
+data/output/articles/[slug]/article_[slug]_CZ.docx          # Čitelný Word export článku (generuje se automaticky v Kroku HTML, viz src/export_article_docx.py)
 data/output/articles/[slug]/article_[slug]_CZ_v2.md         # Druhá verze
 data/output/keywords/[slug]_keywords.xlsx                    # Keywords soubor
 ```
+
+Pozor: `article_[slug]_CZ_outline.docx` (osnova z Kroku 2) a `article_[slug]_CZ.docx` (hotový článek z Kroku HTML) jsou dva různé soubory — nezaměňovat.
 
 Slugy používají pomlčky (odpovídají URL slugům): `seo-pro-e-commerce`, ne `seo_pro_e_commerce`.
 
@@ -143,5 +154,5 @@ Produkce: `gpt-4o` nebo `claude-sonnet-4-6`.
 ### MCP SERVERY
 
 - **Ahrefs** (povinné pro Krok 1 keyword research) — již připojeno v tomto účtu
-- **Google Drive** (pro čtení/zápis Content Plan Sheetu) — již připojeno, autentizováno jako analytics@evisions.cz
+- **Google Drive** (pro čtení primárního Content Plan Index Sheetu — zápis do buněk MCP neumí, viz `data/output/content_plan_index.md`) — již připojeno, autentizováno jako analytics@evisions.cz
 - Bez dalších MCP funguje Krok 1 přes built-in `WebSearch` + `WebFetch` (vždy dostupné)
