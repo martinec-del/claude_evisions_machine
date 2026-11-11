@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jak vybrat a měřit marketingové KPI podle SMART metody, kanálu a fáze funnelu. Praktické příklady, časté chyby a tipy pro reporting i výběr nástrojů.">
+    <title>Marketingové KPI: jak je vybrat a měřit | evisions.cz Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --evi-accent: #0057ff;
+    --evi-dark: #12131a;
+    --evi-navy: #0a0b12;
+    --evi-silver: #c6c6c6;
+    --evi-gray: #6b7280;
+    --evi-light: #f8f9fa;
+    --evi-border: #e1e5eb;
+    --max-width: 1160px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px; line-height: 1.7; color: #1f2937; background: #fff;
+}
+.header {
+    background: #000; padding: 1rem 2rem; position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.logo { color: #fff; font-size: 1.25rem; font-weight: 700; text-decoration: none; }
+.nav { display: flex; gap: 2rem; }
+.nav a { color: #ccc; text-decoration: none; font-size: 0.875rem; font-weight: 500; }
+.nav a:hover { color: #fff; }
+.header-cta {
+    background: var(--evi-accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: 4px; text-decoration: none; font-size: 0.875rem; font-weight: 600;
+}
+.breadcrumb {
+    background: var(--evi-light); padding: 0.75rem 2rem;
+    font-size: 0.875rem; border-bottom: 1px solid var(--evi-border);
+}
+.breadcrumb-inner { max-width: var(--max-width); margin: 0 auto; }
+.breadcrumb a { color: var(--evi-gray); text-decoration: none; }
+.breadcrumb span { color: var(--evi-gray); margin: 0 0.5rem; }
+.main { max-width: var(--max-width); margin: 0 auto; padding: 2rem; }
+h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; }
+h2 {
+    font-size: 1.5rem; font-weight: 600; margin: 2.5rem 0 1rem;
+    padding-top: 1rem; border-top: 1px solid var(--evi-border);
+}
+h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.75rem; }
+h4 { font-size: 1rem; font-weight: 600; margin: 1.25rem 0 0.5rem; }
+p { margin-bottom: 1rem; color: var(--evi-gray); }
+.intro-text { font-size: 1.125rem; color: #1f2937; line-height: 1.8; }
+strong { color: #1f2937; }
+a { color: var(--evi-accent); }
+ul, ol { margin: 1rem 0 1rem 1.5rem; color: var(--evi-gray); }
+li { margin-bottom: 0.5rem; }
+table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--evi-border); }
+th { background: var(--evi-light); font-weight: 600; color: var(--evi-dark); }
+td { color: var(--evi-gray); }
+.toc {
+    background: var(--evi-light); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;
+}
+.toc-title { font-size: 0.875rem; font-weight: 600; color: var(--evi-gray);
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+.toc ul { list-style: none; margin: 0; padding: 0; }
+.toc li { margin-bottom: 0.4rem; }
+.toc a {
+    color: var(--evi-dark); text-decoration: none; font-size: 0.9375rem;
+    display: flex; align-items: center; gap: 0.5rem;
+}
+.toc a::before {
+    content: ""; display: inline-block; width: 6px; height: 6px;
+    background: var(--evi-accent); border-radius: 50%; flex-shrink: 0;
+}
+.toc a:hover { color: var(--evi-accent); }
+.toc .toc-h3 { padding-left: 1.25rem; font-size: 0.875rem; }
+.callout {
+    padding: 1rem 1.25rem; margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0; font-size: 0.9375rem;
+}
+.callout-tip    { background: #e8f0fd; border-left: 4px solid var(--evi-accent); }
+.callout-warning { background: #fff3cd; border-left: 4px solid #ffc107; }
+.callout-important { background: #fde8e8; border-left: 4px solid #e53e3e; }
+.callout-note   { background: var(--evi-light); border-left: 4px solid var(--evi-gray); }
+.callout-keep-in-mind { background: #f0f7ee; border-left: 4px solid #5a8a4a; }
+.callout-example { background: #f5f5f5; border-left: 4px solid #999; }
+.callout strong { display: block; margin-bottom: 0.25rem; }
+figure.article-image { margin: 1.5rem 0; }
+figure.article-image img {
+    width: 100%; height: auto; border-radius: 8px;
+    border: 1px solid var(--evi-border); display: block;
+}
+figure.article-image figcaption {
+    margin-top: 0.5rem; font-size: 0.875rem;
+    color: var(--evi-gray); text-align: center; font-style: italic;
+}
+.video-container {
+    position: relative; padding-bottom: 56.25%; height: 0;
+    overflow: hidden; margin: 2rem 0; border-radius: 8px; background: #000;
+}
+.video-container iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+}
+.takeaways {
+    background: linear-gradient(135deg, var(--evi-navy) 0%, var(--evi-dark) 100%);
+    color: #fff; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;
+}
+.takeaways h2 { color: #fff; border: none; margin-top: 0; padding-top: 0; }
+.takeaways ul { color: #ccc; }
+.author-box {
+    background: var(--evi-light); border-radius: 12px; padding: 1.5rem; margin: 2rem 0;
+}
+.author-box-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--evi-border);
+}
+.author-box-title { font-weight: 600; font-size: 1rem; }
+.author-dates { font-size: 0.8125rem; color: var(--evi-gray); display: flex; gap: 1.5rem; }
+.author-card { display: flex; align-items: center; gap: 0.875rem; }
+.author-avatar {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--evi-dark);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 600; font-size: 1rem; flex-shrink: 0;
+}
+.author-role {
+    font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--evi-accent); font-weight: 600; margin-bottom: 0.125rem;
+}
+.author-name { font-weight: 600; color: var(--evi-dark); font-size: 0.9375rem; }
+.disclaimer {
+    background: var(--evi-light); padding: 1rem 1.25rem; border-radius: 4px;
+    font-size: 0.875rem; color: var(--evi-gray); margin: 1rem 0;
+}
+.footer { background: #000; color: #fff; padding: 3rem 2rem; margin-top: 4rem; }
+.footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;
+}
+.footer-logo { font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+.footer-desc { color: #888; font-size: 0.875rem; line-height: 1.6; }
+.footer h4 {
+    font-size: 0.875rem; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 1rem; color: #888;
+}
+.footer ul { list-style: none; margin: 0; padding: 0; }
+.footer li { margin-bottom: 0.5rem; }
+.footer a { color: #ccc; text-decoration: none; font-size: 0.9375rem; }
+.footer a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a class="logo" href="https://www.evisions.cz">evisions</a>
+        <nav class="nav">
+            <a href="https://www.evisions.cz/blog/">Blog</a>
+            <a href="https://www.evisions.cz">evisions.cz</a>
+        </nav>
+        <a class="header-cta" href="https://www.evisions.cz/kontakt/">Kontaktujte nás</a>
+    </div>
+</header>
+
+<div class="breadcrumb">
+    <div class="breadcrumb-inner">
+        <a href="https://www.evisions.cz/blog/">Blog</a>
+        <span>›</span>
+        <a href="https://www.evisions.cz/blog/marketingove-kpi-jak-je-vybrat-a-merit/">Marketingové KPI: jak je vybrat a měřit</a>
+    </div>
+</div>
+
+<main class="main">
+
+<div class="toc"><p class="toc-title">Obsah</p><ul><li class=""><a href="#co-je-kpi-a-čím-se-liší-od-cíle-a-metriky">Co je KPI a čím se liší od cíle a metriky</a></li><li class="toc-h3"><a href="#kpi-vs-cíl-vs-metrika">KPI vs. cíl vs. metrika</a></li><li class=""><a href="#jak-vybrat-správné-marketingové-kpi">Jak vybrat správné marketingové KPI</a></li><li class="toc-h3"><a href="#smart-metoda-pro-výběr-kpi">SMART metoda pro výběr KPI</a></li><li class="toc-h3"><a href="#lagging-vs-leading-kpi">Lagging vs. leading KPI</a></li><li class=""><a href="#příklady-marketingových-kpi-podle-kanálu-a-fáze-funnelu">Příklady marketingových KPI podle kanálu a fáze funnelu</a></li><li class="toc-h3"><a href="#kpi-podle-kanálu-a-fáze-funnelu">KPI podle kanálu a fáze funnelu</a></li><li class=""><a href="#jak-kpi-měřit-a-reportovat">Jak KPI měřit a reportovat</a></li><li class="toc-h3"><a href="#frekvence-reportingu-a-nástroje">Frekvence reportingu a nástroje</a></li><li class="toc-h3"><a href="#revize-kpi-a-přístup-k-dashboardu">Revize KPI a přístup k dashboardu</a></li><li class=""><a href="#časté-chyby-při-práci-s-marketingovými-kpi">Časté chyby při práci s marketingovými KPI</a></li><li class=""><a href="#klíčové-závěry">Klíčové závěry</a></li><li class=""><a href="#zdroje">Zdroje</a></li></ul></div>
+
+<h1>Marketingové KPI: jak je vybrat a měřit</h1>
+<p class="intro-text">Špatně zvolené KPI je horší než žádné KPI. Ukazuje na problém, který neexistuje, nebo skryje ten, který skutečně řešit potřebujete — a tým se přitom tváří, že má data pod kontrolou. V článku ukážeme, jak KPI vybrat podle SMART metody, jak je propojit s konkrétním marketingovým kanálem a fází funnelu, a jak se vyhnout nejčastějším chybám při jejich měření.</p>
+<h2 id="co-je-kpi-a-čím-se-liší-od-cíle-a-metriky">Co je KPI a čím se liší od cíle a metriky</h2>
+<p>KPI (Key Performance Indicator, česky klíčový ukazatel výkonnosti) je měřitelný ukazatel, který ukazuje, jak si vedete vůči konkrétnímu cíli. Ne každé číslo, které sledujete, je KPI — a záměna těchto pojmů je nejčastější důvod, proč firmy měří špatné věci.</p>
+<p>Cíl je obchodní záměr — třeba zvýšit obrat o 15 % za kvartál. KPI je ukazatel, podle kterého poznáte, jestli se k cíli blížíte — třeba konverzní poměr e-shopu. Metrika je jakékoli sledované číslo, které ale nemusí mít přímou vazbu na cíl — třeba počet zobrazení stránky. Bez jasného rozlišení těchto tří úrovní končí report plný čísel, která nikomu nepomůžou se rozhodnout.</p>
+<p>Rozdíl se nejlíp ukáže na konkrétním sporu v marketingovém týmu. Social media manažer hlásí nárůst zobrazení o 40 % a považuje to za úspěch měsíce. Obchodní ředitel se ale ptá, kolik z těch zobrazení přineslo poptávku — a odpověď často zní, že to nikdo nesledoval. Zobrazení je metrika. Počet poptávek z organického socialu je KPI, protože se dá přímo přiřadit k obchodnímu cíli. Bez tohoto rozlišení se snadno stane, že tým report za report obhajuje čísla, která s výsledkem firmy nesouvisí.</p>
+<h3 id="kpi-vs-cíl-vs-metrika">KPI vs. cíl vs. metrika</h3>
+<table>
+<thead>
+<tr>
+<th>Pojem</th>
+<th>Co to je</th>
+<th>Příklad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cíl</td>
+<td>Obchodní záměr</td>
+<td>Zvýšit obrat o 15 % za kvartál</td>
+</tr>
+<tr>
+<td>KPI</td>
+<td>Měřitelný ukazatel plnění cíle</td>
+<td>Konverzní poměr e-shopu</td>
+</tr>
+<tr>
+<td>Metrika</td>
+<td>Jakýkoli sledovaný údaj, ne vždy vázaný na cíl</td>
+<td>Počet zobrazení stránky</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jak-vybrat-správné-marketingové-kpi">Jak vybrat správné marketingové KPI</h2>
+<p>Dobré KPI odráží skutečný cíl kampaně, ne technickou aktivitu kolem něj. Pokud je cílem prodej, sledování počtu kliknutí nedává smysl samo o sobě — ukazuje aktivitu, ne výsledek. Výběr KPI proto nezačíná otázkou "co umíme snadno změřit", ale otázkou "co potřebujeme vědět, abychom se rozhodli o rozpočtu na příští měsíc".</p>
+<h3 id="smart-metoda-pro-výběr-kpi">SMART metoda pro výběr KPI</h3>
+<ul>
+<li><strong>Specifické</strong> — váže se na jeden konkrétní cíl, ne obecnou "zlepšit marketing"</li>
+<li><strong>Měřitelné</strong> — má jednotku a jasný zdroj dat</li>
+<li><strong>Dosažitelné</strong> — realistické vůči rozpočtu a stavu trhu</li>
+<li><strong>Relevantní</strong> — odpovídá byznysové prioritě, ne jen technické aktivitě</li>
+<li><strong>Časově ohraničené</strong> — má termín, ke kterému se vyhodnocuje</li>
+</ul>
+<p>Špatně zvolené KPI: "zlepšit marketing." Dobře zvolené KPI: "zvýšit konverzní poměr e-shopu z 1,8 % na 2,3 % do konce Q2." SMART metoda dělá z KPI nástroj pro rozhodování, ne proklamaci na poradě.</p>
+<p>První dvě písmena metody bývají zdánlivě samozřejmá, ale i tady firmy chybují. <strong>Specifické</strong> znamená, že KPI míří na jednu konkrétní věc — ne "zlepšit viditelnost", ale "zvýšit počet klíčových slov v top 10 z 25 na 40". <strong>Měřitelné</strong> vyžaduje jasně definovaný zdroj dat ještě předtím, než KPI začnete sledovat. Pokud si tým neshodne, jestli konverzi počítá GA4 nebo interní CRM, výsledná čísla se budou lišit a diskuze se zvrhne v spor o data místo o strategii.</p>
+<p>Další dvě písmena metody dělají firmám nejvíc problém. <strong>Dosažitelné</strong> neznamená pohodlné — znamená realistické vůči aktuálnímu rozpočtu, sezónnosti a konkurenci v oboru. Cíl "zdvojnásobit obrat z organiky za měsíc" u webu bez historie obsahu není KPI, je to přání. <strong>Relevantní</strong> zase odděluje KPI od aktivit, které jen dobře vypadají v prezentaci pro vedení. Počet publikovaných článků nebo příspěvků na sociálních sítích je aktivita, ne výsledek — pokud se neváže na konkrétní obchodní dopad.</p>
+<h3 id="lagging-vs-leading-kpi">Lagging vs. leading KPI</h3>
+<p>Leading KPI predikují budoucí výsledek — třeba návštěvnost webu nebo počet nových leadů. Lagging KPI potvrzují výsledek, který už nastal — třeba čtvrtletní obrat. Firmy, které sledují jen lagging KPI, reagují na problém, až je pozdě: obrat klesne, ale příčinu — třeba pokles návštěvnosti o měsíc dřív — už nikdo nezachytil.</p>
+<p>V praxi má většina marketingových KPI svůj leading i lagging protějšek. U SEO je leading KPI pozice v klíčových výrazech, lagging KPI je organická návštěvnost, která z těchto pozic o týdny později vyplyne. U PPC je leading KPI CTR reklamy, lagging KPI je počet objednávek z dané kampaně. U e-mailu je leading KPI open rate, lagging KPI je konverzní poměr celé kampaně. Sledování jen lagging poloviny znamená zjistit problém ve chvíli, kdy se s ním už nedá nic dělat v aktuálním období.</p>
+<div class="callout callout-tip">
+<p><strong>Tip:</strong> Sledujte 5–10 KPI současně. Méně znamená ztrátu přehledu o klíčových oblastech byznysu, víc rozmělňuje pozornost týmu a ztěžuje rozhodování.</p>
+</div>
+<h2 id="příklady-marketingových-kpi-podle-kanálu-a-fáze-funnelu">Příklady marketingových KPI podle kanálu a fáze funnelu</h2>
+<p>Univerzální seznam "nejlepších marketingových KPI" neexistuje. Správný výběr závisí na kanálu a na tom, v jaké fázi cesty se zákazník právě nachází. Tabulka níže ukazuje, jak se KPI mění napříč čtyřmi hlavními kanály a čtyřmi fázemi funnelu.</p>
+<p>Fáze funnelu jsou zvolené podle toho, jaké rozhodnutí v dané fázi reálně děláte. V awareness fázi rozhodujete, jestli obsah nebo kampaň vůbec dostane šanci být viděna. V acquisition fázi rozhodujete, jestli přivádí návštěvníky s dostatečným zájmem. V konverzní fázi rozhodujete o rozpočtu — kam ho přesunout a odkud stáhnout. V retenci rozhodujete, jestli má smysl dál investovat do akvizice nových zákazníků, nebo se vyplatí soustředit na ty stávající.</p>
+<h3 id="kpi-podle-kanálu-a-fáze-funnelu">KPI podle kanálu a fáze funnelu</h3>
+<table>
+<thead>
+<tr>
+<th>Kanál</th>
+<th>Awareness</th>
+<th>Acquisition</th>
+<th>Konverze</th>
+<th>Retence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SEO</td>
+<td>Share of Voice, návštěvnost webu</td>
+<td>Organické klíčové pozice, CTR</td>
+<td>Konverzní poměr organiky</td>
+<td>Návratnost návštěvníků</td>
+</tr>
+<tr>
+<td>PPC</td>
+<td>Zobrazení, dosah</td>
+<td>CPC, CTR</td>
+<td>CPA, ROAS</td>
+<td>Poměr LTV/CAC</td>
+</tr>
+<tr>
+<td>Social</td>
+<td>Dosah, engagement rate</td>
+<td>Kliky na web</td>
+<td>Konverze z placených postů</td>
+<td>Míra opakovaného engagementu</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>Open rate</td>
+<td>Proklikovost (CTR)</td>
+<td>Konverzní poměr kampaně</td>
+<td>Míra odhlášení, retence databáze</td>
+</tr>
+</tbody>
+</table>
+<p>Pro SEO patří mezi awareness KPI třeba Share of Voice — ukazuje, jak velký podíl viditelnosti v oboru vaše doména reálně má, ne jen kolik má zpětných odkazů. Metrice a jejímu výpočtu se věnujeme v článku <a href="https://www.evisions.cz/blog/share-of-voice-sov-k-cemu-je-a-jak-metriku-spocitat/">Share of Voice (SOV): K čemu je a jak metriku spočítat?</a>. U samotného linkbuildingu je navíc potřeba rozlišit, které metriky skutečně ukazují sílu profilu a které jsou jen vedlejší číslo — tomu se věnujeme v článku <a href="https://www.evisions.cz/blog/6-hlavnich-linkbuildingovych-metrik-je-domain-rating-opravdu-nejdulezitejsi/">6 hlavních linkbuildingových metrik</a>.</p>
+<p>U PPC kanálů se KPI liší i podle zvoleného cíle kampaně. Facebook nabízí primárně tři varianty — dosah, návštěvnost, konverze — a každá vyžaduje jiné vyhodnocovací KPI. Rozdíly mezi nimi popisujeme v článku <a href="https://www.evisions.cz/blog/cile-reklamy-na-facebooku-dosah-navstevnost-nebo-konverze/">Cíle reklamy na Facebooku: dosah, návštěvnost, nebo konverze?</a>.</p>
+<p>U socialu a e-mailu je logika obdobná, jen s jiným typem interakce. V awareness fázi socialu rozhoduje dosah a engagement rate — kolik lidí obsah vidí a kolik z nich na něj reaguje. V konverzní fázi u socialu i e-mailu je rozhodující, kolik z těch interakcí skutečně vede na web a dál do nákupu, ne jen počet lajků nebo otevření zprávy. Retence u e-mailu navíc funguje obráceně než u ostatních kanálů — vysoká míra odhlášení není jen KPI kvality obsahu, ale i signál, že se databáze oslovuje moc často nebo s nerelevantním obsahem.</p>
+<div class="callout callout-example">
+<p><strong>Example:</strong> Modelový příklad z praxe — e-shop sledoval primárně CTR svých PPC kampaní, čím vyšší proklikovost, tím lépe vypadal report. Po přesměrování rozpočtu na kampaně s nejvyšším CTR ale obrat stagnoval. Až přechod na CPA jako hlavní KPI odhalil, že nejlevnější kliky přiváděly návštěvníky s nejnižší ochotou nakoupit. Rozpočet se přesunul ke kampaním s vyšším CPC, ale nižším CPA — a obrat začal růst.</p>
+</div>
+<h2 id="jak-kpi-měřit-a-reportovat">Jak KPI měřit a reportovat</h2>
+<p>Výběr KPI je jen polovina práce. Druhá polovina je pravidelné a přehledné měření na jednom místě, ne roztroušené v deseti tabulkách.</p>
+<h3 id="frekvence-reportingu-a-nástroje">Frekvence reportingu a nástroje</h3>
+<p>Frekvence reportingu by měla odpovídat typu KPI, ne se řídit jedním firemním rytmem pro všechno. Leading KPI jako CTR nebo návštěvnost webu se vyplatí sledovat týdně — reagujete na výkyvy dřív, než se promítnou do obratu. Lagging KPI jako obrat nebo CAC stačí vyhodnocovat měsíčně nebo kvartálně, protože krátkodobé výkyvy tam nic neřeší. KPI dashboard bez tohoto rozlišení obvykle vede k jednomu efektu: tým reaguje na šum, ne na skutečný trend.</p>
+<p>Pro většinu KPI vystačíte s kombinací Google Analytics 4 a Google Search Console. Přechodu na GA4 a základnímu nastavení jsme se věnovali v článku <a href="https://www.evisions.cz/blog/universal-analytics-konci-at-zije-google-analytics-4/">Universal Analytics končí, ať žije Google Analytics 4!</a>, propojení organické návštěvnosti s konkrétními vyhledávacími dotazy popisuje článek <a href="https://www.evisions.cz/blog/google-search-console-jak-ji-v-seo-vyuzit-naplno/">Google Search Console: Jak ji v SEO využít naplno?</a>.</p>
+<p>Návratnost investic (ROI) nebo návratnost výdajů na reklamu (ROAS) patří mezi KPI, které nejde vyčíst z jednoho nástroje — kombinují náklady z reklamního systému s daty o konverzích z analytiky. Bez tohoto propojení zůstává i dobře zvolené KPI jen odhadem.</p>
+<h3 id="revize-kpi-a-přístup-k-dashboardu">Revize KPI a přístup k dashboardu</h3>
+<p>Pravidelný KPI audit — kontrola, jestli sledovaná čísla ještě odpovídají aktuální strategii — patří k údržbě KPI stejně jako jejich prvotní výběr. Firmy, které KPI nastaví jednou a pak se k nim rok nevrátí, snadno měří cíle, které už neplatí.</p>
+<p>Přístup k dashboardu má smysl otevřít celému marketingovému týmu, ne jen vedení. Specialista na PPC, který vidí jen svá vlastní čísla, snadno optimalizuje kampaň izolovaně od SEO nebo socialu — a rozpočet se pak přesouvá mezi kanály na základě neúplného obrazu. Sdílený dashboard s KPI napříč kanály dělá z reportingu podklad pro společné rozhodnutí, ne jen kontrolní nástroj pro jednoho člověka.</p>
+<h2 id="časté-chyby-při-práci-s-marketingovými-kpi">Časté chyby při práci s marketingovými KPI</h2>
+<p>Správně zvolené KPI se dá v praxi snadno rozmělnit. Pět nejčastějších chyb se opakuje napříč obory i velikostí firem.</p>
+<p><strong>Sledování vanity metrics bez vazby na cíl.</strong> Počet lajků nebo zobrazení roste, ale bez propojení na konverze jde jen o číslo, které dobře vypadá v reportu a samo o sobě nic neřídí.</p>
+<p><strong>Příliš mnoho KPI najednou.</strong> Desítky sledovaných čísel místo 5–10 klíčových ukazatelů rozmělňují pozornost týmu a ztěžují rozhodnutí, kam skutečně alokovat rozpočet.</p>
+<p><strong>Ignorování rozdílu mezi lagging a leading KPI.</strong> Firma, která sleduje jen výsledné číslo — obrat, počet zákazníků — reaguje na problém, až je pozdě na jeho řešení v aktuálním kvartálu.</p>
+<p><strong>Absence pravidelné revize KPI.</strong> Marketingová strategie se mění rychleji než jednou za rok, ale KPI ne vždy — výsledkem je měření cílů, které už dávno neplatí.</p>
+<p><strong>Kopírování KPI od konkurence bez vlastního kontextu.</strong> Benchmark ukazuje, na jaká čísla se dívat, ne jaká čísla si nastavit jako vlastní cíl — jiný rozpočet, obor nebo výchozí stav znamenají, že stejné KPI má u konkurence úplně jinou váhu.</p>
+<div class="callout callout-keep-in-mind">
+<p><strong>Keep in Mind:</strong> KPI, které vypadá dobře v reportu, není automaticky KPI, které pomáhá rozhodovat. Pravidelně se ptejte, jestli číslo, které sledujete, skutečně vede k akci — pokud ne, pravděpodobně sledujete vanity metriku.</p>
+</div>
+<h2 id="klíčové-závěry">Klíčové závěry</h2>
+<ul>
+<li>KPI musí být vždy vázané na konkrétní obchodní cíl, ne na obecnou marketingovou aktivitu.</li>
+<li>SMART metoda je použitelný filtr pro výběr KPI, ne jen teoretický rámec z prezentace.</li>
+<li>Kombinujte leading a lagging KPI — jedno bez druhého dává neúplný obraz o výkonu.</li>
+<li>Sledujte 5–10 KPI podle kanálu a fáze funnelu, ne desítky metrik najednou.</li>
+<li>Reportujte pravidelně na jednom místě a KPI alespoň jednou ročně revidujte podle aktuální strategie.</li>
+</ul>
+<h2 id="zdroje">Zdroje</h2>
+<ul>
+<li><a href="https://www.marketingppc.cz/ppc/kpi/">KPI: Jak definovat klíčové ukazatele výkonnosti, které dávají smysl — MarketingPPC.cz</a></li>
+<li><a href="https://www.mytimi.cz/kpi-ukazatele-co-to-je-a-jak-je-vytvorit/">KPI ukazatele: Co to je a jak je vytvořit? — myTimi.cz</a></li>
+<li><a href="https://www.ppcprofits.cz/blog/kpi-pro-digitalni-marketing-ktere-byste-nemeli-ignorovat">KPI pro digitální marketing, které byste neměli ignorovat — ppcprofits.cz</a></li>
+<li><a href="https://www.grapefruit.cz/blog/jak-si-zvolit-relevatni-kpi-pro-digitalni-marketing/">Jak si zvolit relevantní KPI pro digitální marketing? — Grapefruit.cz</a></li>
+<li><a href="https://topranker.cz/slovnik/kpi/">KPI - Co to je za zkratku? — Topranker.cz</a></li>
+</ul>
+
+<div class="author-box">
+    <div class="author-box-header">
+        <span class="author-box-title">O tomto článku</span>
+        <div class="author-dates">
+            <span>Aktualizováno: 2026-08-20</span>
+        </div>
+    </div>
+    <div class="author-card">
+        <div class="author-avatar">EV</div>
+        <div>
+            <div class="author-role">Content Team</div>
+            <div class="author-name">evisions Advertising</div>
+        </div>
+    </div>
+</div>
+
+<div class="disclaimer">
+    <strong>Poznámka k obsahu:</strong> Tento článek má edukativní charakter.
+    Konkrétní doporučení pro váš projekt vám rádi připravíme na míru.
+</div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div>
+            <div class="footer-logo">evisions</div>
+            <p class="footer-desc">Digitální marketingová agentura — SEO, PPC, analytika a obsah.</p>
+        </div>
+        <div>
+            <h4>Blog</h4>
+            <ul>
+                <li><a href="https://www.evisions.cz/blog/">Všechny články</a></li>
+                <li><a href="https://www.evisions.cz">evisions.cz</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

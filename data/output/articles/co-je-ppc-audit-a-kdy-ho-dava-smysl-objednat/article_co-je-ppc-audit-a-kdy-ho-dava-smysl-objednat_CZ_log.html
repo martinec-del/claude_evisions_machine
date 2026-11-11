@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log: Co je PPC audit a kdy ho dává smysl objednat</title>
+<style>
+:root {
+    --dark: #12131a; --muted: #6b7280; --border: #e1e5eb;
+    --accent: #0057ff; --light: #f8f9fa;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 14px; line-height: 1.65; color: #1f2937; background: #fff;
+    max-width: 1000px; margin: 0 auto; padding: 2.5rem 2rem;
+}
+h1 { font-size: 1.5rem; font-weight: 700; color: var(--dark);
+    border-bottom: 3px solid var(--dark); padding-bottom: 0.75rem; margin-bottom: 1.5rem; }
+h2 { font-size: 1.15rem; font-weight: 700; color: var(--dark);
+    margin: 2.25rem 0 0.75rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+h3 { font-size: 1rem; font-weight: 600; color: var(--dark); margin: 1.25rem 0 0.5rem; }
+p { margin-bottom: 0.85rem; color: #374151; }
+strong { color: var(--dark); }
+ul, ol { margin: 0.5rem 0 1rem 1.5rem; color: #374151; }
+li { margin-bottom: 0.3rem; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.8125rem; }
+th, td { padding: 0.5rem 0.75rem; text-align: left; border: 1px solid var(--border); vertical-align: top; }
+th { background: var(--light); font-weight: 600; color: var(--dark); }
+td { color: #374151; }
+code { background: var(--light); padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.85em; }
+blockquote { border-left: 4px solid var(--accent); background: var(--light);
+    padding: 0.75rem 1rem; margin: 1rem 0; color: #374151; }
+a { color: var(--accent); }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+</style>
+</head>
+<body>
+<h1>Log: Co je PPC audit a kdy ho dává smysl objednat</h1>
+<p><strong>Slug:</strong> co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat<br>
+<strong>Content Plan:</strong> PPC-15 — Kategorie: PPC, nová podskupina "10 – PPC audit" (lead-opportunity podpora pro landing page)<br>
+<strong>Content Plan zdroj:</strong> data/output/content_plan_index.md (lokální dedup ledger), primární Sheet https://docs.google.com/spreadsheets/d/1QGRBoGYILY-n96j8uvCh1CV4pWRvVksAzFZnn1cga7Q<br>
+<strong>Typ obsahu:</strong> Informační / edukativní s komerčním přesahem (lead-gen podpora pro /ppc-audit/)<br>
+<strong>Vytvořeno:</strong> 2026-08-27</p>
+<h2>Init</h2>
+<p><strong>Zdroj zadání:</strong> uživatelská lead-opportunity analýza landing page https://www.evisions.cz/ppc-audit/ (SERP na "ppc audit" míchá informační a komerční výsledky → prostor pro podpůrný článek bez kanibalizace LP; LP se v Google zobrazuje na 2. straně výsledků, cíl je posunout ji na 1. stranu společně s článkem přes interní prolinkování).</p>
+<p><strong>Duplicate Check (Krok 0):</strong> OK — žádná shoda v <code>data/output/content_plan_index.md</code> (Published ani TODO). Nové téma, přiřazeno ID PPC-15, nová Skupina 10 "PPC audit".</p>
+<p><strong>Zadaná klíčová slova (Ahrefs / Marketing Miner volume):</strong><br>
+- ppc audit: 600 / 230<br>
+- audit ppc: 90 / 70<br>
+- ppc audit zdarma: — / 50<br>
+- ppc audity: — / 60<br>
+- audit ppc účtu: 100 / —<br>
+- audit ppc: — / 30, 20<br>
+- ppc audit report: 20 / 20</p>
+<p><strong>Požadavky na obsah (z lead-opportunity akčního plánu):</strong><br>
+1. Vysvětlit co PPC audit je, kdy dává smysl, co odhaluje — primárně informační intent, LP až sekundárně.<br>
+2. Přirozené CTA v těle + na konci na https://www.evisions.cz/ppc-audit/.<br>
+3. 1–2 průběžná CTA (např. po přínosech auditu, po "kdy audit dává smysl") + sekce "jak k auditu přistupujeme v evisions". Pozor na CTA link density — jeden odkaz na CTA moment, needitovat stejnou URL 2× v sousedních větách ([[evisions_cta_link_density_feedback]]).<br>
+4. Interní prolinkování na relevantní PPC služby/obsah, 2–4 odkazy (LB standard).<br>
+5. Zvážit FAQ sekci (long-tail: jak často dělat PPC audit, co výstup obsahuje, kolik trvá audit).<br>
+6. Landing page /ppc-audit/ se needituje v rámci tohoto zadání — pouze nový článek.</p>
+<p><strong>Kandidáti na interní prolinkování (stejná kategorie PPC, k ověření v Kroku 1/2):</strong><br>
+- PPC-14 — Koeficient sezónnosti — https://www.evisions.cz/blog/koeficient-sezonnosti-jak-se-bude-vas-obrat-vyvijet-v-jednotlivych-mesicich/<br>
+- PPC-09 — Co je Google Consent Mode V2 a musíte to řešit? — https://www.evisions.cz/blog/co-je-google-consent-mode-v2-a-musite-to-resit/<br>
+- PPC-04 — Jak spolu souvisí budování značky a výkonnostní marketing? — https://www.evisions.cz/blog/jak-spolu-souvisi-budovani-znacky-a-vykonnostni-marketing/<br>
+- SEO-06 — Synergie PPC a SEO: Klíč k digitálnímu úspěchu? — https://www.evisions.cz/blog/synergie-ppc-a-seo-klic-k-digitalnimu-uspechu/</p>
+<h2>Step 1 — Konkurenční research + klíčová slova</h2>
+<p><strong>Seed keyword:</strong> "ppc audit" (mixed informational/commercial intent podle Ahrefs <code>intents</code>)</p>
+<p><strong>Provider:</strong> Ahrefs MCP (<code>serp-overview</code> pro "ppc audit" cz, <code>keywords-explorer-matching-terms</code>, <code>keywords-explorer-related-terms</code>) + WebFetch top výsledků. Marketing Miner CZ cross-check (<code>src/marketing_miner_api.py volume</code>).</p>
+<p><strong>Adaptace postupu:</strong> místo standardních 4 WebSearch dotazů ("vysvětleno"/"návod"/"jak na"/téma-specifický) byl použit přímo Ahrefs <code>serp-overview</code> pro přesný komerční+informační keyword "ppc audit" — SERP je u tohoto dotazu úzce specifický (mix service pages a glosářů), obecné WebSearch varianty by přinesly hodně duplicitních/irelevantních výsledků. Tento research byl navíc sdílený s paralelním úkolem — analýzou konkurence pro doporučení k landing page <code>/ppc-audit/</code> (viz <code>data/output/lead-opportunities/ppc_audit_landing_page_recommendations_CZ.md</code>), aby se stejná data nesbírala dvakrát.</p>
+<p><strong>URL research:</strong> 7 URL z TOP 10 SERPu pro "ppc audit" (cz) fetchnuto/analyzováno, 1 (adsvantage.cz, nižší DR/traffic) přeskočeno. Podrobnosti viz <code>co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat_step1.xlsx</code>, list "URLs".</p>
+<p><strong>Klíčový content gap:</strong> Žádný informační/edukativní konkurenční výsledek nepokrývá "kdy PPC audit <strong>nedává</strong> smysl" — tento úhel má jen jedna service page (zaklik.cz, DR27). Silný diferenciátor a E-E-A-T signál pro nový článek. Zároveň nikdo z informačního obsahu nejde do hloubky srovnáním metod auditu (nástroj / self-audit / peer review / externí agentura) tak jako zaklik.cz na service page — prostor to zpracovat edukativně v článku.</p>
+<p><strong>SERP featury:</strong> "ppc audit" má AI Overview + AI Overview sitelinks (feo.cz, grou.cz, marf.cz aj.) — strukturovaný obsah s jasnými H2/Q&amp;A pomáhá i do AI Overview zobrazení.</p>
+<p><strong>Klíčová slova:</strong> 11 navrženo (viz xlsx list "Keywords") — primární "ppc audit" (Ahrefs 600 / MM 230), sekundární varianty "audit ppc" (90/70), "audit ppc kampaní" (350/20 — <strong>řádový rozdíl, MM konzervativnější</strong>), "audit ppc účtů" (250, bez MM dat), "audit ppc účtu" (100/10 — řádový rozdíl), FAQ/long-tail "ppc audit zdarma" (50/50), "ppc audit report" (30/20), "ppc audit checklist" (10). Vyloučeno: "audit ppc kampaní praha" (lokální intent, mimo scope), "co je ppc" (250 — mention-only, riziko kanibalizace s případným samostatným článkem "Co je PPC").</p>
+<p><strong>xlsx uložen:</strong> <code>data/output/articles/co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat/co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat_step1.xlsx</code></p>
+<h2>Step 2 — Brief &amp; osnova</h2>
+<p><strong>Typ obsahu:</strong> How-to / edukativní (ne case study) — informační intent s komerčním přesahem, viz ToV Guide sekce 4/5.</p>
+<p><strong>Cíl:</strong> 1500–1800 slov.</p>
+<p><strong>Diferenciace:</strong> sekce "Kdy PPC audit nedává smysl" (nikdo v informačním TOP 10 nemá), srovnání 4 metod auditu (nástroj/self-audit/peer review/externí), krátká sekce "Jak k auditu přistupujeme v evisions". Vynecháno záměrně (patří na LP <code>/ppc-audit/</code>, ne do článku): cenové tiery, detailní deliverables formát, krokový proces objednávky — rozdělení koordinováno s <code>data/output/lead-opportunities/ppc_audit_landing_page_recommendations_CZ.md</code> sekce 4.</p>
+<p><strong>Kostra:</strong> Úvod (HOOK+TL;DR) → Co je PPC audit → Co kontroluje → Jak probíhá (4 metody) → Kdy dává smysl (CTA #1) → Kdy nedává smysl → Co je výstupem → Jak k auditu přistupujeme v evisions (CTA #2, case study Nefertiti) → FAQ → Klíčové závěry (CTA #3/závěrečné) → Zdroje.</p>
+<p><strong>Interní odkazy (5):</strong> <code>/ppc-audit/</code> ×2 (CTA po "kdy dává smysl" + závěrečné, různá formulace), PPC-13 (case study Nefertiti +150 % tržeb), PPC-09 (Consent Mode V2, u měření/trackingu), SEO-06 (Synergie PPC a SEO, volitelně kontext).</p>
+<p><strong>Content validace:</strong> Pass. Flagged: sekce "co audit kontroluje" zůstat čistě v PPC rovině, neprohlubovat do technického SEO (riziko okrajového přesahu k připravovaným SEO content-gap článkům, samo o sobě bez kanibalizace).</p>
+<p><strong>Osnova uložena:</strong> <code>data/output/articles/co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat/article_co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat_CZ_outline.docx</code></p>
+<h2>Step 3 — Draft</h2>
+<p><strong>Typ obsahu:</strong> How-to / edukativní<br>
+<strong>Počet slov:</strong> ~1475 (cíl: 1500–1800; v rámci tolerance)</p>
+<h3>Integrace klíčových slov</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Keyword</th>
+<th>Volume (Ahrefs/MM)</th>
+<th>Umístění</th>
+<th>Kontextová věta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>ppc audit</td>
+<td>600/230</td>
+<td>H1 + úvod/TL;DR</td>
+<td>"Co je PPC audit a kdy ho dává smysl objednat"</td>
+</tr>
+<tr>
+<td>2</td>
+<td>audit ppc</td>
+<td>90/70</td>
+<td>H2 "Co PPC audit konkrétně kontroluje"</td>
+<td>"Audit ppc účtu se obvykle neomezuje na jednu kampaň..."</td>
+</tr>
+<tr>
+<td>3</td>
+<td>audit ppc kampaní</td>
+<td>350/20</td>
+<td>H2 "Jak probíhá PPC audit"</td>
+<td>"V praxi audit ppc kampaní odhalí nejčastěji kombinaci menších problémů..."</td>
+</tr>
+<tr>
+<td>4</td>
+<td>audit ppc účtu/účtů</td>
+<td>100/10, 250/—</td>
+<td>H2 "Co PPC audit konkrétně kontroluje" (úvod)</td>
+<td>"Audit ppc účtu se obvykle neomezuje na jednu kampaň..."</td>
+</tr>
+<tr>
+<td>5</td>
+<td>ppc audit zdarma</td>
+<td>—/50</td>
+<td>FAQ</td>
+<td>"Je možné získat PPC audit zdarma?"</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ppc audit report</td>
+<td>30/20</td>
+<td>H2 "Co je výstupem PPC auditu" + FAQ</td>
+<td>"Co konkrétně obsahuje report z PPC auditu?"</td>
+</tr>
+</tbody>
+</table>
+<h3>Odchylky od osnovy</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Typ</th>
+<th>Popis</th>
+<th>Důvod</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Doplnění</td>
+<td>Přidána 5. FAQ otázka "Jak dlouho PPC audit trvá?" nad rámec 4 otázek z osnovy</td>
+<td>Explicitní požadavek z původního zadání uživatele ("kolik trvá audit" byl součástí navrhované FAQ v lead-opportunity akčním plánu), posiluje long-tail pokrytí bez rizika kanibalizace s LP (obecná odpověď, ne konkrétní SLA naší služby)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Rozšíření</td>
+<td>Draft dosáhl 1475 slov místo cílových 1500–1800 (těsně pod dolní hranicí)</td>
+<td>Osnova dodržena strukturně beze zbytku; další umělé natahování by šlo proti "bez omáčky" principu ToV — ponecháno k rozhodnutí uživatele, zda doplnit další sekci, nebo nechat v aktuálním rozsahu</td>
+</tr>
+</tbody>
+</table>
+<p>Ostatní: osnova dodržena přesně — všechny H2 ze schváleného briefu se objevují ve stejném pořadí, žádné téma vyhrazené pro landing page (ceny, deliverables formát, proces objednávky) do článku nepronikly.</p>
+<h3>Zdrojové citace</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Tvrzení</th>
+<th>Zdroj</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Nárůst tržeb o téměř 150 % za 9 měsíců u klienta Nefertiti</td>
+<td>Interní reporting evisions, publikovaná case study PPC-13 (https://www.evisions.cz/blog/spoluprace-e-visions-a-nefertitis-za-9-mesicu-zvyseni-trzeb-na-temer-150-diky-ppc/)</td>
+</tr>
+</tbody>
+</table>
+<p>Ostatní tvrzení v článku jsou obecné odborné znalosti/interpretace (principy PPC auditu, typické nálezy) a dle Kroku 3 pravidel nevyžadují externí zdroj. Žádné tvrzení nebylo vlajkováno jako [SOURCE NEEDED].</p>
+<p><strong>Draft uložen:</strong> <code>data/output/articles/co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat/article_co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat_CZ.md</code></p>
+<h2>Step 4 — ToV Check</h2>
+<p><strong>Zkontrolováno vět:</strong> ~90<br>
+<strong>Nalezeno problémů:</strong> 3</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Location</th>
+<th>Issue Type</th>
+<th>Original (full sentence)</th>
+<th>Corrected (full sentence)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>H2 "Kdy má smysl PPC audit objednat", úvodní věta před výčtem</td>
+<td>Bez omáčky — lead-in fráze (analog "Existuje několik důvodů, proč…")</td>
+<td>"Několik situací signalizuje, že je audit na místě:"</td>
+<td>"Audit dává smysl v pěti situacích:"</td>
+</tr>
+<tr>
+<td>2</td>
+<td>H2 "Kdy PPC audit naopak nedává smysl", 1. odstavec, poslední věta</td>
+<td>Rytmus vět — 3+ dlouhé věty v odstavci za sebou</td>
+<td>"Audit v tu chvíli hodnotí kampaň v přechodném stavu, ne v jejím skutečném provozu, a nálezy by za pár týdnů stejně neplatily."</td>
+<td>"Audit v tu chvíli hodnotí kampaň v přechodném stavu, ne v jejím skutečném provozu. Nálezy by navíc za pár týdnů stejně neplatily."</td>
+</tr>
+<tr>
+<td>3</td>
+<td>H2 "Kdy má smysl PPC audit objednat", odrážka "Plánujete navýšit rozpočet"</td>
+<td>Slovní volba — příliš hovorová metafora ("nasypaný rozpočet") pro how-to obsah, věcnější kalibrace dle ToV Guide sekce 4</td>
+<td>"Než do kampaně pošlete víc peněz, má smysl ověřit, že současné nastavení nasypaný rozpočet neztratí na stejných chybách."</td>
+<td>"Než do kampaně pošlete víc peněz, má smysl ověřit, že současné nastavení dodatečný rozpočet neztratí na stejných chybách."</td>
+</tr>
+</tbody>
+</table>
+<p>Zbytek draftu prošel checklistem beze změn: konzistentní vykání, žádný hype/povýšenecký jazyk, žádné vágní tvrzení, case study správně rámovaná jako "u klienta Nefertiti", žádné casual filler slova ("prostě", "tak nějak", "celkem", "vlastně").</p>
+<h2>Step 5 — Struktura &amp; formátování</h2>
+<p><strong>Délka článku:</strong> STŘEDNÍ (~1571 slov)</p>
+<p><strong>Audit odstavců (povinná první akce):</strong> proveden na celém draftu z Kroku 4. Žádný odstavec nepřekročil 100 slov (nejdelší 88 slov, sekce "Kdy PPC audit nedává smysl") — žádné rozdělení nutné.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Change Type</th>
+<th>Description</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Callout přidán (Warning)</td>
+<td>"Bez validního trackingu konverzí je jakýkoliv další závěr auditu jen odhad..." pod bullet "Měření a tracking" v sekci "Co PPC audit konkrétně kontroluje"</td>
+<td>Formatting: zdůraznění kritické závislosti (bez trackingu jsou ostatní nálezy jen odhad)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Tabulka přidána</td>
+<td>Srovnání 4 metod auditu (Metoda / Čas / Hlavní výhoda / Hlavní limit) v sekci "Jak probíhá PPC audit", nahrazuje samostatný odstavec o čase</td>
+<td>Formatting: srovnávací data lépe čitelná jako tabulka než prozaicky; odstranění duplicity s bold-odstavcovými popisy metod</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Callout přidán (Keep in Mind)</td>
+<td>"Automatizovaný nástroj a self-audit jsou dobrý první krok, ale..." po tabulce metod</td>
+<td>Structure Guide: 1 Keep in Mind na how-to článek, limity metody</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Callout přidán (Tip)</td>
+<td>"Nejste si jistí, jestli je na audit vhodná chvíle?..." v sekci "Kdy má smysl PPC audit objednat"</td>
+<td>Formatting: praktická rada (2-3 Tip callouty doporučené, žádné callouty za sebou)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>H2 sloučeny do H3 pod novým H2</td>
+<td>"Kdy má smysl PPC audit objednat" a "Kdy PPC audit naopak nedává smysl" nyní H3 podsekce pod nový H2 "Kdy PPC audit dává a nedává smysl"</td>
+<td>Structure: 10 H2 na článek přesahovalo doporučenou frekvenci 3-7; tyto dvě sekce jsou přirozený pár (stejné rozhodovací téma), sloučení snižuje počet H2 na 9 bez ztráty obsahu nebo CTA umístění</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Celkem:</strong> 3 callouty (Warning, Keep in Mind, Tip) — žádné dva za sebou, max 1 na H2 sekci. 1 tabulka. 3 seznamy (co kontroluje, kdy dává smysl, klíčové závěry) — v rámci limitu 2-3 pro střední délku článku.</p>
+<p><strong>Flagged k rozhodnutí uživatele:</strong> i po sloučení zůstává 9 H2 sekcí, nad doporučenou frekvencí 3-7 z Structure Guide. Vzhledem k rozsahu tématu (definice → rozsah → metody → kdy ano/ne → výstup → přístup evisions → FAQ → závěry → zdroje) jde o obsahově odůvodněný rozsah, ne formátovací přehmat — ponecháno bez dalšího sloučení, aby se nenarušila schválená osnova z Kroku 2. K posouzení uživatelem.</p>
+<p><strong>Autorská atribuce:</strong> neduplikována ručně v markdownu — dle precedentu (<code>webova-analytika...</code> draft) i CLAUDE.md poznámky o known site issues vkládá author box automaticky <code>step4_html.py</code> v Kroku 6.</p>
+<p><strong>Struktura uložena:</strong> <code>data/output/articles/co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat/article_co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat_CZ.md</code> (aktualizováno in-place, verze v1)</p>
+<h2>Step 6 — HTML konverze</h2>
+<p><strong>Nástroj:</strong> <code>src/step4_html.py</code> (<code>convert_to_html()</code>), voláno programově (skript nemá CLI — na rozdíl od <code>export_article_docx.py</code>/<code>generate_write_log.py</code>). Slug pro breadcrumb/ToC anchor předán jako čistý URL slug (<code>co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat</code>), výstupní soubor následně přejmenován na konvenci <code>article_[slug]_CZ.html</code> (stejný postup jako u existujícího draftu <code>webova-analytika...</code>, kde <code>convert_to_html()</code> sám o sobě soubor s prefixem "article_" negeneruje).</p>
+<p><strong>ToC:</strong> vygenerováno automaticky (článek 1571 slov &gt; 1500 práh) — 11 položek včetně 2 vnořených H3 pod "Kdy PPC audit dává a nedává smysl".</p>
+<p><strong>Meta title/popisek:</strong> <code>convert_to_html()</code> negeneruje <code>&lt;meta name="description"&gt;</code> a použije H1 přímo jako <code>&lt;title&gt;</code> — stejně jako u referenčního draftu (<code>webova-analytika...</code>) bylo nutné obojí doplnit ručně po generování:<br>
+- Title: "PPC audit: co to je a kdy ho objednat | evisions.cz Blog" (56 znaků, primární keyword na začátku)<br>
+- Meta popisek (156 znaků): "PPC audit odhalí, kde kampaně v Google Ads či Sklik ztrácí rozpočet. Zjistěte, co PPC audit kontroluje, jak probíhá a kdy se vyplatí ho objednat – i kdy ne."</p>
+<p><strong>Callouty/tabulka/ToC render:</strong> ověřeno — 3 callouty (<code>callout-warning</code>, <code>callout-keep-in-mind</code>, <code>callout-tip</code>) správně převedeny z blockquote syntaxe, srovnávací tabulka metod auditu vykreslena jako <code>&lt;table&gt;</code>.</p>
+<p><strong>Obrázky:</strong> žádné — téma nevyžaduje vizuální ilustrace, žádný <code>[IMAGE NEEDED]</code> placeholder.</p>
+<p><strong>HTML Checklist:</strong><br>
+- [x] Struktura stránky v povinném pořadí<br>
+- [x] Poppins font načten<br>
+- [x] ToC přítomen (&gt;1500 slov)<br>
+- [x] Autor box s datem aktualizace (generický Content Team box — známé omezení šablony, viz CLAUDE.md known site issues)<br>
+- [x] Poznámka k obsahu přítomna<br>
+- [x] Meta title 56 znaků (50–60 ✓)<br>
+- [x] Meta popisek 156 znaků (150–160 ✓)<br>
+- [x] Responzivní (šablona, max-width 1160px)<br>
+- [x] <code>.docx</code> vygenerován přes <code>src/export_article_docx.py</code></p>
+<p><strong>Výstupy:</strong><br>
+- <code>article_co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat_CZ.html</code><br>
+- <code>article_co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat_CZ.docx</code><br>
+- <code>article_co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat_CZ_log.html</code></p>
+<p><strong>Content Plan Sheet:</strong> řádek PPC-15 zůstává Status "In Progress" v ledgeru (<code>data/output/content_plan_index.md</code>) — na Published se přepne až po skutečné publikaci na živém webu (Krok 7, mimo rozsah tohoto běhu).</p>
+<h2>Step 7 — QA + aktualizace Content Plan</h2>
+<p><strong>Content validace (marketingový expert review):</strong> PASS. Fakta technicky přesná, žádné zjednodušení, koncepty v logickém pořadí (definice → rozsah → metody → kdy ano/ne → výstup → náš přístup → FAQ → závěry), příklady realistické, nic z konkurenčního researchu Kroku 1 není opomenuto.</p>
+<p><strong>QA Checklist:</strong><br>
+- [x] Fakta odpovídají zdroji<br>
+- [x] Žádné informace nepřidány/neodebrány mimo vlajkované odchylky (Krok 3 log)<br>
+- [x] Odkazy fungují — ověřeno WebFetch na všech 4 externích/interních odkazech (<code>/ppc-audit/</code>, case study Nefertiti, Consent Mode V2, Synergie PPC a SEO) — všechny OK, žádné 404. Případová studie Nefertiti potvrzena na skutečných +149,57 % tržeb — odpovídá formulaci článku "téměř 150 %".<br>
+- [x] Tón odpovídá ToV Guide (How-to kalibrace) — ověřeno v Kroku 4<br>
+- [x] Žádné zakázané fráze, žádné garance výsledků<br>
+- [x] E-E-A-T prvky přítomny (autor box, zdroje, datum aktualizace)<br>
+- [x] Hierarchie nadpisů správná (H1→H2→H3, bez přeskočení úrovní)<br>
+- [x] Interní odkazy přítomny (4 blog + 2 CTA na LP)<br>
+- [x] HTML se správně renderuje (ToC, callouty, tabulka ověřeny v Kroku 6)<br>
+- [x] Zdrojové citace u faktických tvrzení, žádné [SOURCE NEEDED] značky</p>
+<p><strong>Soubory uloženy: 5/5</strong> (<code>.md</code>, <code>_log.md</code>, <code>.html</code>, <code>_log.html</code>, <code>.docx</code>) — ověřeno na disku.</p>
+<p><strong>Aktualizace Content Plan:</strong> Uživatel potvrdil (AskUserQuestion, 2026-08-27), že článek ještě NENÍ publikován na živém webu. Lokální ledger proto <strong>zůstává Status "In Progress"</strong> — přepnutí na "Published" + doplnění URL proběhne až po skutečném nahrání na evisions.cz/blog/ (mimo rozsah tohoto běhu, workflow to výslovně vyžaduje "po skutečném publikování na web"). xlsx mirror se nepřegeneroval, protože ledger se v tomto kroku nezměnil.</p>
+<p><strong>QA: PASS.</strong> Soubory: 5/5. Ledger: beze změny (In Progress, čeká na publikaci).</p>
+</body>
+</html>

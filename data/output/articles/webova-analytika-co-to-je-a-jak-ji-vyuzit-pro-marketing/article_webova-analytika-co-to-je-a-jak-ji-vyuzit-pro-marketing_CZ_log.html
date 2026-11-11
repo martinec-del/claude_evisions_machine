@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log: Webová analytika: co to je a jak ji využít pro marketing</title>
+<style>
+:root {
+    --dark: #12131a; --muted: #6b7280; --border: #e1e5eb;
+    --accent: #0057ff; --light: #f8f9fa;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 14px; line-height: 1.65; color: #1f2937; background: #fff;
+    max-width: 1000px; margin: 0 auto; padding: 2.5rem 2rem;
+}
+h1 { font-size: 1.5rem; font-weight: 700; color: var(--dark);
+    border-bottom: 3px solid var(--dark); padding-bottom: 0.75rem; margin-bottom: 1.5rem; }
+h2 { font-size: 1.15rem; font-weight: 700; color: var(--dark);
+    margin: 2.25rem 0 0.75rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+h3 { font-size: 1rem; font-weight: 600; color: var(--dark); margin: 1.25rem 0 0.5rem; }
+p { margin-bottom: 0.85rem; color: #374151; }
+strong { color: var(--dark); }
+ul, ol { margin: 0.5rem 0 1rem 1.5rem; color: #374151; }
+li { margin-bottom: 0.3rem; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.8125rem; }
+th, td { padding: 0.5rem 0.75rem; text-align: left; border: 1px solid var(--border); vertical-align: top; }
+th { background: var(--light); font-weight: 600; color: var(--dark); }
+td { color: #374151; }
+code { background: var(--light); padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.85em; }
+blockquote { border-left: 4px solid var(--accent); background: var(--light);
+    padding: 0.75rem 1rem; margin: 1rem 0; color: #374151; }
+a { color: var(--accent); }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+</style>
+</head>
+<body>
+<h1>Log: Webová analytika: co to je a jak ji využít pro marketing</h1>
+<p><strong>Slug:</strong> webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing<br>
+<strong>Content Plan:</strong> bez ID (nový řádek) — Kategorie: SEO, podskupina "Analytika a metriky" (<code>topic_cluster_analytika-a-metriky_CZ</code>)<br>
+<strong>Content Plan zdroj:</strong> https://docs.google.com/spreadsheets/d/1ru1ix1NtUmFPT5EFRGUFq5fYeatbyFF3zH_4yRV46TY/edit?gid=1262896623#gid=1262896623<br>
+<strong>Typ obsahu:</strong> How-to / edukativní (viz ToV Guide sekce 4)<br>
+<strong>Vytvořeno:</strong> 2026-08-17</p>
+<h2>Init</h2>
+<ul>
+<li>Sheet neobsahuje přiřazené ID ani klíčové slovo — vyplní se v Kroku 1.</li>
+<li>Příbuzné publikované články ve stejné podskupině (kandidáti na interní prolinkování):</li>
+<li>SEO-07 — Universal Analytics končí, ať žije Google Analytics 4! — https://www.evisions.cz/blog/universal-analytics-konci-at-zije-google-analytics-4/</li>
+<li>SEO-19 — Share of Voice (SOV): K čemu je a jak metriku spočítat? — https://www.evisions.cz/blog/share-of-voice-sov-k-cemu-je-a-jak-metriku-spocitat/</li>
+<li>SEO-21 — Google Search Console: Jak ji v SEO využít naplno? — https://www.evisions.cz/blog/google-search-console-jak-ji-v-seo-vyuzit-naplno/</li>
+<li>Uživatel potvrdil: Content Plan zdroj pravdy = odkazovaný editorial calendar sheet (ne sheet z CLAUDE.md), použije se i pro update Status/URL v Kroku 7.</li>
+</ul>
+<h2>Step 1 — Konkurenční research + klíčová slova</h2>
+<p><strong>Seed keyword:</strong> "webová analytika" (ověřeno přes WebSearch, 4 dotazy × top výsledky)</p>
+<p><strong>Provider:</strong> Ahrefs MCP (domain rating, site-explorer-metrics, keywords-explorer)</p>
+<p><strong>URL research:</strong> 24 kandidátních URL nasbíráno (4 dotazy), deduplikováno a filtrováno (vynechány fóra, kurzy/služby bez article contentu, SK doména). 10 URL obohaceno o DR + organic traffic a fetchnuto. 1 z 10 (netdirect.cz) se ukázal jako JS blog-index, ne článek — označeno FAIL ve xlsx.</p>
+<p><strong>Klíčový content gap:</strong> Žádný konkurenční článek nerámuje webovou analytiku explicitně jako most "metrika → konkrétní marketingové rozhodnutí" — konkurence je buď encyklopedická (webglobe, cernovsky), nebo agenturně-prodejní (antee, robertnemec, digitalniarchitekti, dfsolutions) bez nezávislého edukativního tónu.</p>
+<p><strong>Kanibalizace v rámci vlastního clusteru (topic_cluster_analytika-a-metriky_CZ):</strong> Google Analytics/GA4 už pokrývá živý článek SEO-07, Google Search Console živý článek SEO-21, Google Tag Manager je naplánovaný samostatný článek ve stejné skupině Content Plan sheetu. Tento článek proto tyto nástroje jen zmíní a prolinkuje, bez hloubkového výkladu.</p>
+<p><strong>Klíčová slova:</strong> 20 navrženo (viz xlsx list "Keywords") — primární "webová analytika" (90/mo, KD 0), sekundární "analýza webu" (450), "digitální analytika", podpůrné metriky/nástroje (konverzní poměr, míra okamžitého opuštění, UTM parametry, Matomo, heatmapa...), 4 "mention only" kvůli kanibalizaci (GA, GA4, GTM, GSC), 2 mimo scope (Google Ads, SEO).</p>
+<p><strong>xlsx uložen:</strong> <code>data/output/articles/webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing/webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing_step1.xlsx</code></p>
+<h2>Step 2 — Brief &amp; osnova</h2>
+<p><strong>Typ obsahu:</strong> How-to / edukativní — téma je definiční a metrikové, cílem je propojit data s marketingovým rozhodnutím, ne prezentovat klientský výsledek.</p>
+<p><strong>Cíl počtu slov:</strong> 1600–1900 (konkurenční průměr ze Step 1 ~1930, ale rozsah zúžen kvůli vynechání hloubkového GA4/GSC/GTM výkladu — kanibalizace).</p>
+<p><strong>Diferenciace od konkurence:</strong> Explicitní most "metrika → konkrétní marketingové rozhodnutí" (content gap ze Step 1). Nezávislý edukativní tón bez prodejního rámce (na rozdíl od antee.cz, robertnemec.com, digitalniarchitekti.cz, dfsolutions.cz). Vyvážený pohled na nástroje včetně Matomo (konkurence je téměř výhradně GA-centrická).</p>
+<p><strong>Kostra nadpisů (H2):</strong><br>
+1. Co je webová analytika (+ H3 Webová analytika vs. analýza webu)<br>
+2. Jaké nástroje webovou analytiku umožňují<br>
+3. Klíčové metriky a jak je číst (+ H3 Metriky vs. dimenze, H3 Konverzní poměr, H3 Míra okamžitého opuštění a zdroje návštěvnosti)<br>
+4. Jak webovou analytiku využít pro marketingová rozhodnutí<br>
+5. Časté chyby při interpretaci dat<br>
+6. Klíčové závěry<br>
+7. Zdroje</p>
+<p><strong>Plán interních odkazů (5):</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Cílový článek</th>
+<th>Umístění</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Universal Analytics končí, ať žije Google Analytics 4! (SEO-07)</td>
+<td>Sekce "Jaké nástroje..."</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Google Search Console: Jak ji v SEO využít naplno? (SEO-21)</td>
+<td>Sekce "Jaké nástroje..."</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Share of Voice (SOV) (SEO-19)</td>
+<td>Sekce "Klíčové metriky..."</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Co je Google Consent Mode V2 a musíte to řešit? (PPC-09)</td>
+<td>Sekce "Časté chyby..."</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Synergie PPC a SEO (SEO-06)</td>
+<td>Sekce "Jak webovou analytiku využít..."</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Content validace:</strong> PASS — struktura logicky odpovídá tématu (definice → nástroje → metriky → praktická aplikace → chyby → závěr), všechny klíčové koncepty pro How-to obsah přítomny, pořadí sekcí didakticky správné, nic klíčového nechybí (GA4/GSC/GTM záměrně zúženo a zdůvodněno v diferenciaci).</p>
+<p><strong>Osnova uložena:</strong> <code>data/output/articles/webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing/article_webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing_CZ_outline.docx</code></p>
+<h2>Step 3 — Draft</h2>
+<p><strong>Typ obsahu:</strong> How-to / edukativní<br>
+<strong>Počet slov:</strong> 1601 (cíl: 1600–1900)</p>
+<h3>Integrace klíčových slov</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Keyword</th>
+<th>Volume</th>
+<th>Umístění</th>
+<th>Kontextová věta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>webová analytika</td>
+<td>90</td>
+<td>H1 + úvodní odstavec</td>
+<td>"Webová analytika je sběr a vyhodnocování dat o chování návštěvníků na webu s cílem podpořit konkrétní marketingové rozhodnutí."</td>
+</tr>
+<tr>
+<td>2</td>
+<td>analýza webu</td>
+<td>450</td>
+<td>H3 "Webová analytika vs. analýza webu"</td>
+<td>"Analýza webu bývá širší pojem, který kromě chování návštěvníků může zahrnovat i technický SEO audit, konkurenční analýzu nebo kontrolu přístupnosti."</td>
+</tr>
+<tr>
+<td>3</td>
+<td>digitální analytika</td>
+<td>10</td>
+<td>H2 "Co je webová analytika"</td>
+<td>"Pojem se často zaměňuje se širším pojmem <em>analýza webu</em>, případně synonymem <em>digitální analytika</em>."</td>
+</tr>
+<tr>
+<td>4</td>
+<td>analytické nástroje</td>
+<td>100</td>
+<td>H2 "Jaké nástroje webovou analytiku umožňují"</td>
+<td>"Analytické nástroje se liší podle toho, jestli měří chování na webu, výkon ve vyhledávání, nebo obojí."</td>
+</tr>
+<tr>
+<td>5</td>
+<td>matomo</td>
+<td>150</td>
+<td>H2 "Jaké nástroje..."</td>
+<td>"Pro weby s vyššími nároky na ochranu dat existuje alternativa Matomo."</td>
+</tr>
+<tr>
+<td>6</td>
+<td>metriky a dimenze</td>
+<td>0</td>
+<td>H3 "Metriky vs. dimenze" (nadpis)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7</td>
+<td>konverzní poměr</td>
+<td>200</td>
+<td>H3 "Konverzní poměr — metrika, která rozhoduje o rozpočtu"</td>
+<td>"Konverzní poměr je podíl konverzí na celkovém počtu návštěv nebo uživatelů."</td>
+</tr>
+<tr>
+<td>8</td>
+<td>co je konverze</td>
+<td>0</td>
+<td>H3 "Konverzní poměr..."</td>
+<td>"Konverze je akce, kterou web od návštěvníka očekává — nákup, odeslání formuláře, stažení ceníku."</td>
+</tr>
+<tr>
+<td>9</td>
+<td>míra okamžitého opuštění</td>
+<td>100</td>
+<td>H3 "Míra okamžitého opuštění a zdroje návštěvnosti" (nadpis)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>10</td>
+<td>zdroje návštěvnosti</td>
+<td>0</td>
+<td>H3 "Míra okamžitého opuštění a zdroje návštěvnosti"</td>
+<td>"Proto se bounce rate vždy čte společně se zdrojem návštěvnosti."</td>
+</tr>
+<tr>
+<td>11</td>
+<td>analýza dat</td>
+<td>100</td>
+<td>H2 "Jak webovou analytiku využít pro marketingová rozhodnutí"</td>
+<td>"Rozdíl dělá krok, který následuje po zjištění čísla — analýza dat, která vede ke konkrétnímu rozhodnutí, kam dál."</td>
+</tr>
+<tr>
+<td>12</td>
+<td>utm parametry</td>
+<td>150</td>
+<td>H2 "Jak webovou analytiku využít..."</td>
+<td>"Bez UTM parametrů analytika nepozná, který konkrétní kanál přivedl konverzi — jen obecný zdroj návštěvnosti."</td>
+</tr>
+<tr>
+<td>13</td>
+<td>heatmapa</td>
+<td>100</td>
+<td>H2 "Jak webovou analytiku využít..."</td>
+<td>"Heatmapy doplňují číselná data o vizuální pohled na chování na stránce — kam uživatelé klikají, kam scrollují a kde opouštějí formulář."</td>
+</tr>
+<tr>
+<td>14</td>
+<td>digitální marketing</td>
+<td>500</td>
+<td>Hook (context only)</td>
+<td>"Digitální marketing bez dat je jen odhad."</td>
+</tr>
+<tr>
+<td>15</td>
+<td>google analytics / ga4 / google search console / google tag manager</td>
+<td>mention only</td>
+<td>H2 "Jaké nástroje..."</td>
+<td>Zmíněny a prolinkovány (GA4 → SEO-07, GSC → SEO-21), GTM bez odkazu (plánovaný samostatný článek).</td>
+</tr>
+</tbody>
+</table>
+<h3>Odchylky od osnovy</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Typ</th>
+<th>Popis</th>
+<th>Důvod</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Rozšíření obsahu v rámci schválených sekcí</td>
+<td>Přidáno 6 odstavců navíc oproti key points z osnovy (kontext "co to znamená pro marketéra" v Co je webová analytika; poznámka o přesnosti dat dle typu nástroje v sekci nástrojů; druhý příklad konverzního poměru pro B2B; věta o typické chybě v sekci Metriky vs. dimenze; odstavec o frekvenci sledování metrik; čtvrtá častá chyba "Spoléhání na souhrnný dashboard bez segmentace")</td>
+<td>Cílový počet slov (1600–1900) nebyl bez rozšíření dosažen (draft v první verzi ~1330 slov); rozšíření jsou v rámci již schválených H2/H3 nadpisů, nepřidávají nové sekce ani nová témata mimo scope osnovy</td>
+</tr>
+</tbody>
+</table>
+<p>Žádné jiné odchylky — struktura nadpisů (H1/H2/H3) odpovídá schválené osnově přesně.</p>
+<p><strong>Oprava (zjištěno při auditu v Kroku 5):</strong> Tvrzení "všechny plánované interní odkazy (5/5) zapracovány" bylo nepřesné — v draftu chyběl odkaz č. 3 (Share of Voice, SEO-19) z plánu v sekci 5 osnovy. Skutečný stav po Kroku 3: 4/5 odkazů. Doplněno v Kroku 5, viz Step 5 log níže.</p>
+<h3>Plný článek se zdroji</h3>
+<p>Viz <code>article_webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing_CZ.md</code>. Faktická tvrzení se zdrojovou citací v hranaté závorce:</p>
+<ul>
+<li>"Google Universal Analytics, předchůdce GA4, přestal zpracovávat data k 1. červenci 2023." [https://blog.google/products/ads-commerce/upgrade-to-google-analytics-4-before-july-1/]</li>
+<li>"Na rozdíl od GA4, který data odesílá na servery Google, umožňuje Matomo hostovat analytiku na vlastním serveru — data tak zůstávají výhradně majiteli webu." [https://matomo.org/100-data-ownership/]</li>
+<li>"Google Analytics tuto metriku nedávno přejmenoval na key event rate, princip výpočtu se ale nemění." [https://support.google.com/analytics/answer/9267568?hl=en]</li>
+<li>"Míra okamžitého opuštění (bounce rate) měří podíl návštěv, při kterých uživatel odejde po zobrazení jediné stránky, aniž by dál interagoval s webem." [https://support.google.com/analytics/answer/12195621?hl=en]</li>
+<li>"UTM parametry se přidávají k odkazu a označují zdroj, médium a název kampaně; Google pro jejich generování nabízí vlastní Campaign URL Builder." [https://support.google.com/analytics/answer/10917952?hl=en]</li>
+<li>"Apple's Intelligent Tracking Prevention omezuje životnost cookies nastavených přes JavaScript na sedm dní, což zkresluje počet skutečně vracejících se návštěvníků." [https://www.customerlabs.com/blog/understanding-safari-intelligent-tracking-prevention-apple-itp-impact/]</li>
+</ul>
+<p>Ostatní tvrzení (definice, příklady výpočtu, doporučení) jsou interpretace/obecné znalosti — zdroj nepotřebují. Žádné [SOURCE NEEDED] značky.</p>
+<p><strong>Uložen jako:</strong> <code>data/output/articles/webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing/article_webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing_CZ.md</code></p>
+<h2>Step 4 — ToV Check</h2>
+<p><strong>Zkontrolováno vět:</strong> ~70<br>
+<strong>Nalezeno problémů:</strong> 3</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Location</th>
+<th>Issue Type</th>
+<th>Original (full sentence)</th>
+<th>Corrected (full sentence)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>H3 "Metriky vs. dimenze"</td>
+<td>Nepřímá formulace (ne "rovnou k věci")</td>
+<td>"Odpověď na otázku "vzrostla u koho, odkud a na jakém zařízení" je přitom to, co z pouhého pozorování dělá použitelný podklad pro rozhodnutí."</td>
+<td>"Až odpověď na otázku "u koho, odkud a na jakém zařízení" dělá z pozorování použitelný podklad pro rozhodnutí."</td>
+</tr>
+<tr>
+<td>2</td>
+<td>H2 "Jak webovou analytiku využít pro marketingová rozhodnutí"</td>
+<td>Komplikovaná větná konstrukce s vloženým odkazem</td>
+<td>"Tento typ propojení dat napříč kanály je stejný princip, jaký popisujeme v článku o tom, jak spolu <a href="https://www.evisions.cz/blog/synergie-ppc-a-seo-klic-k-digitalnimu-uspechu/">souvisí PPC a SEO</a> — analytika je spojnice, která rozhoduje, kam rozpočet přesunout dál."</td>
+<td>"Stejný princip propojení dat napříč kanály popisujeme v článku o <a href="https://www.evisions.cz/blog/synergie-ppc-a-seo-klic-k-digitalnimu-uspechu/">synergii PPC a SEO</a> — analytika je spojnice, která rozhoduje, kam rozpočet přesunout dál."</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Callout "Keep in Mind" v sekci "Časté chyby při interpretaci dat"</td>
+<td>Gramaticky neobratné použití anglického přivlastňovacího 's v české větě</td>
+<td>"Apple's Intelligent Tracking Prevention omezuje životnost cookies nastavených přes JavaScript na sedm dní, což zkresluje počet skutečně vracejících se návštěvníků [https://www.customerlabs.com/blog/understanding-safari-intelligent-tracking-prevention-apple-itp-impact/]."</td>
+<td>"Nástroj Intelligent Tracking Prevention od Applu omezuje životnost cookies nastavených přes JavaScript na sedm dní, což zkresluje počet skutečně vracejících se návštěvníků [https://www.customerlabs.com/blog/understanding-safari-intelligent-tracking-prevention-apple-itp-impact/]."</td>
+</tr>
+</tbody>
+</table>
+<p>Ostatní kontrolní body čisté: otevření sekcí vede hodnotou (žádné "v této sekci..."), rytmus princip → mechanika → aplikace dodržen, žádné 3+ dlouhé věty za sebou, žádné casual markery, vykání konzistentní, žádný hype jazyk, žádná povýšenost, žádná vágní tvrzení bez čísel, emoční kalibrace v normě, žádná falešná jistota.</p>
+<h2>Step 5 — Struktura &amp; formátování</h2>
+<p><strong>Audit odstavců (povinná první akce):</strong> Zkontrolováno všech 19 odstavců v článku. Žádný nepřekračuje 100 slov (nejdelší, úvod sekce "Jaké nástroje webovou analytiku umožňují", má ~69 slov). Žádné rozdělení nebylo potřeba.</p>
+<p><strong>Délka článku:</strong> STŘEDNÍ (1635 slov po úpravách v tomto kroku)</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Change Type</th>
+<th>Description</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Interní odkaz doplněn</td>
+<td>Přidána věta s odkazem na <a href="https://www.evisions.cz/blog/share-of-voice-sov-k-cemu-je-a-jak-metriku-spocitat/">Share of Voice (SOV)</a> na úvod sekce "Klíčové metriky a jak je číst"</td>
+<td>Oprava chybějícího odkazu č. 3 z plánu interního prolinkování (osnova sekce 5) — v Kroku 3 byl vynechán</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Duplicitní prvek odstraněn</td>
+<td>Odstraněn ručně vložený blok <code>&gt; **Poznámka k obsahu:** Tento článek má edukativní charakter...</code> před sekcí "Zdroje"</td>
+<td><code>src/step4_html.py</code> vkládá tento blok automaticky v Kroku 6 — ruční verze by se duplikovala (viz <code>prompts/step3_structure.md</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Kontrola hierarchie nadpisů:</strong> 1× H1, 7× H2, 4× H3 — žádné přeskočené úrovně. 7 H2 sekcí je na horní hranici doporučeného rozsahu (3–7), odpovídá plánované osnově.</p>
+<p><strong>Kontrola calloutů:</strong> 3 (Tip, Example, Keep in Mind) — v rámci limitu pro střední délku článku (2–3), žádné dva za sebou, max. 1 na H2 sekci.</p>
+<p><strong>Kontrola tabulek:</strong> 3 (Pojem vs. analýza webu; přehled nástrojů; metrika → rozhodnutí). Mírně nad doporučeným rozsahem pro střední délku (1–2), ponecháno záměrně — všechny tři plní odlišnou funkci a tabulka "metrika → rozhodnutí" je jádrem diferenciace článku definované v Kroku 2.</p>
+<p><strong>Kontrola seznamů:</strong> 1 odrážkový seznam (Klíčové závěry, 5 položek). Sekce "Časté chyby" používá tučně uvozené odstavce místo seznamu — ponecháno, odpovídá vzoru z ToV Guide a zachovává prostor pro vysvětlující větu u každé chyby.</p>
+<p><strong>Navigační prvky:</strong> Obsah (ToC) přítomen (článek &gt;1500 slov). Interní odkazy: 5/5 z plánu (po opravě #1). Sekce Zdroje přítomna s 6 externími citacemi.</p>
+<p><strong>Otevřená položka pro Krok 7:</strong> Autorská atribuce (jméno, role, datum aktualizace) není v Content Plan Sheetu u tohoto řádku vyplněná (sloupec "zpracoval" prázdný) — potřeba doplnit před publikací.</p>
+<h2>Step 6 — HTML konverze</h2>
+<p><strong>Použitý nástroj:</strong> <code>src/step4_html.py</code> (<code>convert_to_html()</code>) — deterministická konverze markdownu na evisions.cz šablonu.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Struktura stránky</td>
+<td>Header, breadcrumb, ToC, article, author-box, disclaimer, footer — v povinném pořadí</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ToC</td>
+<td>Vygenerováno automaticky z H2/H3 nadpisů (11 položek)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Callouty</td>
+<td>3 styl. bloky (Tip, Example, Keep in Mind) převedeny na <code>callout</code> divy se správnou CSS třídou</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Meta title</td>
+<td>Vlastní kratší varianta "Co je webová analytika a jak ji využít | evisions.cz Blog" (57 znaků) — H1 v těle zůstal beze změny, jen <code>&lt;title&gt;</code> tag zkrácen na SEO limit 50–60 znaků</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Meta popisek</td>
+<td>Doplněn ručně (šablona ho negeneruje automaticky): "Webová analytika propojuje chování návštěvníků webu s konkrétním marketingovým rozhodnutím. Zjistěte, jak číst klíčové metriky a vybrat správné nástroje." (153 znaků)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Autor box</td>
+<td>Auto-generován šablonou s placeholder hodnotou "evisions Advertising" / "Content Team" — ke skutečné atribuci viz otevřená položka z Kroku 5</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Poznámka k obsahu</td>
+<td>Vygenerována automaticky šablonou (nebyla duplikována ručně, viz oprava níže)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Opravy provedené před konverzí (nalezeno při přípravě Kroku 6):</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Typ</th>
+<th>Popis</th>
+<th>Důvod</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Odstraněna duplicitní ruční sekce "## Obsah" z markdown článku (7 odrážek s ručně sestavenými anchor odkazy bez diakritiky)</td>
+<td><code>src/step4_html.py</code> generuje vlastní ToC automaticky z H2/H3 nadpisů (se zachovanou diakritikou v ID) — ruční verze měla nefunkční odkazy (neshodovaly se s generovanými <code>id</code> atributy) a duplikovala obsah</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Odstraněno 6× syrové URL v hranaté závorce z těla textu (např. "...k 1. červenci 2023 [https://blog.google/...]." → "...k 1. červenci 2023.")</td>
+<td>Hranaté závorky se zdrojovou URL byly pracovní citační značky pro QA v Krocích 3–5 (viz Step 3 log "Plný článek se zdroji"), ne prvek pro publikovaný web — zobrazení syrové URL v textu čtenáři odporuje Structure Guide sekci 7 (popisný kotvící text). Fakta zůstávají beze změny, zdroje jsou dostupné v sekci "Zdroje" na konci článku</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nástroj pro log HTML:</strong> <code>src/generate_log.py</code> neodpovídá formátu logu Write workflow (očekává sekce <code>Step N Log:</code> s pevným schématem sloupců z Edit workflow — Keyword Integration/ToV Rewrite/Structure/HTML). Vytvořen nový obecný převodník <code>src/generate_write_log.py</code> (markdown → stylované HTML přes knihovnu <code>markdown</code> s rozšířením <code>tables</code>), který zpracuje libovolný obsah logu Write workflow bez závislosti na pevném schématu kroků.</p>
+<p><strong>Finální počet slov (article_..._CZ.md):</strong> 1590 (cíl: 1600–1900 — mírně pod cílem po odstranění syrových URL citací z těla textu, obsahově beze změny)</p>
+<p><strong>Soubory vygenerovány:</strong><br>
+- <code>data/output/articles/webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing/article_webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing_CZ.html</code><br>
+- <code>data/output/articles/webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing/article_webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing_CZ_log.html</code></p>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Log &mdash; Edit Log: SEO nástroje + 7 rozšíření, která vám usnadní práci</title>
+    <style>
+:root {
+    --red-bg: #ffeef0;
+    --red-text: #b91c1c;
+    --red-border: #f87171;
+    --green-bg: #f0fdf4;
+    --green-text: #15803d;
+    --green-border: #4ade80;
+    --gray-bg: #f8f9fa;
+    --border: #e1e5eb;
+    --dark: #111827;
+    --muted: #6b7280;
+    --blue: #0781fe;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--dark);
+    background: #fff;
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.doc-header {
+    border-bottom: 3px solid var(--dark);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+.doc-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.doc-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.25rem 2rem;
+    font-size: 0.8125rem;
+    color: var(--muted);
+}
+.doc-meta span strong { color: var(--dark); }
+
+.legend {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--gray-bg);
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+.legend-item { display: flex; align-items: center; gap: 0.5rem; }
+.legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+.legend-dot-red { background: var(--red-bg); border: 1.5px solid var(--red-border); }
+.legend-dot-green { background: var(--green-bg); border: 1.5px solid var(--green-border); }
+.legend-dot-gray { background: #e5e7eb; border: 1.5px solid #9ca3af; }
+
+.step-section {
+    margin-bottom: 3rem;
+    page-break-inside: avoid;
+}
+.step-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+.step-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--dark);
+}
+.step-meta {
+    font-size: 0.8125rem;
+    color: var(--muted);
+}
+
+.diff-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.8125rem;
+}
+.diff-table thead tr {
+    background: var(--gray-bg);
+    border-bottom: 1px solid var(--border);
+}
+.diff-table thead th {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.diff-table th:first-child { width: 28px; }
+.diff-table th.col-orig { width: 34%; }
+.diff-table th.col-new { width: 34%; }
+.diff-table th.col-reason { width: auto; }
+
+.diff-row { border-bottom: 1px solid var(--border); }
+.diff-row:last-child { border-bottom: none; }
+.diff-row td {
+    padding: 0.625rem 0.75rem;
+    vertical-align: top;
+}
+.diff-row td:first-child {
+    text-align: center;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 0.75rem;
+    background: var(--gray-bg);
+    border-right: 1px solid var(--border);
+}
+
+.cell-orig {
+    background: var(--red-bg);
+    border-right: 1px solid var(--border);
+}
+.cell-orig .text {
+    color: var(--red-text);
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.8rem;
+}
+.cell-orig .text::before {
+    content: "- ";
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+.cell-new {
+    background: var(--green-bg);
+    border-right: 1px solid var(--border);
+}
+.cell-new .text {
+    color: var(--green-text);
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.8rem;
+}
+.cell-new .text::before {
+    content: "+ ";
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+.cell-merged {
+    background: #f3f4f6;
+    border-right: 1px solid var(--border);
+}
+.cell-merged .text {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+.cell-reason {
+    color: var(--muted);
+    font-size: 0.75rem;
+}
+.cell-reason .tag {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    margin-right: 0.25rem;
+}
+.cell-reason .tag-tov { background: #e0e7ff; color: #3730a3; }
+.cell-reason .tag-kw { background: #dcfce7; color: #166534; }
+.cell-reason .tag-skip { background: #fef9c3; color: #854d0e; }
+.cell-reason .tag-struct { background: #fce7f3; color: #9d174d; }
+
+.kw-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.8125rem;
+}
+.kw-table thead tr { background: var(--gray-bg); }
+.kw-table thead th {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+}
+.kw-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+.kw-table tr:last-child td { border-bottom: none; }
+.kw-table .orig {
+    color: var(--red-text);
+    background: var(--red-bg);
+    font-family: monospace;
+    font-size: 0.775rem;
+}
+.kw-table .orig::before { content: "- "; font-weight: 700; opacity: 0.7; }
+.kw-table .newv {
+    color: var(--green-text);
+    background: var(--green-bg);
+    font-family: monospace;
+    font-size: 0.775rem;
+}
+.kw-table .newv::before { content: "+ "; font-weight: 700; opacity: 0.7; }
+.kw-table .skip-row td { opacity: 0.55; }
+
+.badge {
+    display: inline-block;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+}
+.badge-done { background: #dcfce7; color: #166534; }
+.badge-skip { background: #fef9c3; color: #854d0e; }
+.badge-pending { background: #fed7aa; color: #9a3412; }
+.badge-new { background: #dbeafe; color: #1e40af; }
+.badge-rejected { background: #fee2e2; color: #991b1b; }
+.vol { color: var(--muted); font-size: 0.75rem; }
+
+.struct-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    font-size: 0.8125rem;
+}
+.struct-table thead tr { background: var(--gray-bg); }
+.struct-table thead th {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+}
+.struct-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+.struct-table tr:last-child td { border-bottom: none; }
+.struct-table .added { color: var(--green-text); font-weight: 600; }
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.875rem;
+}
+.summary-table thead tr { background: var(--dark); }
+.summary-table thead th {
+    padding: 0.625rem 1rem;
+    text-align: left;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.summary-table td {
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+.summary-table tr:last-child td { border-bottom: none; }
+.status-done { color: var(--green-text); font-weight: 600; }
+.status-pending { color: #b45309; font-weight: 600; }
+
+@media print {
+    body { padding: 1cm; font-size: 11px; }
+    .step-section { page-break-inside: avoid; }
+    .diff-table { page-break-inside: auto; }
+    .diff-row { page-break-inside: avoid; }
+}
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="doc-header">
+    <h1>Edit Log &mdash; Edit Log: SEO nástroje + 7 rozšíření, která vám usnadní práci</h1>
+    <div class="doc-meta">
+        <span><strong>Article:</strong> </span>
+        <span><strong>Source:</strong> </span>
+        <span><strong>Date:</strong> </span>
+    </div>
+</div>
+
+<!-- Legend -->
+<div class="legend">
+    <div class="legend-item">
+        <div class="legend-dot legend-dot-red"></div>
+        <span>Original sentence (removed / changed)</span>
+    </div>
+    <div class="legend-item">
+        <div class="legend-dot legend-dot-green"></div>
+        <span>New sentence (replacement)</span>
+    </div>
+    <div class="legend-item">
+        <div class="legend-dot legend-dot-gray"></div>
+        <span>Merged into another row / skipped</span>
+    </div>
+</div>
+
+
+<!-- ===================== STEP 1 ===================== -->
+<div class="step-section">
+    <div class="step-header">
+        <span class="step-title">Step 1 — Keyword Integration</span>
+        <span class="step-meta">Keywords file: `seo-nastroje-7-rozsireni-ktera-vam-usnadni-praci_keywords.xlsx` &nbsp;&middot;&nbsp; 6 integrated &nbsp;&middot;&nbsp; 0 skipped</span>
+    </div>
+    <table class="kw-table">
+        <thead>
+            <tr>
+                <th style="width:24px">#</th>
+                <th style="width:37%">Original sentence</th>
+                <th style="width:37%">New sentence</th>
+                <th style="width:12%">Keyword</th>
+                <th style="width:6%">Vol.</th>
+                <th style="width:5%">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+<tr><td style="color:var(--muted);text-align:center">1</td><td><span class="orig">Žádný SEO konzultant se neobejde bez potřebných nástrojů, které mu umožňují dělat svou práci.</span></td><td><span class="newv">Žádný SEO konzultant se neobejde bez potřebných SEO nástrojů, které mu umožňují dělat svou práci.</span></td><td style="font-size:0.75rem">seo nástroje</td><td class="vol">800</td><td><span class="badge badge-done">DONE</span></td></tr>
+<tr><td style="color:var(--muted);text-align:center">2</td><td><span class="orig">a v textu si navíc kromě nejdůležitějších SEO nástrojů popíšeme i</span></td><td><span class="newv">a v textu si navíc kromě nejdůležitějších online SEO nástrojů popíšeme i</span></td><td style="font-size:0.75rem">seo nástroje online</td><td class="vol">150</td><td><span class="badge badge-done">DONE</span></td></tr>
+<tr><td style="color:var(--muted);text-align:center">3</td><td><span class="orig">## Základní nástroje, ve kterých se musíte orientovat 24/7</span></td><td><span class="newv">## Základní nástroje SEO, ve kterých se musíte orientovat 24/7</span></td><td style="font-size:0.75rem">nástroje seo</td><td class="vol">200</td><td><span class="badge badge-done">DONE</span></td></tr>
+<tr><td style="color:var(--muted);text-align:center">4</td><td><span class="orig">Jsou to nástroje, ke kterým máte přístup zdarma a podávají vám základní a zároveň nejdůležitější informace.</span></td><td><span class="newv">Jsou to SEO nástroje zdarma, ke kterým máte přístup a podávají vám základní a zároveň nejdůležitější informace.</span></td><td style="font-size:0.75rem">seo nástroje zdarma</td><td class="vol">800</td><td><span class="badge badge-done">DONE</span></td></tr>
+<tr><td style="color:var(--muted);text-align:center">5</td><td><span class="orig">### **Neplacené nástroje**</span></td><td><span class="newv">### **SEO nástroje zdarma**</span></td><td style="font-size:0.75rem">seo nástroje zdarma</td><td class="vol">800</td><td><span class="badge badge-done">DONE</span></td></tr>
+<tr><td style="color:var(--muted);text-align:center">6</td><td><span class="orig">Bohatě byste si ale měli vystačit s nástroji a rozšířeními uvedenými v článku.</span></td><td><span class="newv">Bohatě byste si ale měli vystačit se SEO nástroji a rozšířeními uvedenými v článku.</span></td><td style="font-size:0.75rem">seo nástroje</td><td class="vol">800</td><td><span class="badge badge-done">DONE</span></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ===================== STEP 2 ===================== -->
+<div class="step-section">
+    <div class="step-header">
+        <span class="step-title">Step 2 — Tone of Voice Rewrite</span>
+        <span class="step-meta">7 changes</span>
+    </div>
+    <table class="diff-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="col-orig">Original sentence (full)</th>
+                <th class="col-new">New sentence (full)</th>
+                <th class="col-reason">Reason</th>
+            </tr>
+        </thead>
+        <tbody>
+<tr class="diff-row"><td>1</td><td class="cell-orig"><span class="text">Google Search Console se podobně jako ostatní nástroje vyvíjí a v nedávné době se objevila nová funkce – takzvané *Core Web Vitals*, neboli nejdůležitější životní funkce, které souvisí s rychlostí webu (a celkově UX). Důležité je, že Google [explicitně zmínil](https://webmasters.googleblog.com/2020/05/evaluating-page-experience.html), že *Core Web Vitals* budou ze strany Googlu v budoucnu hodnoticím faktorem.</span></td><td class="cell-new"><span class="text">Google Search Console se podobně jako ostatní nástroje vyvíjí a v nedávné době se objevila nová funkce: takzvané *Core Web Vitals*, neboli nejdůležitější životní funkce, které souvisí s rychlostí webu (a celkově UX). Google [explicitně zmínil](https://webmasters.googleblog.com/2020/05/evaluating-page-experience.html), že *Core Web Vitals* budou ze strany Googlu v budoucnu hodnoticím faktorem.</span></td><td class="cell-reason"><span class="tag tag-tov">ToV</span> en dash zakázán → dvojtečka; smazána vycpávková fráze &quot;Důležité je, že X&quot;</td></tr>
+<tr class="diff-row"><td>2</td><td class="cell-orig"><span class="text">Pokud chcete z Google Search Console vytáhnout maximum, existuje API, pomocí kterého můžete z nástroje stáhnout více dat, než je v klasickém rozhraní (limit 1 000 dotazů).</span></td><td class="cell-new"><span class="text">Pokud chcete z Google Search Console vytáhnout maximum, využijte API: pomocí něj stáhnete z nástroje více dat, než je v klasickém rozhraní (limit 1 000 dotazů).</span></td><td class="cell-reason"><span class="tag tag-tov">ToV</span> existenciální &quot;existuje X&quot; → přímá výzva (aktivní rod, &quot;Rovnou k věci&quot;)</td></tr>
+<tr class="diff-row"><td>3</td><td class="cell-orig"><span class="text">**Tip**: Jednou z takových příležitostí a takzvaných quick-wins je optimalizace snippetů stránek, které už dosahují dobrých pozic, ale nevyužívají svého potenciálu.</span></td><td class="cell-new"><span class="text">**Tip**: Typickým quick-winem je optimalizace snippetů stránek, které už dosahují dobrých pozic, ale nevyužívají svého potenciálu.</span></td><td class="cell-reason"><span class="tag tag-tov">ToV</span> &quot;Jednou z... je&quot; vycpávka → pojmenování věci přímo</td></tr>
+<tr class="diff-row"><td>4</td><td class="cell-orig"><span class="text">Je to však zároveň nástroj velmi komplexní a troufám si říct, že spousta specialistů nezná zdaleka všechny jeho funkce a používá sotva polovinu.</span></td><td class="cell-new"><span class="text">Je to však zároveň nástroj velmi komplexní a spousta specialistů nezná zdaleka všechny jeho funkce a používá sotva polovinu.</span></td><td class="cell-reason"><span class="tag tag-tov">ToV</span> 1. osoba jednotného čísla (&quot;troufám si říct&quot;) → přímé tvrzení bez hedgingu</td></tr>
+<tr class="diff-row"><td>5</td><td class="cell-orig"><span class="text">[Marketing Miner](https://www.marketingminer.com/cs) od Filipa Podstavce patří osobně mezi mé oblíbené nástroje, a navíc se stále rozšiřuje.</span></td><td class="cell-new"><span class="text">[Marketing Miner](https://www.marketingminer.com/cs) od Filipa Podstavce patří mezi naše oblíbené nástroje, a navíc se stále rozšiřuje.</span></td><td class="cell-reason"><span class="tag tag-tov">ToV</span> 1. osoba jednotného čísla (&quot;mé&quot;) → inkluzivní hlas značky (&quot;naše&quot;)</td></tr>
+<tr class="diff-row"><td>6</td><td class="cell-orig"><span class="text">Ahrefs před pár týdny představil nový nástroj – svůj vlastní [Ahrefs Webmaster Tools](https://ahrefs.com/webmaster-tools).</span></td><td class="cell-new"><span class="text">Ahrefs před pár týdny představil nový nástroj: svůj vlastní [Ahrefs Webmaster Tools](https://ahrefs.com/webmaster-tools).</span></td><td class="cell-reason"><span class="tag tag-tov">ToV</span> en dash zakázán → dvojtečka</td></tr>
+<tr class="diff-row"><td>7</td><td class="cell-orig"><span class="text">Pak je pro vás nezbytnou nutností rozšíření [Grammarly](https://chrome.google.com/webstore/detail/grammarly-for-chrome/kbfnbcaeplbcioakkpcpgfkobkghlhen), které si osobně velmi pochvaluji.</span></td><td class="cell-new"><span class="text">Pak je pro vás nezbytnou nutností rozšíření [Grammarly](https://chrome.google.com/webstore/detail/grammarly-for-chrome/kbfnbcaeplbcioakkpcpgfkobkghlhen), které vřele doporučujeme.</span></td><td class="cell-reason"><span class="tag tag-tov">ToV</span> 1. osoba jednotného čísla (&quot;osobně pochvaluji&quot;) → inkluzivní hlas značky</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ===================== STEP 3 ===================== -->
+<div class="step-section">
+    <div class="step-header">
+        <span class="step-title">Step 3 — Structure &amp; Formatting</span>
+        <span class="step-meta"></span>
+    </div>
+    <table class="struct-table">
+        <thead>
+            <tr>
+                <th style="width:24px">#</th>
+                <th style="width:18%">Change Type</th>
+                <th style="width:42%">Description</th>
+                <th>Reason</th>
+            </tr>
+        </thead>
+        <tbody>
+<tr><td style="color:var(--muted);text-align:center">1</td><td><span class="added">Callout odstraněn (demoted na odstavec)</span></td><td>Tip u Google Analytics (automatizace upozornění) → prostý odstavec</td><td style="color:var(--muted);font-size:0.75rem">Redukce z 9 na max. 4 callouty (limit pro DLOUHÝ článek); obsah beze změny, jen bez blockquote formátování</td></tr>
+<tr><td style="color:var(--muted);text-align:center">2</td><td><span class="added">Callout odstraněn (demoted na odstavec)</span></td><td>Tip u Seznam Webmaster Tools (vizualizace v Data Studiu) → prostý odstavec</td><td style="color:var(--muted);font-size:0.75rem">Stejný důvod jako #1</td></tr>
+<tr><td style="color:var(--muted);text-align:center">3</td><td><span class="added">Callout odstraněn (demoted na odstavec)</span></td><td>Tip u PageSpeed Insight (web.dev) → prostý odstavec</td><td style="color:var(--muted);font-size:0.75rem">Stejný důvod jako #1</td></tr>
+<tr><td style="color:var(--muted);text-align:center">4</td><td><span class="added">Callout odstraněn (demoted na odstavec)</span></td><td>Tip u Ahrefs (Ahrefs Webmaster Tools) → prostý odstavec</td><td style="color:var(--muted);font-size:0.75rem">Stejný důvod jako #1</td></tr>
+<tr><td style="color:var(--muted);text-align:center">5</td><td><span class="added">Callout odstraněn (demoted na odstavec)</span></td><td>Tip u Collabim (upozornění) → prostý odstavec</td><td style="color:var(--muted);font-size:0.75rem">Stejný důvod jako #1</td></tr>
+<tr><td style="color:var(--muted);text-align:center">6</td><td><span class="added">Callout odstraněn (demoted na odstavec)</span></td><td>Tip u Google Data Studio (monitoring) → prostý odstavec</td><td style="color:var(--muted);font-size:0.75rem">Stejný důvod jako #1</td></tr>
+<tr><td style="color:var(--muted);text-align:center">7</td><td><span class="added">Callout přidán</span></td><td>**Keep in Mind** u Screaming Frog: caveat o placených alternativách (SiteBulb, Spotibo) vyňat z běžícího odstavce a zvýrazněn jako samostatný callout</td><td style="color:var(--muted);font-size:0.75rem">Structure Guide: &quot;Keep in Mind – 1 na how-to článek&quot; (limit méně, ne přiznání limitů); ponechány oba odkazy i informace, jen jiné formátování</td></tr>
+<tr><td style="color:var(--muted);text-align:center">8</td><td><span class="added">Ponecháno jako Tip</span></td><td>Tip u Google Search Console (quick-win optimalizace snippetů)</td><td style="color:var(--muted);font-size:0.75rem">1 ze 4 finálních calloutů — nejsilnější akční rada v článku</td></tr>
+<tr><td style="color:var(--muted);text-align:center">9</td><td><span class="added">Ponecháno jako Tip</span></td><td>Tip u Marketing Miner (Google Trends pro sezónnost)</td><td style="color:var(--muted);font-size:0.75rem">1 ze 4 finálních calloutů</td></tr>
+<tr><td style="color:var(--muted);text-align:center">10</td><td><span class="added">Odstavec → číslovaný seznam</span></td><td>GA report vstupních stránek: postup filtrace (2 kroky) převeden na `1. 2. 3.`</td><td style="color:var(--muted);font-size:0.75rem"><span class="tag tag-struct">Structure</span> postupné kroky → číslovaný seznam (ne odrážky)</td></tr>
+<tr><td style="color:var(--muted);text-align:center">11</td><td><span class="added">Odstavec → číslovaný seznam</span></td><td>Scraper: postup použití (klik → výběr → výsledek) převeden na `1. 2. 3.`</td><td style="color:var(--muted);font-size:0.75rem">Stejný důvod jako #10</td></tr>
+<tr><td style="color:var(--muted);text-align:center">12</td><td><span class="added">Tabulka přidána</span></td><td>&quot;Vychytávky, které vám usnadní práci&quot; — souhrnná tabulka 7 rozšíření a jejich účelu (před první H3)</td><td style="color:var(--muted);font-size:0.75rem"><span class="tag tag-struct">Structure</span> srovnání položek napříč atributem (K čemu slouží); odvozeno z existujícího textu, žádná nová informace</td></tr>
+<tr><td style="color:var(--muted);text-align:center">13</td><td><span class="added">Interní odkaz přidán</span></td><td>&quot;míry prokliku (CTR)&quot; v GSC Tip → [Mají rich snippets vždy pozitivní vliv na CTR?](/blog/maji-rich-snippets-vzdy-pozitivni-vliv-na-miru-prokliku/) (SEO-03)</td><td style="color:var(--muted);font-size:0.75rem">Interní prolinkování: min. 3-5 odkazů, tematicky přesná shoda (snippet CTR)</td></tr>
+<tr><td style="color:var(--muted);text-align:center">14</td><td><span class="added">Interní odkaz přidán</span></td><td>&quot;technického SEO&quot; v úvodu sekce Linkbuilding → [Průvodce migrací webu z pohledu SEO](/blog/pruvodce-migraci-webu-z-pohledu-seo-aneb-nezahravejte-si-s-organickou-navstevnosti/) (SEO-17)</td><td style="color:var(--muted);font-size:0.75rem">Stejný důvod jako #13</td></tr>
+<tr><td style="color:var(--muted);text-align:center">15</td><td><span class="added">Interní odkaz přidán</span></td><td>&quot;cesta přesměrování&quot; v sekci Redirect Path → [Úspěšná SEO migrace webu Foodora.cz](/blog/uspesna-seo-migrace-webu-foodora-cz-od-stareho-k-novemu/) (SEO-04)</td><td style="color:var(--muted);font-size:0.75rem">Stejný důvod jako #13; celkem 4 interní odkazy v článku (1 původní + 3 nové)</td></tr>
+<tr><td style="color:var(--muted);text-align:center">16</td><td><span class="added">E-E-A-T blok přidán</span></td><td>Na konec článku doplněno: Autor (Marek Foršt), Role (Head of SEO), Aktualizováno (2026-09-01)</td><td style="color:var(--muted);font-size:0.75rem">Structure Guide: povinná autorská atribuce na konci článku</td></tr>
+<tr><td style="color:var(--muted);text-align:center">17</td><td><span class="added">ToC — bez zásahu</span></td><td>Obsah (&gt;1500 slov vyžaduje ToC) se negeneruje ručně v markdownu — `src/step4_html.py` ho staví automaticky z H2/H3 v Kroku 4</td><td style="color:var(--muted);font-size:0.75rem">Vyhnutí se duplicitě; viz `step4_html.py` `_build_toc()`</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ===================== STEP 4 ===================== -->
+<div class="step-section">
+    <div class="step-header">
+        <span class="step-title">Step 4 — HTML Conversion</span>
+    </div>
+    <table class="struct-table">
+        <thead>
+            <tr>
+                <th style="width:24px">#</th>
+                <th style="width:22%">Element</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+<tr><td style="color:var(--muted);text-align:center">1</td><td style="font-weight:500">H1 přidán</td><td style="color:var(--muted);font-size:0.75rem">`# SEO nástroje + 7 rozšíření, která vám usnadní práci` na začátek markdownu</td></tr>
+<tr><td style="color:var(--muted);text-align:center">2</td><td style="font-weight:500">13× `[OBRAZEK-N]` nahrazeno reálným `![alt](url)`</td><td style="color:var(--muted);font-size:0.75rem">Doplněny popisné alt texty (originál měl `alt=&quot;&quot;` u všech 13 obrázků, zaznamenáno v Init)</td></tr>
+<tr><td style="color:var(--muted);text-align:center">3</td><td style="font-weight:500">Formát callout labelu opraven</td><td style="color:var(--muted);font-size:0.75rem">`&gt; **Tip**: ` → `&gt; **Tip:** ` (a totéž pro Keep in Mind) na všech 4 callout blocích</td></tr>
+<tr><td style="color:var(--muted);text-align:center">4</td><td style="font-weight:500">Pořadí callout/obrázek prohozeno</td><td style="color:var(--muted);font-size:0.75rem">Sekce Screaming Frog: Tip (Force-Directed Crawl) + obrázek nyní PŘED Keep in Mind (dřív byly 2 callouty hned za sebou)</td></tr>
+<tr><td style="color:var(--muted);text-align:center">5</td><td style="font-weight:500">Soubor přejmenován</td><td style="color:var(--muted);font-size:0.75rem">`step4_html.py` generuje `[slug]_CZ.html` bez prefixu `article_` → přejmenováno na `article_[slug]_CZ.html`</td></tr>
+<tr><td style="color:var(--muted);text-align:center">6</td><td style="font-weight:500">Oprava skriptu `src/export_article_docx.py`</td><td style="color:var(--muted);font-size:0.75rem">Nadpisy (`### **Text**`) se do .docx vkládaly doslovně s `**` — přidána `_clean_heading_text()` (strip markdown bold/link syntax před `add_heading()`)</td></tr>
+<tr><td style="color:var(--muted);text-align:center">7</td><td style="font-weight:500">Oprava skriptu `src/export_article_docx.py`</td><td style="color:var(--muted);font-size:0.75rem">Řádky `---` (horizontal rule) se do .docx vkládaly jako doslovný text &quot;---&quot; — nyní se přeskakují</td></tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jak vybrat nejlepší SEO agenturu? | evisions.cz Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --evi-accent: #0057ff;
+    --evi-dark: #12131a;
+    --evi-navy: #0a0b12;
+    --evi-silver: #c6c6c6;
+    --evi-gray: #6b7280;
+    --evi-light: #f8f9fa;
+    --evi-border: #e1e5eb;
+    --max-width: 1160px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px; line-height: 1.7; color: #1f2937; background: #fff;
+}
+.header {
+    background: #000; padding: 1rem 2rem; position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.logo { color: #fff; font-size: 1.25rem; font-weight: 700; text-decoration: none; }
+.nav { display: flex; gap: 2rem; }
+.nav a { color: #ccc; text-decoration: none; font-size: 0.875rem; font-weight: 500; }
+.nav a:hover { color: #fff; }
+.header-cta {
+    background: var(--evi-accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: 4px; text-decoration: none; font-size: 0.875rem; font-weight: 600;
+}
+.breadcrumb {
+    background: var(--evi-light); padding: 0.75rem 2rem;
+    font-size: 0.875rem; border-bottom: 1px solid var(--evi-border);
+}
+.breadcrumb-inner { max-width: var(--max-width); margin: 0 auto; }
+.breadcrumb a { color: var(--evi-gray); text-decoration: none; }
+.breadcrumb span { color: var(--evi-gray); margin: 0 0.5rem; }
+.main { max-width: var(--max-width); margin: 0 auto; padding: 2rem; }
+h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; }
+h2 {
+    font-size: 1.5rem; font-weight: 600; margin: 2.5rem 0 1rem;
+    padding-top: 1rem; border-top: 1px solid var(--evi-border);
+}
+h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.75rem; }
+h4 { font-size: 1rem; font-weight: 600; margin: 1.25rem 0 0.5rem; }
+p { margin-bottom: 1rem; color: var(--evi-gray); }
+.intro-text { font-size: 1.125rem; color: #1f2937; line-height: 1.8; }
+strong { color: #1f2937; }
+a { color: var(--evi-accent); }
+ul, ol { margin: 1rem 0 1rem 1.5rem; color: var(--evi-gray); }
+li { margin-bottom: 0.5rem; }
+table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--evi-border); }
+th { background: var(--evi-light); font-weight: 600; color: var(--evi-dark); }
+td { color: var(--evi-gray); }
+.toc {
+    background: var(--evi-light); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;
+}
+.toc-title { font-size: 0.875rem; font-weight: 600; color: var(--evi-gray);
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+.toc ul { list-style: none; margin: 0; padding: 0; }
+.toc li { margin-bottom: 0.4rem; }
+.toc a {
+    color: var(--evi-dark); text-decoration: none; font-size: 0.9375rem;
+    display: flex; align-items: center; gap: 0.5rem;
+}
+.toc a::before {
+    content: ""; display: inline-block; width: 6px; height: 6px;
+    background: var(--evi-accent); border-radius: 50%; flex-shrink: 0;
+}
+.toc a:hover { color: var(--evi-accent); }
+.toc .toc-h3 { padding-left: 1.25rem; font-size: 0.875rem; }
+.callout {
+    padding: 1rem 1.25rem; margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0; font-size: 0.9375rem;
+}
+.callout-tip    { background: #e8f0fd; border-left: 4px solid var(--evi-accent); }
+.callout-warning { background: #fff3cd; border-left: 4px solid #ffc107; }
+.callout-important { background: #fde8e8; border-left: 4px solid #e53e3e; }
+.callout-note   { background: var(--evi-light); border-left: 4px solid var(--evi-gray); }
+.callout-keep-in-mind { background: #f0f7ee; border-left: 4px solid #5a8a4a; }
+.callout-example { background: #f5f5f5; border-left: 4px solid #999; }
+.callout strong { display: block; margin-bottom: 0.25rem; }
+figure.article-image { margin: 1.5rem 0; }
+figure.article-image img {
+    width: 100%; height: auto; border-radius: 8px;
+    border: 1px solid var(--evi-border); display: block;
+}
+figure.article-image figcaption {
+    margin-top: 0.5rem; font-size: 0.875rem;
+    color: var(--evi-gray); text-align: center; font-style: italic;
+}
+.video-container {
+    position: relative; padding-bottom: 56.25%; height: 0;
+    overflow: hidden; margin: 2rem 0; border-radius: 8px; background: #000;
+}
+.video-container iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+}
+.takeaways {
+    background: linear-gradient(135deg, var(--evi-navy) 0%, var(--evi-dark) 100%);
+    color: #fff; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;
+}
+.takeaways h2 { color: #fff; border: none; margin-top: 0; padding-top: 0; }
+.takeaways ul { color: #ccc; }
+.author-box {
+    background: var(--evi-light); border-radius: 12px; padding: 1.5rem; margin: 2rem 0;
+}
+.author-box-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--evi-border);
+}
+.author-box-title { font-weight: 600; font-size: 1rem; }
+.author-dates { font-size: 0.8125rem; color: var(--evi-gray); display: flex; gap: 1.5rem; }
+.author-card { display: flex; align-items: center; gap: 0.875rem; }
+.author-avatar {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--evi-dark);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 600; font-size: 1rem; flex-shrink: 0;
+}
+.author-role {
+    font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--evi-accent); font-weight: 600; margin-bottom: 0.125rem;
+}
+.author-name { font-weight: 600; color: var(--evi-dark); font-size: 0.9375rem; }
+.disclaimer {
+    background: var(--evi-light); padding: 1rem 1.25rem; border-radius: 4px;
+    font-size: 0.875rem; color: var(--evi-gray); margin: 1rem 0;
+}
+.footer { background: #000; color: #fff; padding: 3rem 2rem; margin-top: 4rem; }
+.footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;
+}
+.footer-logo { font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+.footer-desc { color: #888; font-size: 0.875rem; line-height: 1.6; }
+.footer h4 {
+    font-size: 0.875rem; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 1rem; color: #888;
+}
+.footer ul { list-style: none; margin: 0; padding: 0; }
+.footer li { margin-bottom: 0.5rem; }
+.footer a { color: #ccc; text-decoration: none; font-size: 0.9375rem; }
+.footer a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a class="logo" href="https://www.evisions.cz">evisions</a>
+        <nav class="nav">
+            <a href="https://www.evisions.cz/blog/">Blog</a>
+            <a href="https://www.evisions.cz">evisions.cz</a>
+        </nav>
+        <a class="header-cta" href="https://www.evisions.cz/kontakt/">Kontaktujte nás</a>
+    </div>
+</header>
+
+<div class="breadcrumb">
+    <div class="breadcrumb-inner">
+        <a href="https://www.evisions.cz/blog/">Blog</a>
+        <span>›</span>
+        <a href="https://www.evisions.cz/blog/jak-vybrat-nejlepsi-seo-agenturu/">Jak vybrat nejlepší SEO agenturu?</a>
+    </div>
+</div>
+
+<main class="main">
+
+<div class="toc"><p class="toc-title">Obsah</p><ul><li class=""><a href="#je-lepší-freelancer-nebo-seo-agentura">Je lepší freelancer nebo SEO agentura?</a></li><li class=""><a href="#kvalita-nabídek-agentur">Kvalita nabídek agentur:</a></li><li class=""><a href="#hodnotící-kritéria-při-výběru-seo-agentury">Hodnotící kritéria při výběru SEO agentury:</a></li><li class=""><a href="#kvalita-seo-služeb">Kvalita SEO služeb:</a></li><li class=""><a href="#jak-vybrat-reklamní-marketingovou-agenturu">Jak vybrat reklamní (marketingovou) agenturu?</a></li><li class=""><a href="#jak-pracujeme-my-v-evisions">Jak pracujeme my v Evisions?</a></li><li class=""><a href="#závěr">Závěr</a></li></ul></div>
+
+<h1>Jak vybrat nejlepší SEO agenturu?</h1>
+<p class="intro-text">Kvalitní SEO agentura dokáže klientům zlepšit obchodní výsledky, zefektivnit marketingové výdaje, zviditelnit značku, posílit brand, zvýšit tržní podíl, akcelerovat poptávku a přivést více potenciálních zákazníků na web. Jak ale takovou agenturu najít a jak postupovat při výběru nejlepšího SEO dodavatele pro Váš business?</p>
+<p>Rozpoznat dobrou agenturu od špatné je velmi složitý úkol. Všechny SEO agentury o sobě tvrdí, že jsou nejlepší, všechny mají nekonečnou řadu referencí (nezřídka naleznete logo stejného klienta na webech hned několika agentur), všechny garantují do nebe rostoucí výsledky a zázraky na počkání. Kdo se v tom má vyznat…?</p>
+<div class="callout callout-tip">
+<p><strong>Tip:</strong> Řešíte výběr SEO agentury právě teď? Ozvěte se nám, rádi vám pomůžeme → <a href="/seo/">naše SEO služby</a></p>
+</div>
+<p>Ačkoliv je internet plný „zaručených" návodů na to, jak oddělit zrno od plev a rozpoznat dobrou <a href="/seo/">SEO agenturu</a> od špatné, mám pro vás nemilou zprávu. Pokud se nepohybujete v oblasti SEO či marketingu na denní bázi, s největší pravděpodobností se Vám to nepodaří.</p>
+<p>Neexistují totiž žádná objektivní srovnávací kritéria kvality práce agentur. Porovnávat výsledky, přístupy, postupy či strategie na odlišných projektech v různých fázích vývoje nedává smysl. A/B testování SEO služeb u více různých dodavatelů navíc z principu nejde.</p>
+<p>Pokud to s optimalizací pro vyhledavače u Vašeho projektu myslíte vážně, dříve či později se outsourcingu <a href="/seo/">SEO služeb</a> určitě nevyhnete. Rozdíly v kvalitě a přístupu různých dodavatelů jsou natolik zásadní, že se výběrové řízení vyplatí nepodcenit a věnovat mu dost času i energie. Jakou agenturu si vyberete, takovou budete mít. Než se o svém nevhodném výběru přesvědčíte, může uplynout nezřídka i rok. Proto je lepší raději 3x měřit než se jednou spálit.</p>
+<p>Parametry výběrového řízení nemusíte vymýšlet od nuly — podívejte se na <a href="/blog/tag/case-study-pripadova-studie/">případovou studii</a>, ve které Martin Sajal popsal své zkušenosti z pořádání výběrového řízení na SEO služby pro vyhledavač slev Skrz.cz. Celou velmi detailní případovku naleznete na <a href="https://blog.skrz.cz/zkusenosti-z-poradani-vyberoveho-rizeni-na-seo-sluzby/">blogu Skrz.cz</a>.</p>
+<p>Pokud hledáte dodavatele SEO služeb, může vám tento článek pomoct s přípravou zadání, nastavením kritérií i vyhodnocováním výběrového řízení. Se svolením Martina níže vypichuji nejdůležitější části — doporučuji ale přečíst si i celý originální článek. Citace z Martinova textu jsou níže odlišené jako citace:</p>
+<h2 id="je-lepší-freelancer-nebo-seo-agentura">Je lepší freelancer nebo SEO agentura?</h2>
+<blockquote>
+<p>„Zájem freelancerů byl výrazně menší, než bychom očekávali. A to jsme neměli nerealistická očekávání, že by se ve výběrovém řízení o zakázku poprala známá jména jako třeba Filip Podstavec s Martinem Matějkou."</p>
+</blockquote>
+<p>Každá z variant (freelancer/agentura) má své výhody i nevýhody. U tak komplexního, náročného a dlouhodobého projektu jakým SEO pro Skrz.cz je, však převažují výhody spíše na straně agentury. Zastupitelnost, vysoké nároky na technické, obsahové, strategické, komunikační i linkbuildingové znalosti byly pravděpodobně hlavním důvodem, proč se jednotlivci do tendru zrovna dvakrát nehrnuli.</p>
+<table>
+<thead>
+<tr>
+<th>Aspekt</th>
+<th>Freelancer</th>
+<th>Agentura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zastupitelnost</td>
+<td>Omezená — spoléháte na jednoho člověka</td>
+<td>Vyšší — tým dokáže zastoupit chybějícího specialistu</td>
+</tr>
+<tr>
+<td>Šíře znalostí</td>
+<td>Závisí na jednom člověku</td>
+<td>Tým pokryje technické, obsahové, strategické i linkbuildingové znalosti</td>
+</tr>
+<tr>
+<td>Vhodné pro</td>
+<td>Menší, jednodušší projekty</td>
+<td>Komplexní, dlouhodobé projekty (jako SEO pro Skrz.cz)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="kvalita-nabídek-agentur">Kvalita nabídek agentur:</h2>
+<blockquote>
+<p>„Někteří na míru konkrétní poptávce uzpůsobili jen návrh aktivit k provádění v rámci spolupráce, cenu a reference, a náš web již hlouběji nezkoumali. Jiní se pokusili o relativně hloubkovou analýzu již při přípravě nabídky. Oba přístupy mají své výhody a nevýhody."</p>
+</blockquote>
+<h2 id="hodnotící-kritéria-při-výběru-seo-agentury">Hodnotící kritéria při výběru SEO agentury:</h2>
+<ul>
+<li>Reference v oblasti offpage – ideálně ze podobného segmentu, pro větší web a s úspěšnými výsledky,</li>
+<li>reference v oblasti technického SEO – s podobně velkým projektem,</li>
+<li>schopnost uchopit takto velký web z technického hlediska – na základě nabídky a následné diskuze,</li>
+<li>dojem z diskuze nad nedostatky v oblasti obsahu,</li>
+<li>schopnost organizačně se přizpůsobit možnostem Skrzu a naladit se na stejnou vlnu,</li>
+<li>rovnováha mezi důvěrou v naše odborné schopnosti a tím, že nám všechno neodkývají,</li>
+<li>dobré a originální nápady na první dobrou,</li>
+<li>konzistence celé nabídky a navrženého postupu,</li>
+<li>reakce na otázku „Jaké 3 první kroky byste na začátku spolupráce udělali, pokud byste vyhráli?"</li>
+</ul>
+<h2 id="kvalita-seo-služeb">Kvalita SEO služeb:</h2>
+<blockquote>
+<p>„Co dodavatel, to jiná služba. Ani zpětně se návratnost SEO aktivit nevyhodnocuje jednoduše. Přitom při výběru dodavatele bychom se měli snažit odhadnout, jaký přínos která nabídka bude mít. Náš případ to nebyl, ale občas se objevují nabídky SEO služeb, které ve výsledku mohou spíše uškodit. Cena služeb tedy může být důležitým kritériem pro výběr, ale určitě ne nejdůležitější. Podobné to bude i u jiných konzultačních služeb."</p>
+</blockquote>
+<p>Vyhledavač slev Skrz.cz je z hlediska SEO velmi komplikovaný projekt, na kterém by si dle mého osobního názoru vylámala zuby drtivá většina českých agentur. Proto jsem velmi rád, že jsme s naší nabídkou za eVisions nejen uspěli, ale hlavně že po celou dobu spolupráce doručujeme slíbené výsledky a přispíváme ke klientově spokojenosti. Věřím, že tomu tak bude i nadále.</p>
+<div class="callout callout-tip">
+<p><strong>Tip:</strong> Chcete vidět, jak podobný přístup vypadá v praxi? Podívejte se na naše <a href="/nase-vysledky/">reference</a>, nebo si nechte poradit s výběrem <a href="/seo/">SEO agentury</a>.</p>
+</div>
+<p><em>[ZDE VLOŽIT: zjednodušený kontaktní formulář (jméno, e-mail, zpráva) — pokud to šablona evisions.cz na blogu podporuje]</em></p>
+<hr/>
+<h2 id="jak-vybrat-reklamní-marketingovou-agenturu">Jak vybrat reklamní (marketingovou) agenturu?</h2>
+<p>Vybrat správnou a dobrou digitální agenturu není vůbec jednoduché. Pokud si nebudete jistí, jak s výběrem začít, nechte si poradit od někoho, kdo má s touto činností více zkušeností.</p>
+<p>Rozhoďte sítě a poptejte se ve svém okolí. Zjistěte konkrétní reference a snažte se nepřikládat příliš vysokou váhu sebeprezentaci a PR viditelných jedinců či agentur. To že někdo přednáší na konferenci, neznamená, že reálně dokáže pomoci vašemu projektu. Vybrané agentury poptejte a porovnejte je na základě následujících kritérií:</p>
+<ul>
+<li>Cíle a KPI – dobrá agentura nemůže pracovat bez nastavených cílů a KPI</li>
+<li>Návrh strategie – jak chce agentura daných KPI dosáhnout – minimálně na úrovni TOP level strategie</li>
+<li>Dedikovaný tým specialistů (accountů, garantů atp.) sestavený ze seniorních lidí s praxí. Obvyklou agenturní praxí je existence speciálního tendrového týmu sestaveného z největších seniorů. Ten je zodpovědný za úspěšné dokončení tendru, realizaci projektu pak obvykle dostanou na starost junioři.</li>
+<li>Plán rozložení prací a předpokládané časové dotace pro jednotlivé činnosti</li>
+<li>Hodinové sazby pro jednotlivé činnosti.</li>
+<li>Reporting výsledků – dobrá marketingová agentura ráda ochotně zašle ukázkový report již v průběhu výběrového řízení.</li>
+<li>Reporting činností odpracovaného času (timesheety) – jak často, v jaké podobě.</li>
+<li>Case study – případové studie řeknou o agentuře mnohé. Čím pokročilejší projekty, tím lépe. Nastartovat projekt od nuly umí každý.</li>
+<li>Success fee a Reverse fee – odmítá-li se agentura bavit o negativním (reverse) fee v případě neúspěchu projektu, může to být znakem menší solidnosti.</li>
+<li>SLA – deklarovaná úroveň poskytovaných služeb (např. reakční doba apod.).</li>
+<li>Sales</li>
+<li>Komunikace</li>
+<li>Lidská chemie a soft skills (resp. kvalitní prakticky zaměřené vzdělání)</li>
+<li>Smlouva, výpovědní lhůta, smlouva o mlčenlivosti (NDA)</li>
+</ul>
+<p>Pokud nepodceníte výše uvedená kritéria, neměli byste vybrat špatně. V Česku existuje celá řada dobrých agentur a každá je silná trochu v něčem jiném. Přeji šťastnou ruku s výběrem!</p>
+<h2 id="jak-pracujeme-my-v-evisions">Jak pracujeme my v Evisions?</h2>
+<p>Než se pustíte do vlastního výběrového řízení, možná vás bude zajímat, jak k SEO přistupujeme my. Jsme SEO agentura Praha s klienty po celé ČR i v zahraničí a náš přístup stavíme na čtyřech pilířích:</p>
+<ul>
+<li><strong>Komplexní audit webu</strong> – než navrhneme jediné opatření, projdeme technický stav, obsah i konkurenci, abychom věděli, kde přesně jsou rezervy.</li>
+<li><strong>Strategie na míru</strong> – žádné univerzální šablony. Návrh vychází z vašich cílů, rozpočtu i konkurenčního prostředí.</li>
+<li><strong>Pravidelné reporty</strong> – víte, co se děje a proč, ne jednou za čtvrt roku, ale průběžně, srozumitelně a s daty.</li>
+<li><strong>Osobní přístup</strong> – komunikujete přímo se specialisty na projektu, ne přes vrstvu account manažerů.</li>
+</ul>
+<p>Sedí vám tento přístup? <a href="/seo/">Ozvěte se nám</a> — probereme, jak by taková spolupráce mohla vypadat u vás.</p>
+<h2 id="závěr">Závěr</h2>
+<p>Objektivní srovnávací kritéria mezi SEO agenturami neexistují — rozhoduje kombinace referencí, transparentnosti, složení týmu a lidské chemie, ne jen cena. Chcete najít tu pravou SEO agenturu pro váš projekt? <a href="/seo/">Kontaktujte nás</a> a probereme, jak bychom mohli pomoct i vám.</p>
+
+<div class="author-box">
+    <div class="author-box-header">
+        <span class="author-box-title">O tomto článku</span>
+        <div class="author-dates">
+            <span>Aktualizováno: 2026-08-27</span>
+        </div>
+    </div>
+    <div class="author-card">
+        <div class="author-avatar">EV</div>
+        <div>
+            <div class="author-role">Content Team</div>
+            <div class="author-name">evisions Advertising</div>
+        </div>
+    </div>
+</div>
+
+<div class="disclaimer">
+    <strong>Poznámka k obsahu:</strong> Tento článek má edukativní charakter.
+    Konkrétní doporučení pro váš projekt vám rádi připravíme na míru.
+</div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div>
+            <div class="footer-logo">evisions</div>
+            <p class="footer-desc">Digitální marketingová agentura — SEO, PPC, analytika a obsah.</p>
+        </div>
+        <div>
+            <h4>Blog</h4>
+            <ul>
+                <li><a href="https://www.evisions.cz/blog/">Všechny články</a></li>
+                <li><a href="https://www.evisions.cz">evisions.cz</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPC audit: co to je a kdy ho objednat | evisions.cz Blog</title>
+    <meta name="description" content="PPC audit odhalí, kde kampaně v Google Ads či Sklik ztrácí rozpočet. Zjistěte, co PPC audit kontroluje, jak probíhá a kdy se vyplatí ho objednat – i kdy ne.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --evi-accent: #0057ff;
+    --evi-dark: #12131a;
+    --evi-navy: #0a0b12;
+    --evi-silver: #c6c6c6;
+    --evi-gray: #6b7280;
+    --evi-light: #f8f9fa;
+    --evi-border: #e1e5eb;
+    --max-width: 1160px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px; line-height: 1.7; color: #1f2937; background: #fff;
+}
+.header {
+    background: #000; padding: 1rem 2rem; position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.logo { color: #fff; font-size: 1.25rem; font-weight: 700; text-decoration: none; }
+.nav { display: flex; gap: 2rem; }
+.nav a { color: #ccc; text-decoration: none; font-size: 0.875rem; font-weight: 500; }
+.nav a:hover { color: #fff; }
+.header-cta {
+    background: var(--evi-accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: 4px; text-decoration: none; font-size: 0.875rem; font-weight: 600;
+}
+.breadcrumb {
+    background: var(--evi-light); padding: 0.75rem 2rem;
+    font-size: 0.875rem; border-bottom: 1px solid var(--evi-border);
+}
+.breadcrumb-inner { max-width: var(--max-width); margin: 0 auto; }
+.breadcrumb a { color: var(--evi-gray); text-decoration: none; }
+.breadcrumb span { color: var(--evi-gray); margin: 0 0.5rem; }
+.main { max-width: var(--max-width); margin: 0 auto; padding: 2rem; }
+h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; }
+h2 {
+    font-size: 1.5rem; font-weight: 600; margin: 2.5rem 0 1rem;
+    padding-top: 1rem; border-top: 1px solid var(--evi-border);
+}
+h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.75rem; }
+h4 { font-size: 1rem; font-weight: 600; margin: 1.25rem 0 0.5rem; }
+p { margin-bottom: 1rem; color: var(--evi-gray); }
+.intro-text { font-size: 1.125rem; color: #1f2937; line-height: 1.8; }
+strong { color: #1f2937; }
+a { color: var(--evi-accent); }
+ul, ol { margin: 1rem 0 1rem 1.5rem; color: var(--evi-gray); }
+li { margin-bottom: 0.5rem; }
+table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--evi-border); }
+th { background: var(--evi-light); font-weight: 600; color: var(--evi-dark); }
+td { color: var(--evi-gray); }
+.toc {
+    background: var(--evi-light); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;
+}
+.toc-title { font-size: 0.875rem; font-weight: 600; color: var(--evi-gray);
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+.toc ul { list-style: none; margin: 0; padding: 0; }
+.toc li { margin-bottom: 0.4rem; }
+.toc a {
+    color: var(--evi-dark); text-decoration: none; font-size: 0.9375rem;
+    display: flex; align-items: center; gap: 0.5rem;
+}
+.toc a::before {
+    content: ""; display: inline-block; width: 6px; height: 6px;
+    background: var(--evi-accent); border-radius: 50%; flex-shrink: 0;
+}
+.toc a:hover { color: var(--evi-accent); }
+.toc .toc-h3 { padding-left: 1.25rem; font-size: 0.875rem; }
+.callout {
+    padding: 1rem 1.25rem; margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0; font-size: 0.9375rem;
+}
+.callout-tip    { background: #e8f0fd; border-left: 4px solid var(--evi-accent); }
+.callout-warning { background: #fff3cd; border-left: 4px solid #ffc107; }
+.callout-important { background: #fde8e8; border-left: 4px solid #e53e3e; }
+.callout-note   { background: var(--evi-light); border-left: 4px solid var(--evi-gray); }
+.callout-keep-in-mind { background: #f0f7ee; border-left: 4px solid #5a8a4a; }
+.callout-example { background: #f5f5f5; border-left: 4px solid #999; }
+.callout strong { display: block; margin-bottom: 0.25rem; }
+figure.article-image { margin: 1.5rem 0; }
+figure.article-image img {
+    width: 100%; height: auto; border-radius: 8px;
+    border: 1px solid var(--evi-border); display: block;
+}
+figure.article-image figcaption {
+    margin-top: 0.5rem; font-size: 0.875rem;
+    color: var(--evi-gray); text-align: center; font-style: italic;
+}
+.video-container {
+    position: relative; padding-bottom: 56.25%; height: 0;
+    overflow: hidden; margin: 2rem 0; border-radius: 8px; background: #000;
+}
+.video-container iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+}
+.takeaways {
+    background: linear-gradient(135deg, var(--evi-navy) 0%, var(--evi-dark) 100%);
+    color: #fff; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;
+}
+.takeaways h2 { color: #fff; border: none; margin-top: 0; padding-top: 0; }
+.takeaways ul { color: #ccc; }
+.author-box {
+    background: var(--evi-light); border-radius: 12px; padding: 1.5rem; margin: 2rem 0;
+}
+.author-box-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--evi-border);
+}
+.author-box-title { font-weight: 600; font-size: 1rem; }
+.author-dates { font-size: 0.8125rem; color: var(--evi-gray); display: flex; gap: 1.5rem; }
+.author-card { display: flex; align-items: center; gap: 0.875rem; }
+.author-avatar {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--evi-dark);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 600; font-size: 1rem; flex-shrink: 0;
+}
+.author-role {
+    font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--evi-accent); font-weight: 600; margin-bottom: 0.125rem;
+}
+.author-name { font-weight: 600; color: var(--evi-dark); font-size: 0.9375rem; }
+.disclaimer {
+    background: var(--evi-light); padding: 1rem 1.25rem; border-radius: 4px;
+    font-size: 0.875rem; color: var(--evi-gray); margin: 1rem 0;
+}
+.footer { background: #000; color: #fff; padding: 3rem 2rem; margin-top: 4rem; }
+.footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;
+}
+.footer-logo { font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+.footer-desc { color: #888; font-size: 0.875rem; line-height: 1.6; }
+.footer h4 {
+    font-size: 0.875rem; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 1rem; color: #888;
+}
+.footer ul { list-style: none; margin: 0; padding: 0; }
+.footer li { margin-bottom: 0.5rem; }
+.footer a { color: #ccc; text-decoration: none; font-size: 0.9375rem; }
+.footer a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a class="logo" href="https://www.evisions.cz">evisions</a>
+        <nav class="nav">
+            <a href="https://www.evisions.cz/blog/">Blog</a>
+            <a href="https://www.evisions.cz">evisions.cz</a>
+        </nav>
+        <a class="header-cta" href="https://www.evisions.cz/kontakt/">Kontaktujte nás</a>
+    </div>
+</header>
+
+<div class="breadcrumb">
+    <div class="breadcrumb-inner">
+        <a href="https://www.evisions.cz/blog/">Blog</a>
+        <span>›</span>
+        <a href="https://www.evisions.cz/blog/co-je-ppc-audit-a-kdy-ho-dava-smysl-objednat/">Co je PPC audit a kdy ho dává smysl objednat</a>
+    </div>
+</div>
+
+<main class="main">
+
+<div class="toc"><p class="toc-title">Obsah</p><ul><li class=""><a href="#co-je-ppc-audit">Co je PPC audit</a></li><li class=""><a href="#co-ppc-audit-konkrétně-kontroluje">Co PPC audit konkrétně kontroluje</a></li><li class=""><a href="#jak-probíhá-ppc-audit">Jak probíhá PPC audit</a></li><li class=""><a href="#kdy-ppc-audit-dává-a-nedává-smysl">Kdy PPC audit dává a nedává smysl</a></li><li class="toc-h3"><a href="#kdy-má-smysl-ppc-audit-objednat">Kdy má smysl PPC audit objednat</a></li><li class="toc-h3"><a href="#kdy-ppc-audit-naopak-nedává-smysl">Kdy PPC audit naopak nedává smysl</a></li><li class=""><a href="#co-je-výstupem-ppc-auditu">Co je výstupem PPC auditu</a></li><li class=""><a href="#jak-k-auditu-přistupujeme-v-evisions">Jak k auditu přistupujeme v evisions</a></li><li class=""><a href="#časté-otázky-o-ppc-auditu">Časté otázky o PPC auditu</a></li><li class=""><a href="#klíčové-závěry">Klíčové závěry</a></li><li class=""><a href="#zdroje">Zdroje</a></li></ul></div>
+
+<h1>Co je PPC audit a kdy ho dává smysl objednat</h1>
+<p class="intro-text">Kampaň v Google Ads nebo na Sklik může běžet měsíce bez viditelné chyby – a přitom tiše spalovat rozpočet na klíčová slova, publika nebo umístění, která už dávno nefungují. Report ukazuje kliky a konverze, ne to, kolik z rozpočtu jde na cílovku, která už dávno neodpovídá vašim zákazníkům. Bez nezávislé kontroly to zjistíte těžko.</p>
+<p>TL;DR: V tomto článku se dozvíte, co PPC audit je, co konkrétně kontroluje, jakými způsoby se dá provést, kdy má smysl ho objednat – a kdy naopak ne.</p>
+<h2 id="co-je-ppc-audit">Co je PPC audit</h2>
+<p>PPC audit je jednorázová hloubková kontrola nastavení a výkonu placených kampaní – typicky Google Ads, Sklik nebo Meta Ads. Na rozdíl od průběžné správy kampaně nejde o optimalizaci za pochodu, ale o nezávislou diagnostiku: audit zmapuje, co v účtu skutečně funguje, co ho brzdí a kde uniká rozpočet.</p>
+<p>Rozdíl je i v perspektivě. Průběžná správa kampaně řeší denní úpravy nabídek, testování textů reklam nebo přidávání nových klíčových slov – je to práce zevnitř, s omezeným odstupem od vlastních rozhodnutí. Audit se naopak dívá na účet zvenčí a ptá se na základní otázky: dává celá struktura kampaní smysl? Odpovídá rozpočet obchodní prioritě? Měří se vůbec to, co má?</p>
+<p>Výstupem není nová kampaň ani okamžitá změna nastavení. Je jím přehled nálezů seřazený podle dopadu – a doporučení, co s nimi dál.</p>
+<h2 id="co-ppc-audit-konkrétně-kontroluje">Co PPC audit konkrétně kontroluje</h2>
+<p>Audit ppc účtu se obvykle neomezuje na jednu kampaň – dívá se na účet jako celek. Typicky prochází pět oblastí:</p>
+<ul>
+<li><strong>Struktura účtu a kampaní</strong> – jestli je rozdělení kampaní a ad groups logické, nebo naopak brání optimalizaci. Typický nález: jedna kampaň míchá dohromady branding i výkonnostní produkty, takže se automatická nabídka učí ze dvou různých vzorců chování zároveň.</li>
+<li><strong>Cílení a publika</strong> – zda kampaně necílí na příliš široké nebo zastaralé publikum. Typický nález: remarketingové publikum staré přes rok, které už neodpovídá aktuální zákaznické bázi.</li>
+<li><strong>Rozpočty a bidding strategie</strong> – jestli rozpočet kopíruje reálný obchodní potenciál jednotlivých kampaní. Typický nález: kampaň s nejvyšší marží dostává nejmenší rozpočet, protože ho nikdo nepřerozdělil od spuštění.</li>
+<li><strong>Klíčová slova, kreativy a texty reklam</strong> – shoda mezi tím, na co se cílí, a tím, co reklama slibuje. Typický nález: shodná klíčová slova soutěží sama proti sobě napříč několika kampaněmi.</li>
+<li><strong>Měření a tracking</strong> – jestli konverze vůbec měříte správně. Bez validního trackingu je každý další bod auditu jen odhad. Časté zjištění zde souvisí i s nastavením souhlasu s cookies – viz <a href="https://www.evisions.cz/blog/co-je-google-consent-mode-v2-a-musite-to-resit/">Co je Google Consent Mode V2 a musíte to řešit?</a>.</li>
+</ul>
+<div class="callout callout-warning">
+<p><strong>Warning:</strong> Bez validního trackingu konverzí je jakýkoliv další závěr auditu jen odhad. Měření je proto vždy první bod kontroly, ne poslední.</p>
+</div>
+<p>V praxi audit ppc kampaní odhalí nejčastěji kombinaci menších problémů, ne jednu velkou chybu. Typicky jde o duplicitní klíčová slova mezi kampaněmi, zapnuté automatické bidding strategie bez dostatku konverzních dat nebo publika, která se roky nezaktualizovala.</p>
+<h2 id="jak-probíhá-ppc-audit">Jak probíhá PPC audit</h2>
+<p>Audit ppc lze provést čtyřmi způsoby a každý má jiné limity.</p>
+<p><strong>Automatizovaný nástroj.</strong> Rychlý první screening – odhalí zjevné technické chyby (rozbité odkazy, chybějící rozšíření), ale nerozumí obchodnímu kontextu kampaně.</p>
+<p><strong>Self-audit.</strong> Interní PPC specialista projde vlastní účet podle checklistu. Levné a rychlé, ale chybí mu nezávislý pohled – vlastní chyby se hledají hůř.</p>
+<p><strong>Peer review.</strong> Kolega nebo jiný tým v rámci firmy zkontroluje účet. Přináší čerstvý pohled, ale obvykle bez hloubkové expertízy na konkrétní platformu.</p>
+<p><strong>Externí nezávislý audit.</strong> Agentura nebo specialista mimo firmu, bez vazby na dosavadní výsledky kampaně. Nejnákladnější varianta, ale jediná, která kombinuje expertízu i nezávislost – nemá důvod nálezy zlehčovat ani přikrášlovat.</p>
+<p>Volba metody závisí na tom, co od auditu očekáváte. Rychlý technický screening zvládne nástroj. Důkladné prověření před větším rozhodnutím – změna agentury, navýšení rozpočtu – potřebuje externí pohled.</p>
+<table>
+<thead>
+<tr>
+<th>Metoda</th>
+<th>Čas</th>
+<th>Hlavní výhoda</th>
+<th>Hlavní limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Automatizovaný nástroj</td>
+<td>Minuty</td>
+<td>Rychlý technický screening</td>
+<td>Nerozumí obchodnímu kontextu</td>
+</tr>
+<tr>
+<td>Self-audit</td>
+<td>Hodiny až dny</td>
+<td>Levné, rychlé, interní know-how</td>
+<td>Chybí nezávislý pohled</td>
+</tr>
+<tr>
+<td>Peer review</td>
+<td>Hodiny až dny</td>
+<td>Čerstvý pohled kolegy</td>
+<td>Obvykle bez hloubkové expertízy na platformu</td>
+</tr>
+<tr>
+<td>Externí nezávislý audit</td>
+<td>Řádově dny</td>
+<td>Expertíza i nezávislost zároveň</td>
+<td>Nejnákladnější varianta</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-keep-in-mind">
+<p><strong>Keep in Mind:</strong> Automatizovaný nástroj a self-audit jsou dobrý první krok, ale žádný z nich nenahradí nezávislý pohled zvenčí – u zásadních rozhodnutí (změna agentury, výrazné navýšení rozpočtu) na ně nespoléhejte jako na jediný zdroj pravdy.</p>
+</div>
+<h2 id="kdy-ppc-audit-dává-a-nedává-smysl">Kdy PPC audit dává a nedává smysl</h2>
+<h3 id="kdy-má-smysl-ppc-audit-objednat">Kdy má smysl PPC audit objednat</h3>
+<p>Audit dává smysl v pěti situacích:</p>
+<ul>
+<li><strong>Kampaň běží dlouho beze změny.</strong> Publika, klíčová slova i nabídky nastavené před rokem a déle typicky neodpovídají aktuálnímu trhu – konkurence mezitím upravila nabídku, zákazníci změnili chování a algoritmus platformy prošel několika aktualizacemi.</li>
+<li><strong>Mění se odpovědnost za kampaň.</strong> Nový PPC specialista nebo agentura potřebuje nezávislý výchozí bod, ne jen převzetí předchozích nastavení bez kontroly. Bez auditu riskujete, že nová strana zdědí i chyby, o kterých nikdo neví.</li>
+<li><strong>Výkon stagnuje nebo klesá bez zjevné příčiny.</strong> Když interní tým nedokáže pojmenovat důvod poklesu, nezávislý pohled zvenčí často najde to, co je zevnitř vidět těžko – vlastní práci je vždycky náročnější kontrolovat objektivně.</li>
+<li><strong>Plánujete navýšit rozpočet.</strong> Než do kampaně pošlete víc peněz, má smysl ověřit, že současné nastavení dodatečný rozpočet neztratí na stejných chybách. Navýšení špatně nastavené kampaně jen znásobí ztrátu, ne výsledek.</li>
+<li><strong>Přecházíte mezi agenturami.</strong> Audit dá nové agentuře jasný obraz účtu bez nutnosti věřit jen předávacímu reportu – a vám poskytne nezávislé srovnání, jak si předchozí spolupráce reálně vedla.</li>
+</ul>
+<div class="callout callout-tip">
+<p><strong>Tip:</strong> Nejste si jistí, jestli je na audit vhodná chvíle? Zkontrolujte datum poslední větší úpravy kampaně – pokud je starší než rok, audit pravděpodobně najde co zlepšit.</p>
+</div>
+<p>Prakticky to znamená, že audit dává smysl vždy, když se rozhodujete o dalším směřování kampaně na základě něčeho víc než pocitu. <a href="https://www.evisions.cz/ppc-audit/">Chcete zjistit, jestli je na PPC audit vhodná doba i u vás? Prohlédněte si, jak audit u nás probíhá.</a></p>
+<h3 id="kdy-ppc-audit-naopak-nedává-smysl">Kdy PPC audit naopak nedává smysl</h3>
+<p>Audit se nevyplatí vždy – a přiznat to je stejně důležité jako vysvětlit, kdy ano.</p>
+<p>Kampaň běžící kratší dobu než 4–6 týdnů zatím nemá dost dat na spolehlivé vyhodnocení. Audit by v tomto případě pracoval s odhady, ne s fakty – zvlášť u konverzních dat, kde algoritmus platformy potřebuje čas na to, aby se ustálil na relevantní vzorek chování uživatelů. Podobně to platí, pokud právě probíhá jiná zásadní změna – redesign webu, změna produktového mixu nebo přechod na nový e-shopový systém. Audit v tu chvíli hodnotí kampaň v přechodném stavu, ne v jejím skutečném provozu. Nálezy by navíc za pár týdnů stejně neplatily.</p>
+<p>Roli hraje i velikost rozpočtu. U kampaně s minimálním měsíčním rozpočtem se náklady na externí audit nemusí vrátit – potenciální úspora z opravených chyb je nižší než cena samotného auditu. V takovém případě dává větší smysl jednoduchý self-audit podle checklistu, případně automatizovaný nástroj pro rychlý technický screening.</p>
+<h2 id="co-je-výstupem-ppc-auditu">Co je výstupem PPC auditu</h2>
+<p>Výstupem je strukturovaný report – seznam nálezů seřazený podle dopadu na výkon, ne podle toho, co se opravuje nejsnáz. Ke každému nálezu patří konkrétní doporučení, ne jen popis problému. Dobrý report navíc rozlišuje, co lze opravit okamžitě (nesprávně nastavená konverze, duplicitní klíčová slova) a co vyžaduje delší úpravu strategie (přerozdělení rozpočtu mezi produktovými kategoriemi, změna bidding strategie).</p>
+<p>Audit sám o sobě kampaň nemění. Implementace doporučení je samostatný krok, který může provést interní tým, stávající agentura, nebo firma, která audit dělala – volba záleží čistě na tom, kde má firma kapacitu.</p>
+<h2 id="jak-k-auditu-přistupujeme-v-evisions">Jak k auditu přistupujeme v evisions</h2>
+<p>Audit vnímáme jako nezávislou diagnostiku, ne jako předprodej vlastních služeb – nálezy platí bez ohledu na to, kdo pak kampaň dál spravuje. Stejný princip nezávislého, na datech postaveného přístupu jsme uplatnili třeba u klienta Nefertiti, kde jsme za 9 měsíců spolupráce zvýšili tržby o téměř 150 % [zdroj: case study <a href="https://www.evisions.cz/blog/spoluprace-e-visions-a-nefertitis-za-9-mesicu-zvyseni-trzeb-na-temer-150-diky-ppc/">Spolupráce e-Visions a Nefertitis</a>].</p>
+<p>Audit navíc často odhalí příležitosti mimo PPC samotné – třeba tam, kde by kampani pomohla těsnější spolupráce s SEO (viz <a href="https://www.evisions.cz/blog/synergie-ppc-a-seo-klic-k-digitalnimu-uspechu/">Synergie PPC a SEO: Klíč k digitálnímu úspěchu?</a>).</p>
+<h2 id="časté-otázky-o-ppc-auditu">Časté otázky o PPC auditu</h2>
+<p><strong>Jak často dělat PPC audit?</strong><br/>
+Zavedená kampaň s minimálními změnami vydrží obvykle 6–12 měsíců mezi audity. Po větší změně – nová agentura, navýšení rozpočtu, redesign webu – má smysl audit zopakovat dřív.</p>
+<p><strong>Je možné získat PPC audit zdarma?</strong><br/>
+Bezplatné audity bývají zjednodušený automatizovaný screening, ne hloubková kontrola všech pěti oblastí popsaných výše. Pro rychlý orientační pohled to stačí, pro rozhodnutí o větší investici do kampaně ne.</p>
+<p><strong>Co konkrétně obsahuje report z PPC auditu?</strong><br/>
+Přehled nálezů podle oblastí auditu, jejich odhadovaný dopad na výkon a konkrétní doporučení k nápravě – ne jen seznam chyb.</p>
+<p><strong>Je audit totéž co samoaudit?</strong><br/>
+Ne. Self-audit dělá stejný tým, který kampaň spravuje – chybí mu nezávislost. Externí audit tento problém řeší tím, že nemá důvod nálezy zlehčovat.</p>
+<p><strong>Jak dlouho PPC audit trvá?</strong><br/>
+Záleží na zvolené metodě a velikosti účtu – automatizovaný screening je hotový během minut, externí nezávislý audit u většího účtu obvykle zabere řádově dny, protože zahrnuje i kontext mimo samotné nastavení kampaní.</p>
+<h2 id="klíčové-závěry">Klíčové závěry</h2>
+<ul>
+<li>PPC audit je jednorázová nezávislá kontrola účtu, ne průběžná optimalizace.</li>
+<li>Prochází pět oblastí: strukturu, cílení, rozpočty, kreativy a měření.</li>
+<li>Vyplatí se hlavně u dlouho neměněných kampaní, při změně odpovědnosti za účet nebo před navýšením rozpočtu.</li>
+<li>Nevyplatí se u příliš mladých kampaní nebo v období jiné zásadní změny na webu.</li>
+<li>Výstupem je prioritizovaný report s doporučeními, ne hotová oprava.</li>
+</ul>
+<p>Zvažujete PPC audit pro vlastní kampaně? <a href="https://www.evisions.cz/ppc-audit/">Podívejte se, jak audit u evisions probíhá.</a></p>
+<h2 id="zdroje">Zdroje</h2>
+<ul>
+<li>Interní case study evisions: <a href="https://www.evisions.cz/blog/spoluprace-e-visions-a-nefertitis-za-9-mesicu-zvyseni-trzeb-na-temer-150-diky-ppc/">Spolupráce e-Visions a Nefertitis</a></li>
+<li>evisions.cz blog: <a href="https://www.evisions.cz/blog/co-je-google-consent-mode-v2-a-musite-to-resit/">Co je Google Consent Mode V2 a musíte to řešit?</a></li>
+<li>evisions.cz blog: <a href="https://www.evisions.cz/blog/synergie-ppc-a-seo-klic-k-digitalnimu-uspechu/">Synergie PPC a SEO: Klíč k digitálnímu úspěchu?</a></li>
+<li>Keyword a hledanostní data: Ahrefs Keywords Explorer, Marketing Miner (CZ) — cross-check proveden v Kroku 1</li>
+</ul>
+
+<div class="author-box">
+    <div class="author-box-header">
+        <span class="author-box-title">O tomto článku</span>
+        <div class="author-dates">
+            <span>Aktualizováno: 2026-08-27</span>
+        </div>
+    </div>
+    <div class="author-card">
+        <div class="author-avatar">EV</div>
+        <div>
+            <div class="author-role">Content Team</div>
+            <div class="author-name">evisions Advertising</div>
+        </div>
+    </div>
+</div>
+
+<div class="disclaimer">
+    <strong>Poznámka k obsahu:</strong> Tento článek má edukativní charakter.
+    Konkrétní doporučení pro váš projekt vám rádi připravíme na míru.
+</div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div>
+            <div class="footer-logo">evisions</div>
+            <p class="footer-desc">Digitální marketingová agentura — SEO, PPC, analytika a obsah.</p>
+        </div>
+        <div>
+            <h4>Blog</h4>
+            <ul>
+                <li><a href="https://www.evisions.cz/blog/">Všechny články</a></li>
+                <li><a href="https://www.evisions.cz">evisions.cz</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

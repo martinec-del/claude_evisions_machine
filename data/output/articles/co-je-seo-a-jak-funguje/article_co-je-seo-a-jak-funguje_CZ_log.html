@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log: Co je SEO a jak funguje</title>
+<style>
+:root {
+    --dark: #12131a; --muted: #6b7280; --border: #e1e5eb;
+    --accent: #0057ff; --light: #f8f9fa;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 14px; line-height: 1.65; color: #1f2937; background: #fff;
+    max-width: 1000px; margin: 0 auto; padding: 2.5rem 2rem;
+}
+h1 { font-size: 1.5rem; font-weight: 700; color: var(--dark);
+    border-bottom: 3px solid var(--dark); padding-bottom: 0.75rem; margin-bottom: 1.5rem; }
+h2 { font-size: 1.15rem; font-weight: 700; color: var(--dark);
+    margin: 2.25rem 0 0.75rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+h3 { font-size: 1rem; font-weight: 600; color: var(--dark); margin: 1.25rem 0 0.5rem; }
+p { margin-bottom: 0.85rem; color: #374151; }
+strong { color: var(--dark); }
+ul, ol { margin: 0.5rem 0 1rem 1.5rem; color: #374151; }
+li { margin-bottom: 0.3rem; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.8125rem; }
+th, td { padding: 0.5rem 0.75rem; text-align: left; border: 1px solid var(--border); vertical-align: top; }
+th { background: var(--light); font-weight: 600; color: var(--dark); }
+td { color: #374151; }
+code { background: var(--light); padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.85em; }
+blockquote { border-left: 4px solid var(--accent); background: var(--light);
+    padding: 0.75rem 1rem; margin: 1rem 0; color: #374151; }
+a { color: var(--accent); }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+</style>
+</head>
+<body>
+<h1>Log: Co je SEO a jak funguje</h1>
+<p><strong>Slug:</strong> co-je-seo-a-jak-funguje<br>
+<strong>Content Plan:</strong> SEO-32 — Kategorie: SEO, podskupina "11 – content GAP"<br>
+<strong>Content Plan zdroj:</strong> data/output/content_plan_index.md (lokální ledger, TODO položka nalezena a přeřazena na In Progress se SEO-32)<br>
+<strong>Vytvořeno:</strong> 2026-08-24</p>
+<h2>Init</h2>
+<ul>
+<li>Krok 0 Duplicate Check: shoda s TODO položkou "Co je SEO a jak funguje" v <code>content_plan_index.md</code> pod SEO — Skupina 11 (content GAP). Žádný Published článek na téma nenalezen. Přiřazeno ID SEO-32, Next ID posunuto na SEO-33.</li>
+<li>Žádná existující verze ve <code>data/output/articles/co-je-seo-a-jak-funguje/</code> — NEW mode, v1.</li>
+<li>Skupina 11 (content GAP) je sada definičních/vzdělávacích témat bez vlastního topic clusteru se zavedeným tagem — sourozenecká témata (Keyword research, On-page SEO, Technické SEO, Core Web Vitals...) jsou zatím také jen TODO, ne Published, takže z nich nelze v Kroku 2 prolinkovat.</li>
+<li>Kandidáti na interní prolinkování z jiných Published článků (relevance k základům SEO):</li>
+<li>SEO-14 — Průvodce regulárními výrazy pro začátečníky — https://www.evisions.cz/blog/pruvodce-regularnimi-vyrazy-pro-zacatecniky/</li>
+<li>SEO-24 — SEO nástroje + 7 rozšíření, která vám usnadní práci — https://www.evisions.cz/blog/seo-nastroje-7-rozsireni-ktera-vam-usnadni-praci/</li>
+<li>SEO-07 — Universal Analytics končí, ať žije Google Analytics 4! — https://www.evisions.cz/blog/universal-analytics-konci-at-zije-google-analytics-4/</li>
+<li>SEO-06 — Synergie PPC a SEO: Klíč k digitálnímu úspěchu? — https://www.evisions.cz/blog/synergie-ppc-a-seo-klic-k-digitalnimu-uspechu/</li>
+<li>(Přesný výběr se potvrdí v Kroku 2 dle skutečné struktury nadpisů draftu.)</li>
+</ul>
+<h2>Step 1 — Konkurenční research + klíčová slova</h2>
+<p><strong>Seed keyword:</strong> "co je SEO" (ověřeno přes WebSearch — reálně používaný dotaz, potvrzeno i Ahrefs volume 1200/mo)</p>
+<p><strong>Provider:</strong> Ahrefs MCP (domain rating, site-explorer-metrics s <code>protocol=https</code>, <code>mode=exact</code>) + keywords-explorer (matching-terms, related-terms)</p>
+<p><strong>URL research:</strong> 4 WebSearch dotazy ("co je SEO vysvětleno", "SEO pro začátečníky návod", "jak SEO funguje", "co je SEO optimalizace webu") → 23 unikátních CZ URL po deduplikaci a filtru (vyřazeny: 2× WordPress-specifické návody mimo obecný scope, 1× kurzová landing page bez článku, 2× tenké slovníčkové stub záznamy, 2× duplicitní stránky ze stejné domény jako už vybraný kandidát). Obohaceno o DR + organic traffic pro 18 kandidátů. Top 10 dle relevance/DR/traffic úspěšně fetchnuto, 0 FAIL.</p>
+<p><strong>Klíčový content gap:</strong> Žádný z 10 konkurenčních článků nepropojuje definici SEO s konkrétní agenturní expertízou/case studies ani s CZ specifickým kontextem vyhledávačů (Google vs. Seznam) — jen webnode.com Seznam vůbec zmiňuje. Téma GEO/AI Overviews vyváženě pokrývají jen 2 z 10 (seoprakticky.cz, mipaco.cz). Žádný konkurent nenabízí přehlednou tabulku "tři pilíře SEO → kam se prohloubit dál" propojenou s vlastním obsahem.</p>
+<p><strong>Kanibalizace v rámci vlastní kategorie:</strong> Sourozenecká TODO témata ve Skupině 11 (Keyword research, On-page SEO, Technické SEO, Core Web Vitals, Interní prolinkování, Kanibalizace klíčových slov, Google Core Update) jsou zatím nenapsaná — tento článek proto slouží jako "rodičovský" definiční hub, on-page/technické/off-page pilíře jen zmíní a nerozvíjí do hloubky, ať nekonkuruje budoucím specializovaným článkům ve stejné skupině.</p>
+<p><strong>Klíčová slova:</strong> 18 navrženo (viz xlsx list "Keywords") — primární definiční cluster "co je seo" / "seo co to je" / "co je to seo" (~2100/měsíc kombinovaně), přesná fráze tématu "co to je seo a jak funguje" (10/měsíc, nízký objem ale exact-match), cluster rozšíření zkratky "seo optimalizace pro vyhledávače" / "co je zkratka seo", marketing-kontext cluster "seo marketing" (~1300/měsíc kombinovaně). Mimo-oborové/jinam patřící výsledky (seo specialista, seo konzultant, seo agentura praha, seo studium, seo služby, seo expert, seo analytik, seo tools, seo katalogy, kniha seo — komerční/kariérní intent) vyřazeny jako mimo scope definičního článku.</p>
+<p><strong>Marketing Miner cross-check:</strong> <code>python src/marketing_miner_api.py volume ...</code> na 8 hlavních keywordech — většina čísel se s Ahrefs shoduje v řádu (co je seo 1300 vs Ahrefs 1200, co je zkratka seo 50 vs 50, co je seo optimalizace 120 vs 150...). <strong>Jedna výjimka — řádový rozdíl:</strong> "seo optimalizace pro vyhledávače" MM 100/mo vs. Ahrefs 900/mo. V Kroku 2 použít konzervativnější odhad MM (100/mo). Cross-check hodnoty zapsány do sloupce Notes v listu "Keywords".</p>
+<p><strong>xlsx uložen:</strong> <code>data/output/articles/co-je-seo-a-jak-funguje/co-je-seo-a-jak-funguje_step1.xlsx</code></p>
+<h2>Step 2 — Brief &amp; osnova</h2>
+<p><strong>Typ obsahu:</strong> How-to / definiční — téma je mechanické a definiční ("co SEO je, jak funguje"), case study formát by nedával smysl. Slouží jako "rodičovský" hub k sourozeneckým TODO tématům ve Skupině 11 (Keyword research, On-page SEO, Technické SEO...).</p>
+<p><strong>Cíl počtu slov:</strong> 1900–2300 (konkurenční rozsah 1300–8500 je extrémně široký; volen střed pásma srovnatelných konkurentů — mipaco.cz ~2800, itnetwork.cz ~2300, webglobe.cz ~2300, loudavymkrokem.cz ~2100 — kratší/delší extrémy neodpovídají evisions ToV).</p>
+<p><strong>Diferenciace od konkurence:</strong> Tabulka "tři pilíře SEO → kam se prohloubit" propojující každý pilíř s konkrétním publikovaným evisions článkem (content gap ze Step 1). CZ tržní kontext Google vs. Seznam s vlastními daty (infografiky). Reálný case study jako důkaz místo obecného slibu (ToV Guide sekce 7 compliance). Vyvážená zmínka AI/GEO vývoje s odkazem na vlastní AI cluster obsah. Záměrně vynecháno: hloubkový keyword research, on-page checklist, technický audit — patří sourozeneckým TODO článkům ve stejné skupině.</p>
+<p><strong>Kostra nadpisů (H2):</strong><br>
+1. Co znamená SEO a čím se liší od placené reklamy<br>
+2. Jak funguje vyhledávač (+ H3 Procházení, H3 Indexace, H3 Hodnocení a zobrazení výsledků)<br>
+3. Tři pilíře SEO a kam se v nich prohloubit (+ H3 Technické SEO, H3 Obsahové/on-page SEO, H3 Off-page SEO/linkbuilding)<br>
+4. Proč je SEO důležité pro firmy v Česku<br>
+5. Časté mylné představy o SEO<br>
+6. Klíčové závěry<br>
+7. Zdroje</p>
+<p><strong>Plán interních odkazů (6):</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Cílový článek</th>
+<th>Umístění</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Z nuly na SEO hvězdu: Pomohli jsme Kalkulátor.cz vyrůst o 700 % (SEO-02)</td>
+<td>H2 "Proč je SEO důležité pro firmy v Česku"</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Infografika: Podíl vyhledávačů Google a Seznam #2021 (SEO-20)</td>
+<td>H2 "Proč je SEO důležité..."</td>
+</tr>
+<tr>
+<td>3</td>
+<td>6 hlavních linkbuildingových metrik (SEO-27)</td>
+<td>H3 "Off-page SEO / linkbuilding"</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Úspěšná SEO migrace webu Foodora.cz (SEO-04)</td>
+<td>H3 "Technické SEO"</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Jak funguje AI Mode od Googlu (AI-02)</td>
+<td>H2 "Proč je SEO důležité..."</td>
+</tr>
+<tr>
+<td>6</td>
+<td>SEO nástroje + 7 rozšíření, která vám usnadní práci (SEO-24)</td>
+<td>Tabulka pilířů (obsahový pilíř)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Content validace:</strong> PASS — struktura logicky odpovídá tématu (definice → mechanika vyhledávače → pilíře s dalším směrem → byznys relevance → mylné představy → závěr), didakticky vzestupné pořadí, chybějící hloubka u keyword research/on-page/technického auditu je záměrná (zdůvodněno diferenciací a sourozeneckými TODO tématy, ne opomenutí).</p>
+<p><strong>Osnova uložena:</strong> <code>data/output/articles/co-je-seo-a-jak-funguje/article_co-je-seo-a-jak-funguje_CZ_outline.docx</code></p>
+<h2>Step 3 — Draft</h2>
+<p><strong>Typ obsahu:</strong> How-to / definiční<br>
+<strong>Počet slov:</strong> 1903 (cíl: 1900–2300)</p>
+<h3>Integrace klíčových slov</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Keyword</th>
+<th>Volume</th>
+<th>Umístění</th>
+<th>Kontextová věta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>co je seo</td>
+<td>1200</td>
+<td>H1 + úvodní odstavec definice</td>
+<td>"SEO je zkratka pro Search Engine Optimization, česky optimalizace pro vyhledávače."</td>
+</tr>
+<tr>
+<td>2</td>
+<td>co to je seo a jak funguje</td>
+<td>10 (exact-match fráze)</td>
+<td>H1 (blízké znění)</td>
+<td>"Co je SEO a jak funguje"</td>
+</tr>
+<tr>
+<td>3</td>
+<td>seo co to je / co je to seo</td>
+<td>500 / 400</td>
+<td>H2 "Co znamená SEO..." (definiční odstavec)</td>
+<td>"SEO je zkratka pro Search Engine Optimization, česky optimalizace pro vyhledávače." (stejná definiční věta pokrývá obě varianty)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>co je zkratka seo</td>
+<td>50</td>
+<td>H2 "Co znamená SEO..." (rozepsání zkratky)</td>
+<td>"SEO je zkratka pro Search Engine Optimization, česky optimalizace pro vyhledávače."</td>
+</tr>
+<tr>
+<td>5</td>
+<td>seo optimalizace pro vyhledávače</td>
+<td>900 (MM 100, konzervativně)</td>
+<td>H2 "Co znamená SEO..." (plný název)</td>
+<td>"...česky optimalizace pro vyhledávače."</td>
+</tr>
+<tr>
+<td>6</td>
+<td>pozice ve vyhledávačích</td>
+<td>700</td>
+<td>H3 "Hodnocení a zobrazení výsledků (ranking)"</td>
+<td>"Pozice ve výsledcích se tak nepřiděluje jednou provždy, ale přepočítává průběžně..."</td>
+</tr>
+<tr>
+<td>7</td>
+<td>seo marketing</td>
+<td>1000</td>
+<td>H2 "Proč je SEO důležité pro firmy v Česku" (úvodní věta)</td>
+<td>"SEO marketing dává smysl přesně tam, kde chcete růst návštěvnosti bez toho, aby náklady rostly lineárně s každým dalším zákazníkem."</td>
+</tr>
+<tr>
+<td>8</td>
+<td>on page seo</td>
+<td>600 (mention only)</td>
+<td>H3 "Obsahové (on-page) SEO" (nadpis + text)</td>
+<td>"On-page SEO se odehrává přímo na stránce — v textu, nadpisech, meta popiscích i vnitřní struktuře webu."</td>
+</tr>
+</tbody>
+</table>
+<h3>Odchylky od osnovy</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Typ</th>
+<th>Popis</th>
+<th>Důvod</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Rozšíření (ne strukturální)</td>
+<td>Prakticky každá sekce dostala 1–2 odstavce navíc oproti bodům v osnově (např. odstavec o "organické návštěvnosti" v H2 1, odstavec o vzájemném posilování pilířů v H2 3, odstavec o rozpočtu SEO vs. PPC a o AI/citovatelnosti obsahu v H2 4)</td>
+<td>První draft dle přesných bodů osnovy vyšel na ~1310 slov, pod cílem 1900–2300. Rozšíření je věcné (nové konkrétní příklady/vysvětlení v rámci již schválených H2/H3), ne výplňové — žádný nový nadpis nepřibyl ani neubyl.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Rozšíření</td>
+<td>Přidána 4. mylná představa "Stačí zaplatit reklamu a SEO řešit nemusím" nad rámec 3 bodů v osnově</td>
+<td>Přirozeně navazuje na kontrast SEO vs. PPC z úvodu článku a dorovnává rozsah sekce k ostatním prohloubeným sekcím.</td>
+</tr>
+</tbody>
+</table>
+<p>Žádné jiné odchylky — struktura nadpisů (H1/H2/H3) odpovídá schválené osnově přesně, plán interních odkazů dodržen 6/6.</p>
+<h3>Plný článek se zdroji</h3>
+<p>Uložen v <code>article_co-je-seo-a-jak-funguje_CZ.md</code>. Faktická tvrzení převzatá z externího researche označena v textu zdrojem v hranaté závorce ([developers.google.com/search/docs/crawling-indexing] — mechanika crawling/indexace/ranking, [zpravy.aktualne.cz/...] — podíl vyhledávačů Google/Seznam v ČR) a shrnuta v sekci Zdroje na konci článku. Case study čísla (Kalkulátor.cz +700 %) čerpají z již publikovaného evisions článku (interní odkaz, ne nový zdroj) — v souladu s ToV Guide sekcí 7 doplněna věta o negarantování stejného výsledku jinému klientovi.</p>
+<h2>Step 4 — ToV Check</h2>
+<p><strong>Zkontrolováno vět:</strong> ~75<br>
+<strong>Nalezeno problémů:</strong> 5</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Location</th>
+<th>Issue Type</th>
+<th>Original (full sentence)</th>
+<th>Corrected (full sentence)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>H2 "Co znamená SEO a čím se liší od placené reklamy", 2. odstavec</td>
+<td>Rytmus — jedna souvětná věta ~35 slov</td>
+<td>"Konkrétně to znamená tohle: když někdo zadá do Google dotaz spojený s vaším produktem nebo službou, chcete se objevit mezi prvními výsledky, ne až na druhé stránce, kterou otevře jen zlomek lidí."</td>
+<td>"Konkrétně to znamená tohle: když někdo zadá do Google dotaz spojený s vaším produktem nebo službou, chcete se objevit mezi prvními výsledky. Ne až na druhé stránce, kterou otevře jen zlomek lidí."</td>
+</tr>
+<tr>
+<td>2</td>
+<td>H2 "Jak funguje vyhledávač", úvodní odstavec</td>
+<td>Rytmus — souvětná věta se dvěma "proč" klauzemi, ~38 slov</td>
+<td>"Znát tenhle mechanismus není akademické cvičení — pomáhá pochopit, proč se optimalizace mnohdy neprojeví hned po publikaci článku, a proč jedna technická chyba dokáže shodit viditelnost celého webu, i když obsah zůstane beze změny."</td>
+<td>"Znát tenhle mechanismus není akademické cvičení. Pomáhá pochopit, proč se optimalizace mnohdy neprojeví hned po publikaci článku, a proč jedna technická chyba dokáže shodit viditelnost celého webu, i když obsah zůstane beze změny."</td>
+</tr>
+<tr>
+<td>3</td>
+<td>H3 "Technické SEO", 1. věta</td>
+<td>Rytmus — 3 věty za sebou v pásmu 24–28 slov bez krátkého zlomu</td>
+<td>"Technické SEO řeší, jestli vyhledávač dokáže web vůbec efektivně projít a pochopit — rychlost načítání, mobilní verzi, strukturu URL adres i to, jestli se stránky nepřekrývají duplicitním obsahem."</td>
+<td>"Technické SEO řeší, jestli vyhledávač dokáže web vůbec efektivně projít a pochopit. Do hry vstupuje rychlost načítání, mobilní verze, struktura URL adres i to, jestli se stránky nepřekrývají duplicitním obsahem."</td>
+</tr>
+<tr>
+<td>4</td>
+<td>H3 "Obsahové (on-page) SEO", 3. věta</td>
+<td>Rytmus — souvětná věta ~47 slov, nejdelší v článku</td>
+<td>"Kvalitní on-page SEO se pozná podle toho, že text čte přirozeně i bez znalosti klíčových slov, která autor cílil — nadpisy popisují obsah sekce, meta popisek láká ke kliknutí a stránka odpovídá přesně na dotaz, se kterým na ni návštěvník přišel, ne na pět různých témat najednou."</td>
+<td>"Kvalitní on-page SEO se pozná podle toho, že text čte přirozeně i bez znalosti klíčových slov, která autor cílil. Nadpisy popisují obsah sekce, meta popisek láká ke kliknutí a stránka odpovídá přesně na dotaz, se kterým na ni návštěvník přišel — ne na pět různých témat najednou."</td>
+</tr>
+<tr>
+<td>5</td>
+<td>H2 "Proč je SEO důležité pro firmy v Česku", odstavec o rozpočtu</td>
+<td>Rytmus — souvětná věta ~42 slov</td>
+<td>"Rozpočet na SEO se navíc nemusí rovnat rozpočtu na PPC, aby přinesl srovnatelný efekt v čase — menší firmy, které si nemohou dovolit soutěžit v PPC aukcích s velkými hráči, tak SEO často využívají jako rovnocennější způsob, jak se dostat k zákazníkovi."</td>
+<td>"Rozpočet na SEO se navíc nemusí rovnat rozpočtu na PPC, aby přinesl srovnatelný efekt v čase. Menší firmy, které si nemohou dovolit soutěžit v PPC aukcích s velkými hráči, tak SEO často využívají jako rovnocennější způsob, jak se dostat k zákazníkovi."</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ostatní kontroly bez nálezu:</strong> otevření sekcí vede hodnotou (žádné "V této sekci..."), princip → mechanika → aplikace dodržen ve všech H2/H3, žádné casual markery ("prostě", "tak nějak", "celkem", "vlastně"), konzistentní vykání napříč celým textem, žádný hype jazyk, žádná povýšenost, žádná vágní tvrzení bez konkrétního "jak", emoční kalibrace v pořádku, case study (Kalkulátor.cz) korektně rámovaná jako "u klienta X" s explicitní no-guarantee větou, žádná falešná jistota.</p>
+<h2>Step 5 — Struktura &amp; formátování</h2>
+<p><strong>Audit odstavců (povinná první akce):</strong> Zkontrolováno všech odstavců v článku po Kroku 4. Tři odstavce přesahovaly 100 slov a musely být rozděleny (povinné): H3 "Obsahové (on-page) SEO" (115 slov), H3 "Off-page SEO a linkbuilding" (107 slov), odstavec o AI vyhledávání v H2 "Proč je SEO důležité..." (~110 slov). Další dva odstavce byly pod hranicí 100 slov, ale rozděleny navíc kvůli "jedna myšlenka na odstavec" (H3 "Technické SEO" ~96 slov, mísilo definici/problémy/příklad migrace; odstavec o zavedené firmě a rozpočtu v H2 4 ~92 slov, mísilo dvě odlišné myšlenky).</p>
+<p><strong>Délka článku:</strong> STŘEDNÍ (1937 slov po úpravách v tomto kroku)</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Change Type</th>
+<th>Description</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Odstavec rozdělen (povinné, &gt;100 slov)</td>
+<td>H3 "Obsahové (on-page) SEO" rozdělen na 2 odstavce</td>
+<td>Audit odstavců — 115 slov</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Odstavec rozdělen (povinné, &gt;100 slov)</td>
+<td>H3 "Off-page SEO a linkbuilding" rozdělen na 2 odstavce</td>
+<td>Audit odstavců — 107 slov</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Odstavec rozdělen (povinné, &gt;100 slov)</td>
+<td>Odstavec o AI vyhledávání v H2 "Proč je SEO důležité..." rozdělen na 2 odstavce</td>
+<td>Audit odstavců — ~110 slov</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Odstavec rozdělen (kvalitativní)</td>
+<td>H3 "Technické SEO" rozdělen na 2 odstavce (definice/problémy vs. příklad migrace)</td>
+<td>Pod hranicí 100 slov, ale mísil dvě odlišné myšlenky — Structure Guide "jedna myšlenka na odstavec"</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Odstavec rozdělen (kvalitativní)</td>
+<td>Odstavec o zavedené firmě/rozpočtu v H2 4 rozdělen na 2 odstavce</td>
+<td>Stejný důvod jako #4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>H3 přidáno</td>
+<td>"SEO vs. placená reklama" a "Pro koho se SEO vyplatí" pod H2 "Co znamená SEO..."</td>
+<td>Sekce měla 6 odstavců za sebou bez vizuálního zlomu (Structure Guide sekce 4, limit 3)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>H3 přidáno</td>
+<td>"Jak pilíře vybrat a upřednostnit" pod H2 "Tři pilíře SEO..."</td>
+<td>Syntetizující obsah napříč pilíři (dosud 4 odstavce za sebou po H3 Off-page) dostal vlastní podnadpis místo přívěsku k poslednímu pilíři</td>
+</tr>
+<tr>
+<td>8</td>
+<td>H3 přidáno (3×)</td>
+<td>"Český trh: Google i Seznam", "Reálné výsledky, ne sliby", "SEO ve věku AI vyhledávání" pod H2 "Proč je SEO důležité..."</td>
+<td>Sekce měla 8 odstavců za sebou bez vizuálního zlomu — nejzávažnější nález auditu, vyžadovalo rozdělení do 3 podsekcí</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Kontrola hierarchie nadpisů:</strong> 1× H1, 7× H2, 13× H3 — žádné přeskočené úrovně. 7 H2 na horní hranici doporučeného rozsahu (3–7), odpovídá schválené osnově z Kroku 2. Vysoký počet H3 (13) je přímý důsledek oprav #6–#8 z auditu odstavců, ne dekorativní přidání.</p>
+<p><strong>Kontrola calloutů:</strong> 2 (Tip, Keep in Mind) — v rámci limitu pro střední délku článku (2–3), žádné dva za sebou, max. 1 na H2 sekci.</p>
+<p><strong>Kontrola tabulek:</strong> 1 (Tři pilíře SEO v přehledu) — v rámci limitu pro střední délku (1–2); jde o klíčovou diferenciační tabulku definovanou v Kroku 2.</p>
+<p><strong>Kontrola seznamů:</strong> 1 odrážkový seznam (Klíčové závěry). Sekce "Časté mylné představy o SEO" ponechána jako 4 tučně uvozené odstavce místo seznamu — konzistentní s precedentem <code>marketingove-kpi-jak-je-vybrat-a-merit</code> a <code>webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing</code> (odpovídá vzoru ToV Guide, zachovává prostor pro vysvětlující větu u každé mylné představy).</p>
+<p><strong>Navigační prvky:</strong> Obsah (ToC) záměrně NEpřidán ručně do markdownu — <code>src/step4_html.py</code> ho generuje automaticky z H2/H3 nadpisů v Kroku 6. Interní odkazy: 6/6 z plánu Kroku 2 potvrzeno přítomných (SEO-02, SEO-20, SEO-27, SEO-04, AI-02, SEO-24). Sekce Zdroje přítomna s 2 externími citacemi.</p>
+<p><strong>Autorská atribuce:</strong> Záměrně NEpřidána ručně — <code>step4_html.py</code> generuje author-box automaticky (placeholder "evisions Advertising" / "Content Team") v Kroku 6. Content Plan Index Sheet nemá u SEO-32 vyplněný sloupec "zpracoval" — otevřená položka pro Krok 7.</p>
+<p><strong>Otevřená položka pro Krok 6:</strong> Zdrojové značky v hranatých závorkách v těle textu ([developers.google.com/search/docs/crawling-indexing] ×4, [zpravy.aktualne.cz/...] ×1) jsou pracovní QA značky z Kroku 3 — podle precedentu je potřeba je při HTML konverzi odstranit z těla textu (fakta zůstávají, zdroje jsou v sekci "Zdroje").</p>
+<h2>Step 6 — HTML konverze</h2>
+<p><strong>Použitý nástroj:</strong> <code>src/step4_html.py</code> (<code>convert_to_html()</code>) — deterministická konverze markdownu na evisions.cz šablonu.</p>
+<p><strong>Opravy provedené před konverzí (dokončení otevřené položky z Kroku 5):</strong></p>
+<p>Odstraněno 5× pracovní zdrojové značky v hranatých závorkách z těla textu (4× [developers.google.com/search/docs/crawling-indexing] v sekci "Jak funguje vyhledávač", 1× [zpravy.aktualne.cz/...] v sekci "Český trh: Google i Seznam"). Fakta beze změny, zdroje zůstávají dostupné v sekci "Zdroje" na konci článku.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Struktura stránky</td>
+<td>Header, breadcrumb, ToC, article, author-box, disclaimer, footer — v povinném pořadí</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ToC</td>
+<td>Vygenerováno automaticky z H2/H3 nadpisů (20 položek: 7 H2 + 13 H3)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Callouty</td>
+<td>2 stylované bloky (Tip, Keep in Mind) převedeny na <code>callout</code> divy se správnou CSS třídou</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Meta title</td>
+<td><code>&lt;title&gt;</code> z H1 vyšel jen na 42 znaků (pod SEO limitem 50–60) — ručně nahrazen rozšířenou variantou "Co je SEO a jak funguje: základy | evisions.cz Blog" (51 znaků). H1 v těle beze změny.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Meta popisek</td>
+<td>Doplněn ručně (šablona ho negeneruje automaticky): "Co je SEO, jak funguje vyhledávač a na jaké tři pilíře optimalizace (technické, obsahové, off-page) se zaměřit. Vysvětlení s příklady z praxe evisions." (151 znaků)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Autor box</td>
+<td>Auto-generován šablonou s placeholder hodnotou "evisions Advertising" / "Content Team" — Content Plan Index Sheet nemá u SEO-32 vyplněný sloupec "zpracoval", ke skutečné atribuci viz otevřená položka z Kroku 5</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Poznámka k obsahu</td>
+<td>Vygenerována automaticky šablonou (nebyla duplikována ručně)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Oprava názvu souboru:</strong> <code>convert_to_html()</code> ukládá výstup jako <code>{slug}_CZ.html</code> bez prefixu <code>article_</code> — přejmenováno na <code>article_co-je-seo-a-jak-funguje_CZ.html</code> podle konvence pojmenování projektu (CLAUDE.md).</p>
+<p><strong>Kontrola po konverzi:</strong> 1 tabulka, 2 callouty (1× Tip, 1× Keep in Mind), 7× <code>&lt;h2&gt;</code>, 13× <code>&lt;h3&gt;</code> — odpovídá Kroku 5.</p>
+<p><strong>Nástroj pro log HTML:</strong> <code>src/generate_write_log.py</code> — vygenerováno <code>article_co-je-seo-a-jak-funguje_CZ_log.html</code>.</p>
+<p><strong>Finální počet slov (article_..._CZ.md):</strong> ~1937 (beze změny oproti Kroku 5, jen odstranění zdrojových značek v tomto kroku)</p>
+<p><strong>Soubory vygenerovány:</strong><br>
+- <code>data/output/articles/co-je-seo-a-jak-funguje/article_co-je-seo-a-jak-funguje_CZ.html</code><br>
+- <code>data/output/articles/co-je-seo-a-jak-funguje/article_co-je-seo-a-jak-funguje_CZ_log.html</code></p>
+<h2>Step 7 — QA + aktualizace Content Plan</h2>
+<h3>Content validace — marketingový expert review</h3>
+<ul>
+<li>[x] Všechna fakta technicky přesná — mechanika crawling/indexace/ranking odpovídá Google Search Central dokumentaci, podíl Google/Seznam v ČR podložen zdrojem, žádné kontroverzní tvrzení</li>
+<li>[x] Žádné zjednodušení, které by čtenáře zmátlo — tři pilíře SEO odlišeny jasně, rozdíl SEO vs. PPC vysvětlen na konkrétních důsledcích (kdy návštěvnost končí/zůstává)</li>
+<li>[x] Koncepty vysvětleny ve správném pořadí — definice → mechanika vyhledávače → tři pilíře s dalším směrem → byznys relevance (CZ trh, case study, AI) → mylné představy → závěr</li>
+<li>[x] Příklady realistické a relevantní — case study Kalkulátor.cz s explicitní no-guarantee větou, modelové technické problémy (pomalé načítání, chybějící přesměrování) konkrétní a ověřitelné</li>
+<li>[x] Nic nechybí, co by čtenář v tématu očekával — hloubkový keyword research/on-page checklist/technický audit záměrně vynechány (zdůvodněno v Kroku 2, patří sourozeneckým TODO článkům ve Skupině 11)</li>
+</ul>
+<h3>QA Checklist</h3>
+<p><strong>Přesnost obsahu</strong><br>
+- [x] Všechna fakta odpovídají zdroji citovanému v Kroku 3 (zdroje teď jen v sekci "Zdroje", ne inline — viz Krok 6)<br>
+- [x] Žádné informace nepřidány ani neodebrány oproti schválenému draftu (Krok 5–6 měnily jen prezentaci: nové H3 podnadpisy, dělení odstavců, odstranění pracovních citačních značek)<br>
+- [x] Odkazy strukturálně validní — 6 interních odkazů míří na Published články z ledgeru (SEO-02, SEO-20, SEO-27, SEO-04, AI-02, SEO-24), 2 externí zdroje dohledány WebSearchem v Kroku 1<br>
+- [ ] Obrázky na správných pozicích — N/A, článek je čistě textový</p>
+<p><strong>ToV compliance</strong><br>
+- [x] Tón odpovídá ToV Guide (How-to/definiční) — ověřeno v Kroku 4 (5 problémů nalezeno a opraveno, vše rytmus vět), žádný nález při finální kontrole<br>
+- [x] Žádné zakázané fráze — potvrzeno v Kroku 4<br>
+- [x] Žádné garance konkrétních výsledků — case study Kalkulátor.cz explicitně rámovaná jako "u klienta X", s větou o negarantování stejného výsledku</p>
+<p><strong>Structure compliance</strong><br>
+- [x] E-E-A-T prvky přítomny — autor box (placeholder "Content Team" / "evisions Advertising"), datum aktualizace auto-generováno, sekce Zdroje s 2 citacemi<br>
+- [x] Hierarchie nadpisů správná — 1× H1, 7× H2, 13× H3, žádné přeskočené úrovně<br>
+- [x] Interní odkazy přítomny — 6/6 z plánu Kroku 2</p>
+<p><strong>Technické</strong><br>
+- [x] HTML se správně renderuje — ověřeno čtením vygenerovaného souboru + kontrolou počtu calloutů/tabulek/nadpisů proti očekávání z Kroku 5 (přesná shoda)<br>
+- [ ] Obrázky se načítají — N/A<br>
+- [x] Žádné nefunkční odkazy zjištěny při statické kontrole</p>
+<p><strong>Doplňkové (Write Workflow)</strong><br>
+- [x] Zdrojové citace u všech faktických tvrzení — 2 zdroje v sekci "Zdroje"<br>
+- [x] Žádné [SOURCE NEEDED], [IMAGE NEEDED] ani jiné placeholder značky — ověřeno grep kontrolou nad finálním markdownem</p>
+<p><strong>Verdikt: PASS</strong></p>
+<h3>Soubory k uložení — kontrola 4/4</h3>
+<ul>
+<li>[x] <code>article_co-je-seo-a-jak-funguje_CZ.md</code></li>
+<li>[x] <code>article_co-je-seo-a-jak-funguje_CZ_log.md</code></li>
+<li>[x] <code>article_co-je-seo-a-jak-funguje_CZ.html</code></li>
+<li>[x] <code>article_co-je-seo-a-jak-funguje_CZ_log.html</code></li>
+</ul>
+<h3>Aktualizace Content Plan Sheetu a lokálního ledgeru</h3>
+<p><strong>Rozhodnutí:</strong> Status v ledgeru ZŮSTÁVÁ "In Progress", NEpřesunuto na "Published" — stejné zdůvodnění jako u SEO-30 (Marketingové KPI). Článek nebyl nahraný na živý evisions.cz web, URL sloupec v ledgeru je stále "—". Označení "Published" bez živé URL by bylo nepřesné. Ledger i xlsx mirror zůstávají beze změny — QA proběhlo a obsah je připraven k publikaci, samotné nahrání na web je krok mimo tento nástroj.</p>
+<p><strong>Až bude článek nahraný na živý web:</strong> dodat živou URL, pak provést: (1) editovat řádek SEO-32 v <code>data/output/content_plan_index.md</code> — Status → Published, doplnit URL; (2) <code>.venv/Scripts/python.exe src/generate_content_plan_xlsx.py</code>; (3) vypsat řádek k ručnímu vložení do Google Sheetu (ID SEO-32, Status Published, URL).</p>
+</body>
+</html>

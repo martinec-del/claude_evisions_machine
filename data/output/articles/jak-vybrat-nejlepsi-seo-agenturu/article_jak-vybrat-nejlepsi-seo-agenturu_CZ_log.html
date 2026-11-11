@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Log &mdash; Edit Log: Jak vybrat nejlepší SEO agenturu?</title>
+    <style>
+:root {
+    --red-bg: #ffeef0;
+    --red-text: #b91c1c;
+    --red-border: #f87171;
+    --green-bg: #f0fdf4;
+    --green-text: #15803d;
+    --green-border: #4ade80;
+    --gray-bg: #f8f9fa;
+    --border: #e1e5eb;
+    --dark: #111827;
+    --muted: #6b7280;
+    --blue: #0781fe;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--dark);
+    background: #fff;
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.doc-header {
+    border-bottom: 3px solid var(--dark);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+.doc-header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.doc-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.25rem 2rem;
+    font-size: 0.8125rem;
+    color: var(--muted);
+}
+.doc-meta span strong { color: var(--dark); }
+
+.legend {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--gray-bg);
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+.legend-item { display: flex; align-items: center; gap: 0.5rem; }
+.legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+.legend-dot-red { background: var(--red-bg); border: 1.5px solid var(--red-border); }
+.legend-dot-green { background: var(--green-bg); border: 1.5px solid var(--green-border); }
+.legend-dot-gray { background: #e5e7eb; border: 1.5px solid #9ca3af; }
+
+.step-section {
+    margin-bottom: 3rem;
+    page-break-inside: avoid;
+}
+.step-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+.step-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--dark);
+}
+.step-meta {
+    font-size: 0.8125rem;
+    color: var(--muted);
+}
+
+.diff-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.8125rem;
+}
+.diff-table thead tr {
+    background: var(--gray-bg);
+    border-bottom: 1px solid var(--border);
+}
+.diff-table thead th {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.diff-table th:first-child { width: 28px; }
+.diff-table th.col-orig { width: 34%; }
+.diff-table th.col-new { width: 34%; }
+.diff-table th.col-reason { width: auto; }
+
+.diff-row { border-bottom: 1px solid var(--border); }
+.diff-row:last-child { border-bottom: none; }
+.diff-row td {
+    padding: 0.625rem 0.75rem;
+    vertical-align: top;
+}
+.diff-row td:first-child {
+    text-align: center;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 0.75rem;
+    background: var(--gray-bg);
+    border-right: 1px solid var(--border);
+}
+
+.cell-orig {
+    background: var(--red-bg);
+    border-right: 1px solid var(--border);
+}
+.cell-orig .text {
+    color: var(--red-text);
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.8rem;
+}
+.cell-orig .text::before {
+    content: "- ";
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+.cell-new {
+    background: var(--green-bg);
+    border-right: 1px solid var(--border);
+}
+.cell-new .text {
+    color: var(--green-text);
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.8rem;
+}
+.cell-new .text::before {
+    content: "+ ";
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+.cell-merged {
+    background: #f3f4f6;
+    border-right: 1px solid var(--border);
+}
+.cell-merged .text {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+.cell-reason {
+    color: var(--muted);
+    font-size: 0.75rem;
+}
+.cell-reason .tag {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    margin-right: 0.25rem;
+}
+.cell-reason .tag-tov { background: #e0e7ff; color: #3730a3; }
+.cell-reason .tag-kw { background: #dcfce7; color: #166534; }
+.cell-reason .tag-skip { background: #fef9c3; color: #854d0e; }
+.cell-reason .tag-struct { background: #fce7f3; color: #9d174d; }
+
+.kw-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.8125rem;
+}
+.kw-table thead tr { background: var(--gray-bg); }
+.kw-table thead th {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+}
+.kw-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+.kw-table tr:last-child td { border-bottom: none; }
+.kw-table .orig {
+    color: var(--red-text);
+    background: var(--red-bg);
+    font-family: monospace;
+    font-size: 0.775rem;
+}
+.kw-table .orig::before { content: "- "; font-weight: 700; opacity: 0.7; }
+.kw-table .newv {
+    color: var(--green-text);
+    background: var(--green-bg);
+    font-family: monospace;
+    font-size: 0.775rem;
+}
+.kw-table .newv::before { content: "+ "; font-weight: 700; opacity: 0.7; }
+.kw-table .skip-row td { opacity: 0.55; }
+
+.badge {
+    display: inline-block;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+}
+.badge-done { background: #dcfce7; color: #166534; }
+.badge-skip { background: #fef9c3; color: #854d0e; }
+.badge-pending { background: #fed7aa; color: #9a3412; }
+.badge-new { background: #dbeafe; color: #1e40af; }
+.badge-rejected { background: #fee2e2; color: #991b1b; }
+.vol { color: var(--muted); font-size: 0.75rem; }
+
+.struct-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    font-size: 0.8125rem;
+}
+.struct-table thead tr { background: var(--gray-bg); }
+.struct-table thead th {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+}
+.struct-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+.struct-table tr:last-child td { border-bottom: none; }
+.struct-table .added { color: var(--green-text); font-weight: 600; }
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.875rem;
+}
+.summary-table thead tr { background: var(--dark); }
+.summary-table thead th {
+    padding: 0.625rem 1rem;
+    text-align: left;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.summary-table td {
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+.summary-table tr:last-child td { border-bottom: none; }
+.status-done { color: var(--green-text); font-weight: 600; }
+.status-pending { color: #b45309; font-weight: 600; }
+
+@media print {
+    body { padding: 1cm; font-size: 11px; }
+    .step-section { page-break-inside: avoid; }
+    .diff-table { page-break-inside: auto; }
+    .diff-row { page-break-inside: avoid; }
+}
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="doc-header">
+    <h1>Edit Log &mdash; Edit Log: Jak vybrat nejlepší SEO agenturu?</h1>
+    <div class="doc-meta">
+        <span><strong>Article:</strong> </span>
+        <span><strong>Source:</strong> </span>
+        <span><strong>Date:</strong> </span>
+    </div>
+</div>
+
+<!-- Legend -->
+<div class="legend">
+    <div class="legend-item">
+        <div class="legend-dot legend-dot-red"></div>
+        <span>Original sentence (removed / changed)</span>
+    </div>
+    <div class="legend-item">
+        <div class="legend-dot legend-dot-green"></div>
+        <span>New sentence (replacement)</span>
+    </div>
+    <div class="legend-item">
+        <div class="legend-dot legend-dot-gray"></div>
+        <span>Merged into another row / skipped</span>
+    </div>
+</div>
+
+
+<!-- ===================== STEP 1 ===================== -->
+<div class="step-section">
+    <div class="step-header">
+        <span class="step-title">Step 1 — Keyword Integration</span>
+        <span class="step-meta">Keywords file: `data/output/keywords/jak-vybrat-nejlepsi-seo-agenturu_keywords.xlsx` &nbsp;&middot;&nbsp; 0 integrated &nbsp;&middot;&nbsp; 0 skipped</span>
+    </div>
+    <table class="kw-table">
+        <thead>
+            <tr>
+                <th style="width:24px">#</th>
+                <th style="width:37%">Original sentence</th>
+                <th style="width:37%">New sentence</th>
+                <th style="width:12%">Keyword</th>
+                <th style="width:6%">Vol.</th>
+                <th style="width:5%">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+<tr><td style="color:var(--muted);text-align:center">1</td><td><span class="orig">Rozpoznat dobrou agenturu od špatné je velmi složitý úkol. Všechny o sobě tvrdí, že jsou nejlepší, všechny mají nekonečnou řadu referencí</span></td><td><span class="newv">Rozpoznat dobrou agenturu od špatné je velmi složitý úkol. Všechny SEO agentury o sobě tvrdí, že jsou nejlepší, všechny mají nekonečnou řadu referencí</span></td><td style="font-size:0.75rem">KW: doplněn implicitní podmět &quot;SEO agentury&quot; (dřív jen &quot;Všechny&quot;) — zpřesňuje odkaz i integruje &quot;seo agentury&quot;, beze změny významu</td><td class="vol">DONE</td><td><span class="badge badge-skip"></span></td></tr>
+<tr><td style="color:var(--muted);text-align:center">2</td><td><span class="orig">## Je lepší freelancer nebo agentura?</span></td><td><span class="newv">## Je lepší freelancer nebo SEO agentura?</span></td><td style="font-size:0.75rem">KW: nadpis zpřesněn na &quot;SEO agentura&quot; — sekce je celá o SEO tendru, žádná změna významu</td><td class="vol">DONE</td><td><span class="badge badge-skip"></span></td></tr>
+<tr><td style="color:var(--muted);text-align:center">3</td><td><span class="orig">## Hodnotící kritéria:</span></td><td><span class="newv">## Hodnotící kritéria při výběru SEO agentury:</span></td><td style="font-size:0.75rem">KW: nadpis zpřesněn, integruje &quot;seo agentura&quot;/&quot;seo agentury&quot; — jasnější i pro čtenáře, beze změny významu</td><td class="vol">DONE</td><td><span class="badge badge-skip"></span></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ===================== STEP 2 ===================== -->
+<div class="step-section">
+    <div class="step-header">
+        <span class="step-title">Step 2 — Tone of Voice Rewrite</span>
+        <span class="step-meta">6 changes</span>
+    </div>
+    <table class="diff-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="col-orig">Original sentence (full)</th>
+                <th class="col-new">New sentence (full)</th>
+                <th class="col-reason">Reason</th>
+            </tr>
+        </thead>
+        <tbody>
+<tr class="diff-row"><td>1</td><td class="cell-orig"><span class="text">Neexistují totiž žádná objektivní srovnávací kritéria kvality práce agentur. Porovnávat výsledky, přístupy, postupy či strategie na odlišných projektech v různých fázích vývoje nemá žádnou relevantní vypovídající hodnotu. Provádět A/B testování SEO služeb více různých dodavatelů z principu bohužel nelze.</span></td><td class="cell-new"><span class="text">Neexistují totiž žádná objektivní srovnávací kritéria kvality práce agentur. Porovnávat výsledky, přístupy, postupy či strategie na odlišných projektech v různých fázích vývoje nedává smysl. A/B testování SEO služeb u více různých dodavatelů navíc z principu nejde.</span></td><td class="cell-reason"><span class="tag tag-tov">ToV</span> akademicky suchý obrat &quot;nemá žádnou relevantní vypovídající hodnotu&quot; → přímé &quot;nedává smysl&quot;; &quot;Provádět... nelze&quot; → přímější činný tvar &quot;nejde&quot;</td></tr>
+<tr class="diff-row"><td>2</td><td class="cell-orig"><span class="text">Rozdíly v kvalitě a přístupu různých dodavatelů jsou natolik zásadní, že je více než žádoucí výběrové řízení nepodcenit a věnovat mu adekvátní úsilí, čas i energii.</span></td><td class="cell-new"><span class="text">Rozdíly v kvalitě a přístupu různých dodavatelů jsou natolik zásadní, že se výběrové řízení vyplatí nepodcenit a věnovat mu dost času i energie.</span></td><td class="cell-reason"><span class="tag tag-tov">ToV</span> formální/vágní &quot;je více než žádoucí&quot; a akademické &quot;adekvátní úsilí&quot; → přímější &quot;vyplatí se&quot; a &quot;dost času i energie&quot;</td></tr>
+<tr class="diff-row"><td>3</td><td class="cell-orig"><span class="text">Abyste nemuseli prošlapávat trnitou cestičku nastavování parametrů výběrového řízení zcela od začátku, dovolím si Vás odkázat na zajímavou případovou studii (case study), ve které Martin Sajal popsal své zkušenosti z pořádání výběrového řízení na SEO služby pro vyhledavač slev Skrz.cz.</span></td><td class="cell-new"><span class="text">Parametry výběrového řízení nemusíte vymýšlet od nuly — podívejte se na případovou studii, ve které Martin Sajal popsal své zkušenosti z pořádání výběrového řízení na SEO služby pro vyhledavač slev Skrz.cz.</span></td><td class="cell-reason"><span class="tag tag-tov">ToV</span> odstraněna květnatá metafora (&quot;prošlapávat trnitou cestičku&quot;) a přehnaně zdvořilý obrat (&quot;dovolím si Vás odkázat&quot;) → přímé, aktivní oslovení dle sekce &quot;Rovnou k věci&quot;</td></tr>
+<tr class="diff-row"><td>4</td><td class="cell-orig"><span class="text">Pokud jste ve fázi hledání dodavatele SEO služeb, mohl by pro Vás být článek velmi užitečný a pomoci Vám s přípravou zadání, nastavení kritérií i vyhodnocováním. S Martinovým souhlasem si dovoluji vypíchnout některé důležité části. Věřím, že Vás zaujmou natolik, abyste si vyhradili pár minut k prostudování celého originálního článku (citace z martinova článku jsou pro větší přehlednost odlišeny oranžovou barvou):</span></td><td class="cell-new"><span class="text">Pokud hledáte dodavatele SEO služeb, může vám tento článek pomoct s přípravou zadání, nastavením kritérií i vyhodnocováním výběrového řízení. Se svolením Martina níže vypichuji nejdůležitější části — doporučuji ale přečíst si i celý originální článek. Citace z Martinova textu jsou níže odlišené jako citace:</span></td><td class="cell-reason"><span class="tag tag-tov">ToV</span> zjednodušena přehnaná zdvořilostní formálnost (&quot;dovoluji vypíchnout&quot;, &quot;Věřím, že Vás zaujmou natolik, abyste si vyhradili&quot;); popisek vizuálního odlišení citací upraven z &quot;oranžové barvy&quot; (vázáno na starou šablonu evisions.cz) na obecné &quot;odlišené jako citace&quot; — odpovídá blockquote formátu nové šablony (`step4_html.py`), řeší se formálně v Kroku 4</td></tr>
+<tr class="diff-row"><td>5</td><td class="cell-orig"><span class="text">Nepochybuji o tom, že tomu tak bude i nadále.</span></td><td class="cell-new"><span class="text">Věřím, že tomu tak bude i nadále.</span></td><td class="cell-reason">ToV Compliance (sekce 7): &quot;Nepochybuji&quot; je absolutní tvrzení o budoucnu bez podložení číslem → umírněnější &quot;Věřím&quot;, v souladu s principem nevyslibovat jistotu bez dat</td></tr>
+<tr class="diff-row"><td>6</td><td class="cell-orig"><span class="text">Jak je z Martinova článku zřejmé, vybrat správnou a dobrou digitální agenturu není vůbec jednoduché.</span></td><td class="cell-new"><span class="text">Vybrat správnou a dobrou digitální agenturu není vůbec jednoduché.</span></td><td class="cell-reason">ToV sekce 5 &quot;Rovnou k věci&quot;: odstraněna rekapitulační rozjezdová fráze (&quot;Jak je z Martinova článku zřejmé&quot; ~ vzor &quot;Jak jsme již zmínili…&quot; → smazat)</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ===================== STEP 3 ===================== -->
+<div class="step-section">
+    <div class="step-header">
+        <span class="step-title">Step 3 — Structure &amp; Formatting</span>
+        <span class="step-meta"></span>
+    </div>
+    <table class="struct-table">
+        <thead>
+            <tr>
+                <th style="width:24px">#</th>
+                <th style="width:18%">Change Type</th>
+                <th style="width:42%">Description</th>
+                <th>Reason</th>
+            </tr>
+        </thead>
+        <tbody>
+<tr><td style="color:var(--muted);text-align:center">&quot;SEO agenturu&quot; (odst. 3)</td><td><span class="added">/seo/</span></td><td>Restaurováno — odpovídá pozici zjištěné z WebFetch extrakce odkazů</td><td style="color:var(--muted);font-size:0.75rem"></td></tr>
+<tr><td style="color:var(--muted);text-align:center">&quot;SEO služeb&quot; (odst. 5)</td><td><span class="added">/seo/</span></td><td>Restaurováno — přesná původní pozice v HTML nebyla dohledatelná, umístěno na nejbližší přirozený výskyt fráze</td><td style="color:var(--muted);font-size:0.75rem"></td></tr>
+<tr><td style="color:var(--muted);text-align:center">&quot;případovou studii&quot; (odst. 6)</td><td><span class="added">/case-study-pripadova-studie/</span></td><td>Restaurováno (viz oprava výše)</td><td style="color:var(--muted);font-size:0.75rem"></td></tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log: Marketingové KPI: jak je vybrat a měřit</title>
+<style>
+:root {
+    --dark: #12131a; --muted: #6b7280; --border: #e1e5eb;
+    --accent: #0057ff; --light: #f8f9fa;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 14px; line-height: 1.65; color: #1f2937; background: #fff;
+    max-width: 1000px; margin: 0 auto; padding: 2.5rem 2rem;
+}
+h1 { font-size: 1.5rem; font-weight: 700; color: var(--dark);
+    border-bottom: 3px solid var(--dark); padding-bottom: 0.75rem; margin-bottom: 1.5rem; }
+h2 { font-size: 1.15rem; font-weight: 700; color: var(--dark);
+    margin: 2.25rem 0 0.75rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+h3 { font-size: 1rem; font-weight: 600; color: var(--dark); margin: 1.25rem 0 0.5rem; }
+p { margin-bottom: 0.85rem; color: #374151; }
+strong { color: var(--dark); }
+ul, ol { margin: 0.5rem 0 1rem 1.5rem; color: #374151; }
+li { margin-bottom: 0.3rem; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.8125rem; }
+th, td { padding: 0.5rem 0.75rem; text-align: left; border: 1px solid var(--border); vertical-align: top; }
+th { background: var(--light); font-weight: 600; color: var(--dark); }
+td { color: #374151; }
+code { background: var(--light); padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.85em; }
+blockquote { border-left: 4px solid var(--accent); background: var(--light);
+    padding: 0.75rem 1rem; margin: 1rem 0; color: #374151; }
+a { color: var(--accent); }
+hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+</style>
+</head>
+<body>
+<h1>Log: Marketingové KPI: jak je vybrat a měřit</h1>
+<p><strong>Slug:</strong> marketingove-kpi-jak-je-vybrat-a-merit<br>
+<strong>Content Plan:</strong> SEO-30 — Kategorie: SEO, podskupina "3 – Analytika a metriky" (<code>topic_cluster_analytika-a-metriky_CZ</code>)<br>
+<strong>Content Plan zdroj:</strong> data/output/content_plan_index.md (lokální ledger, TODO položka nalezena a přeřazena na In Progress se SEO-30)<br>
+<strong>Typ obsahu:</strong> How-to / edukativní (viz ToV Guide sekce 4)<br>
+<strong>Vytvořeno:</strong> 2026-08-19</p>
+<h2>Init</h2>
+<ul>
+<li>Krok 0 Duplicate Check: shoda s TODO položkou "Marketingové KPI: jak je vybrat a měřit" v <code>content_plan_index.md</code> pod SEO — Skupina 3 (Analytika a metriky). Žádný Published článek na téma nenalezen. Přiřazeno ID SEO-30, Next ID posunuto na SEO-31.</li>
+<li>Žádná existující verze ve <code>data/output/articles/marketingove-kpi-jak-je-vybrat-a-merit/</code> — NEW mode, v1.</li>
+<li>Příbuzné publikované/rozpracované obsahy ve stejné podskupině (kandidáti na interní prolinkování):</li>
+<li>SEO-07 — Universal Analytics končí, ať žije Google Analytics 4! — https://www.evisions.cz/blog/universal-analytics-konci-at-zije-google-analytics-4/</li>
+<li>SEO-19 — Share of Voice (SOV): K čemu je a jak metriku spočítat? — https://www.evisions.cz/blog/share-of-voice-sov-k-cemu-je-a-jak-metriku-spocitat/</li>
+<li>SEO-21 — Google Search Console: Jak ji v SEO využít naplno? — https://www.evisions.cz/blog/google-search-console-jak-ji-v-seo-vyuzit-naplno/</li>
+<li>Rozpracovaný draft (Krok 6 hotov, Krok 7 chybí) — Webová analytika: co to je a jak ji využít pro marketing — <code>data/output/articles/webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing/</code></li>
+</ul>
+<h2>Step 1 — Konkurenční research + klíčová slova</h2>
+<p><strong>Seed keyword:</strong> "marketingové KPI" (ověřeno přes WebSearch — reálně používaný termín v CZ marketingových blozích, žádné rozpory s intent)</p>
+<p><strong>Provider:</strong> Ahrefs MCP (domain rating, site-explorer-metrics s <code>protocol=https</code> — bez tohoto parametru endpoint padal na "internal server error", <code>mode=exact</code>) + keywords-explorer (matching-terms, related-terms)</p>
+<p><strong>URL research:</strong> 4 WebSearch dotazy ("marketingové KPI vysvětleno", "marketingové KPI návod", "jak na marketingové KPI", "jak vybrat správné KPI pro marketing") → 11 unikátních CZ URL po deduplikaci (1 mezinárodní/anglický zdroj ui42.com vyřazen). Obohaceno o DR + organic traffic. Top 10 dle DR (radanakoppova.cz vyřazeno — DR 0, nejslabší). 9 z 10 úspěšně fetchnuto; yashica-digital.cz/co-je-kpi/ vrátil obsah homepage agentury místo cílového článku — označeno FETCH MISMATCH ve xlsx, nepoužito pro content gap analýzu.</p>
+<p><strong>Klíčový content gap:</strong> Žádný z 9 fetchnutých konkurenčních článků nenabízí přehlednou tabulku "KPI podle marketingového kanálu a fáze funnelu" ani reálnou case study s konkrétními čísly z agenturní praxe. Lagging vs. leading KPI a KPI benchmark zmiňuje jen mytimi.cz, povrchně. Nikdo nepropojuje výběr KPI s konkrétními měřicími nástroji (GA4, Search Console) ani s vlastními zdroji.</p>
+<p><strong>Kanibalizace v rámci vlastního clusteru (topic_cluster_analytika-a-metriky_CZ):</strong> GA4 pokrývá SEO-07, Search Console SEO-21, Share of Voice SEO-19, obecná webová analytika rozpracovaný draft (viz Init) — tento článek proto tyto nástroje/metriky jen zmíní a prolinkuje, s důrazem na výběr a metodiku KPI (SMART, lagging/leading), ne na jednotlivé nástroje.</p>
+<p><strong>Klíčová slova:</strong> 30 navrženo (viz xlsx list "Keywords") — hlavní cluster "kpi marketing" / "marketing kpi" / "kpi v marketingu" (~140/měsíc kombinovaně), definiční cluster kolem "co je kpi" / "kpi zkratka" / "kpi ukazatele" (~1500+/měsíc kombinovaně), metodologický cluster "smart kpi" / "okr vs kpi", praktický cluster "kpi příklady" / "kpi výpočet" / "kpi dashboard" / "kpi tabulka", plus KPI metriky jako konkrétní příklady (konverzní poměr, návratnost investic, návštěvnost webu, ppc kpi). Mimo-oborové výsledky (výroba, HR, logistika, supply chain) vyřazeny jako irelevantní pro marketingový úhel.</p>
+<p><strong>Marketing Miner cross-check (nově formalizováno jako krok 5.5 v <code>prompts/write_step1_research.md</code>):</strong> <code>python src/marketing_miner_api.py volume ...</code> na 8 hlavních keywordech — čísla se s Ahrefs shodují v řádu (co je kpi 450 vs Ahrefs 400, kpi marketing 70 vs 80, konverzní poměr 170 vs 200...), žádný extrémní rozpor nenalezen. "marketingové kpi" nemá data ani v MM — potvrzuje, že jde o frázi pod trackovaným prahem v obou nástrojích, ne o chybu Ahrefs. <code>suggestions</code> na seed "kpi marketing" nepřinesl nové CZ-relevantní nápady — téměř výhradně anglické long-tail varianty s volume 10/měsíc. Cross-check hodnoty zapsány do sloupce Notes v listu "Keywords". Nutné volat s <code>PYTHONUTF8=1 PYTHONIOENCODING=utf-8</code>, jinak se diakritika v argumentech poškodí a API nenajde shodu.</p>
+<p><strong>xlsx uložen:</strong> <code>data/output/articles/marketingove-kpi-jak-je-vybrat-a-merit/marketingove-kpi-jak-je-vybrat-a-merit_step1.xlsx</code></p>
+<h2>Step 2 — Brief &amp; osnova</h2>
+<p><strong>Typ obsahu:</strong> How-to / trend analýza — téma je definiční a metodologické (výběr a měření KPI), case study formát by nedával smysl.</p>
+<p><strong>Cíl počtu slov:</strong> 1900–2200 (konkurenční průměr ze Step 1 ~2030 slov, mírně zúženo kvůli vynechání hloubkového GA4/Search Console výkladu — kanibalizace v rámci clusteru).</p>
+<p><strong>Diferenciace od konkurence:</strong> Tabulka "KPI podle marketingového kanálu a fáze funnelu" (content gap ze Step 1, žádný konkurenční článek ji nenabízí). Krátký ilustrativní příklad s konkrétními čísly z agenturní praxe místo abstraktních tvrzení. Lagging vs. leading KPI rozvinuto do praktického doporučení. Záměrně vynecháno: hloubkový výklad GA4/Search Console (pokryto jinde v clusteru) a hloubkový PPC-specifický rozbor (patří do PPC kategorie).</p>
+<p><strong>Kostra nadpisů (H2):</strong><br>
+1. Co je KPI a čím se liší od cíle a metriky (+ H3 KPI vs. cíl vs. metrika)<br>
+2. Jak vybrat správné marketingové KPI (+ H3 SMART metoda pro výběr KPI, H3 Lagging vs. leading KPI)<br>
+3. Příklady marketingových KPI podle kanálu a fáze funnelu (+ H3 tabulka KPI podle kanálu a fáze funnelu)<br>
+4. Jak KPI měřit a reportovat<br>
+5. Časté chyby při práci s marketingovými KPI<br>
+6. Klíčové závěry<br>
+7. Zdroje</p>
+<p><strong>Plán interních odkazů (5, + 1 kandidát po publikaci):</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Cílový článek</th>
+<th>Umístění</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Universal Analytics končí, ať žije Google Analytics 4! (SEO-07)</td>
+<td>H2 "Jak KPI měřit a reportovat"</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Google Search Console: Jak ji v SEO využít naplno? (SEO-21)</td>
+<td>H2 "Jak KPI měřit a reportovat"</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Share of Voice (SOV) (SEO-19)</td>
+<td>H3 "KPI podle kanálu a fáze funnelu"</td>
+</tr>
+<tr>
+<td>4</td>
+<td>6 hlavních linkbuildingových metrik (SEO-27)</td>
+<td>H3 "KPI podle kanálu a fáze funnelu"</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Cíle reklamy na Facebooku: dosah, návštěvnost, nebo konverze? (PPC-12)</td>
+<td>H3 "KPI podle kanálu a fáze funnelu"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Content validace:</strong> PASS — struktura logicky odpovídá tématu (definice → metodika výběru → příklady → měření → chyby → závěr), všechny klíčové koncepty pro How-to obsah přítomny, pořadí sekcí didakticky správné, chybějící hloubka u GA4/GSC je záměrná (zdůvodněno diferenciací, ne opomenutí).</p>
+<p><strong>Osnova uložena:</strong> <code>data/output/articles/marketingove-kpi-jak-je-vybrat-a-merit/article_marketingove-kpi-jak-je-vybrat-a-merit_CZ_outline.docx</code></p>
+<h2>Step 3 — Draft</h2>
+<p><strong>Typ obsahu:</strong> How-to / trend analýza<br>
+<strong>Počet slov:</strong> 1906 (cíl: 1900–2200)</p>
+<h3>Integrace klíčových slov</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Keyword</th>
+<th>Volume</th>
+<th>Umístění</th>
+<th>Kontextová věta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>marketingové kpi / kpi marketing</td>
+<td>80 (MM cross-check 70)</td>
+<td>H1</td>
+<td>"Marketingové KPI: jak je vybrat a měřit"</td>
+</tr>
+<tr>
+<td>2</td>
+<td>co je kpi</td>
+<td>400</td>
+<td>H2 "Co je KPI a čím se liší od cíle a metriky" (nadpis + definice)</td>
+<td>"KPI (Key Performance Indicator, česky klíčový ukazatel výkonnosti) je měřitelný ukazatel, který ukazuje, jak si vedete vůči konkrétnímu cíli."</td>
+</tr>
+<tr>
+<td>3</td>
+<td>klíčové ukazatele výkonnosti</td>
+<td>80</td>
+<td>Úvodní definice v H2 1</td>
+<td>"KPI (Key Performance Indicator, česky klíčový ukazatel výkonnosti)..."</td>
+</tr>
+<tr>
+<td>4</td>
+<td>smart kpi</td>
+<td>10</td>
+<td>H3 "SMART metoda pro výběr KPI"</td>
+<td>Nadpis + rozbor jednotlivých písmen metody</td>
+</tr>
+<tr>
+<td>5</td>
+<td>kpi příklady</td>
+<td>100</td>
+<td>H2 "Příklady marketingových KPI podle kanálu a fáze funnelu"</td>
+<td>Nadpis + tabulka</td>
+</tr>
+<tr>
+<td>6</td>
+<td>kpi dashboard</td>
+<td>50 (MM cross-check 40)</td>
+<td>H2 "Jak KPI měřit a reportovat"</td>
+<td>"KPI dashboard, který míchá oba rytmy do jednoho pohledu bez rozlišení, obvykle vede k tomu, že tým reaguje na šum..."</td>
+</tr>
+<tr>
+<td>7</td>
+<td>konverzní poměr</td>
+<td>200 (MM cross-check 170)</td>
+<td>Napříč článkem (definice, tabulka, příklady)</td>
+<td>"Konverzní poměr je ukazatel, podle kterého poznáte, jestli se k cíli blížíte — třeba konverzní poměr e-shopu."</td>
+</tr>
+<tr>
+<td>8</td>
+<td>návratnost investic</td>
+<td>70</td>
+<td>H2 "Jak KPI měřit a reportovat"</td>
+<td>"Návratnost investic (ROI) nebo návratnost výdajů na reklamu (ROAS) patří mezi KPI, které nejde vyčíst z jednoho nástroje..."</td>
+</tr>
+<tr>
+<td>9</td>
+<td>ppc kpi</td>
+<td>80</td>
+<td>H2/H3 "Příklady..." (řádek PPC v tabulce + odstavec o cílech Facebook reklamy)</td>
+<td>Tabulka + "U PPC kanálů se KPI liší i podle zvoleného cíle kampaně."</td>
+</tr>
+</tbody>
+</table>
+<h3>Odchylky od osnovy</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Typ</th>
+<th>Popis</th>
+<th>Důvod</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Rozšíření (ne strukturální)</td>
+<td>Sekce "Co je KPI", "Jak vybrat KPI" (SMART), "Příklady podle kanálu" a "Jak KPI měřit" dostaly o 1 odstavec navíc oproti bodům v osnově (např. rozbor S/M vedle D/R v SMART, odstavec o frekvenci reportingu, odstavec o přístupu k dashboardu pro celý tým, odstavec o logice fází funnelu)</td>
+<td>První draft dle přesných bodů osnovy vyšel na ~1200 slov, pod cílem 1900–2200. Rozšíření je věcné (nové konkrétní příklady/doporučení v rámci již schválených H2/H3), ne výplňové — žádný nový nadpis nepřibyl ani neubyl.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Rozšíření</td>
+<td>Přidána 5. častá chyba "Kopírování KPI od konkurence bez vlastního kontextu" nad rámec 4 bodů v osnově</td>
+<td>Navazuje na content gap ze Step 1 (topranker.cz zmiňuje KPI benchmark) a dorovnává rozsah sekce k ostatním prohloubeným sekcím.</td>
+</tr>
+</tbody>
+</table>
+<h3>Plný článek se zdroji</h3>
+<p>Uložen v <code>article_marketingove-kpi-jak-je-vybrat-a-merit_CZ.md</code>. Faktická tvrzení převzatá z konkurenčního researche Step 1 označena v textu zdrojem v hranaté závorce ([marketingppc.cz], [mytimi.cz], [ppcprofits.cz], [grapefruit.cz], [topranker.cz]) a shrnuta v sekci Zdroje na konci článku. Modelový příklad v sekci "Příklady..." je explicitně označen jako ilustrativní ("Modelový příklad"), ne jako reálná klientská case study — v souladu s Structure Guide sekcí 3 (Požadavky na faktickou přesnost, žádné neověřitelné konkrétní výsledky).</p>
+<h2>Step 4 — ToV Check</h2>
+<p><strong>Zkontrolováno vět:</strong> ~85<br>
+<strong>Nalezeno problémů:</strong> 4</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Location</th>
+<th>Issue Type</th>
+<th>Original (full sentence)</th>
+<th>Corrected (full sentence)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>H2 "Časté chyby při práci s marketingovými KPI", úvodní věta</td>
+<td>Rekapitulace ("z předchozích kapitol") — ToV Guide sekce 5, "Jak jsme již zmínili…" → smazat, nerekapitulovat</td>
+<td>"I se správně zvolenými KPI z předchozích kapitol se dá jejich smysl v praxi snadno rozmělnit. Pět nejčastějších chyb se opakuje napříč obory i velikostí firem."</td>
+<td>"Správně zvolené KPI se dá v praxi snadno rozmělnit. Pět nejčastějších chyb se opakuje napříč obory i velikostí firem."</td>
+</tr>
+<tr>
+<td>2</td>
+<td>H3 "SMART metoda pro výběr KPI", odstavec o písmenu M</td>
+<td>Rytmus — jedna souvětná věta ~38 slov, nad doporučených 10–18 slov průměr</td>
+<td>"Měřitelné vyžaduje jasně definovaný zdroj dat ještě předtím, než KPI začnete sledovat — pokud si tým neshodne, jestli konverzi počítá GA4 nebo interní CRM, výsledná čísla se budou lišit a diskuze se zvrhne v spor o data místo o strategii."</td>
+<td>"Měřitelné vyžaduje jasně definovaný zdroj dat ještě předtím, než KPI začnete sledovat. Pokud si tým neshodne, jestli konverzi počítá GA4 nebo interní CRM, výsledná čísla se budou lišit a diskuze se zvrhne v spor o data místo o strategii."</td>
+</tr>
+<tr>
+<td>3</td>
+<td>H3 "SMART metoda pro výběr KPI", odstavec o písmenu R</td>
+<td>Rytmus — souvětná věta ~34 slov</td>
+<td>"Relevantní zase odděluje KPI od aktivit, které jen dobře vypadají v prezentaci pro vedení — počet publikovaných článků nebo příspěvků na sociálních sítích je aktivita, ne výsledek, pokud se neváže na konkrétní obchodní dopad."</td>
+<td>"Relevantní zase odděluje KPI od aktivit, které jen dobře vypadají v prezentaci pro vedení. Počet publikovaných článků nebo příspěvků na sociálních sítích je aktivita, ne výsledek — pokud se neváže na konkrétní obchodní dopad."</td>
+</tr>
+<tr>
+<td>4</td>
+<td>H2 "Jak KPI měřit a reportovat", odstavec o frekvenci reportingu</td>
+<td>Rytmus — 4. věta v řadě bez krátké kontrastní věty, 22 slov nad doporučeným průměrem</td>
+<td>"KPI dashboard, který míchá oba rytmy do jednoho pohledu bez rozlišení, obvykle vede k tomu, že tým reaguje na šum místo na skutečný trend."</td>
+<td>"KPI dashboard bez tohoto rozlišení obvykle vede k jednomu efektu: tým reaguje na šum, ne na skutečný trend."</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ostatní kontroly bez nálezu:</strong> žádné casual markery ("prostě", "tak nějak", "celkem", "vlastně"), žádný hype jazyk, žádná povýšenost, žádná vágní tvrzení bez konkrétního "jak", konzistentní vykání napříč celým textem, emoční kalibrace v pořádku, modelový příklad korektně rámovaný jako ilustrativní (ne jako neověřitelný reálný výsledek).</p>
+<h2>Step 5 — Struktura &amp; formátování</h2>
+<p><strong>Audit odstavců (povinná první akce):</strong> Zkontrolováno všech 21 odstavců v článku. Žádný nepřekračuje 100 slov (nejdelší, odstavec o socialu a e-mailu v sekci "Příklady...", má ~93 slov). Žádné rozdělení odstavce podle délky nebylo potřeba.</p>
+<p><strong>Délka článku:</strong> STŘEDNÍ (~1915 slov po úpravách v tomto kroku)</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Change Type</th>
+<th>Description</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Callout typ opraven</td>
+<td>Label "Modelový příklad:" v sekci "Příklady marketingových KPI podle kanálu a fáze funnelu" změněn na "Example:" (text "Modelový příklad z praxe —" zachován uvnitř bloku)</td>
+<td><code>src/step4_html.py</code> mapuje callout styl jen na přesné labely tip/warning/important/note/keep in mind/example (<code>CALLOUT_MAP</code>) — "Modelový příklad" by se v Kroku 6 vyrenderoval jako nestylovaný blockquote místo callout boxu. Ilustrativní rámování (Structure Guide sekce 3) zachováno v textu bloku.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>H3 přidáno</td>
+<td>"Frekvence reportingu a nástroje" pod H2 "Jak KPI měřit a reportovat"</td>
+<td>Structure: sekce měla 6 po sobě jdoucích odstavců bez vizuálního zlomu (Structure Guide sekce 4, limit 3) — rozdělení na podsekce obnovuje skenovatelnost</td>
+</tr>
+<tr>
+<td>3</td>
+<td>H3 přidáno</td>
+<td>"Revize KPI a přístup k dashboardu" pod H2 "Jak KPI měřit a reportovat"</td>
+<td>Stejný důvod jako #2 — druhá polovina sekce (KPI audit + přístup týmu k dashboardu) dostala vlastní podnadpis</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Kontrola hierarchie nadpisů:</strong> 1× H1, 7× H2 (5 obsahových sekcí + Klíčové závěry + Zdroje), 6× H3 (4 původní + 2 nové) — žádné přeskočené úrovně. 7 H2 je na horní hranici doporučeného rozsahu (3–7), odpovídá schválené osnově z Kroku 2 (7 H2 bodů včetně Klíčových závěrů a Zdrojů).</p>
+<p><strong>Kontrola calloutů:</strong> 3 (Tip, Example, Keep in Mind) — v rámci limitu pro střední délku článku (2–3), žádné dva za sebou, max. 1 na H2 sekci.</p>
+<p><strong>Kontrola tabulek:</strong> 2 (KPI vs. cíl vs. metrika; KPI podle kanálu a fáze funnelu) — v rámci limitu pro střední délku (1–2).</p>
+<p><strong>Kontrola seznamů:</strong> 2 odrážkové seznamy (SMART kritéria; Klíčové závěry). Sekce "Časté chyby při práci s marketingovými KPI" ponechána jako 5 tučně uvozených odstavců místo seznamu — konzistentní s precedentem <code>webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing</code> (odpovídá vzoru ToV Guide, zachovává prostor pro vysvětlující větu u každé chyby).</p>
+<p><strong>Navigační prvky:</strong> Obsah (ToC) záměrně NEpřidán ručně do markdownu — <code>src/step4_html.py</code> ho generuje automaticky z H2/H3 nadpisů v Kroku 6 (ruční verze by v předchozím projektu vedla k duplicitě a nefunkčním anchor odkazům, viz log <code>webova-analytika...</code> Krok 6 oprava #1). Interní odkazy: 5/5 z plánu Kroku 2 potvrzeno přítomných (SEO-07, SEO-21, SEO-19, SEO-27 linkbuilding, PPC-12 Facebook). Sekce Zdroje přítomna s 5 externími citacemi.</p>
+<p><strong>Autorská atribuce:</strong> Záměrně NEpřidána ručně — <code>step4_html.py</code> generuje author-box automaticky (placeholder "evisions Advertising" / "Content Team") v Kroku 6. Content Plan Index Sheet nemá u SEO-30 vyplněný sloupec "zpracoval" — otevřená položka pro Krok 7.</p>
+<p><strong>Otevřená položka pro Krok 6:</strong> Zdrojové značky v hranatých závorkách v těle textu ([marketingppc.cz], [mytimi.cz], [ppcprofits.cz], [grapefruit.cz], [topranker.cz]) jsou pracovní QA značky z Kroku 3 — podle precedentu (<code>webova-analytika...</code> Krok 6) je potřeba je při HTML konverzi odstranit z těla textu (fakta zůstávají, zdroje jsou v sekci "Zdroje").</p>
+<h2>Step 6 — HTML konverze</h2>
+<p><strong>Použitý nástroj:</strong> <code>src/step4_html.py</code> (<code>convert_to_html()</code>) — deterministická konverze markdownu na evisions.cz šablonu.</p>
+<p><strong>Opravy provedené před konverzí (dokončení otevřené položky z Kroku 5):</strong></p>
+<p>Odstraněno 8× pracovní zdrojové značky v hranatých závorkách z těla textu (např. "...která nikomu nepomůžou se rozhodnout [marketingppc.cz]." → "...která nikomu nepomůžou se rozhodnout.") — 2× [marketingppc.cz], 2× [mytimi.cz], 1× [grapefruit.cz], 1× [ppcprofits.cz], 2× [topranker.cz]. Fakta beze změny, zdroje zůstávají dostupné v sekci "Zdroje" na konci článku. Odpovídá stejné opravě provedené u precedentu <code>webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing</code> (Krok 6, oprava #2).</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Struktura stránky</td>
+<td>Header, breadcrumb, ToC, article, author-box, disclaimer, footer — v povinném pořadí</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ToC</td>
+<td>Vygenerováno automaticky z H2/H3 nadpisů (13 položek: 7 H2 + 6 H3)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Callouty</td>
+<td>3 stylované bloky (Tip, Example, Keep in Mind) převedeny na <code>callout</code> divy se správnou CSS třídou — label "Example" (opraveno v Kroku 5) se správně namapoval na <code>callout-example</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Meta title</td>
+<td><code>&lt;title&gt;</code> vygenerován automaticky šablonou z H1 ("Marketingové KPI: jak je vybrat a měřit | evisions.cz Blog", 58 znaků) — v SEO limitu 50–60 znaků, žádná ruční úprava nutná</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Meta popisek</td>
+<td>Doplněn ručně (šablona ho negeneruje automaticky): "Jak vybrat a měřit marketingové KPI podle SMART metody, kanálu a fáze funnelu. Praktické příklady, časté chyby a tipy pro reporting i výběr nástrojů." (149 znaků — mírně pod cílových 150–160, akceptováno)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Autor box</td>
+<td>Auto-generován šablonou s placeholder hodnotou "evisions Advertising" / "Content Team" — Content Plan Index Sheet nemá u SEO-30 vyplněný sloupec "zpracoval", ke skutečné atribuci viz otevřená položka z Kroku 5</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Poznámka k obsahu</td>
+<td>Vygenerována automaticky šablonou (nebyla duplikována ručně)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Oprava názvu souboru:</strong> <code>convert_to_html()</code> ukládá výstup jako <code>{slug}_CZ.html</code> bez prefixu <code>article_</code> — přejmenováno na <code>article_marketingove-kpi-jak-je-vybrat-a-merit_CZ.html</code> podle konvence pojmenování projektu (CLAUDE.md).</p>
+<p><strong>Nástroj pro log HTML:</strong> <code>src/generate_write_log.py</code> (viz <code>webova-analytika...</code> Krok 6) — vygenerováno <code>article_marketingove-kpi-jak-je-vybrat-a-merit_CZ_log.html</code>.</p>
+<p><strong>Finální počet slov (article_..._CZ.md):</strong> ~1910 (po Kroku 5 úpravách a odstranění zdrojových značek v tomto kroku, obsahově beze změny oproti Kroku 4)</p>
+<p><strong>Soubory vygenerovány:</strong><br>
+- <code>data/output/articles/marketingove-kpi-jak-je-vybrat-a-merit/article_marketingove-kpi-jak-je-vybrat-a-merit_CZ.html</code><br>
+- <code>data/output/articles/marketingove-kpi-jak-je-vybrat-a-merit/article_marketingove-kpi-jak-je-vybrat-a-merit_CZ_log.html</code></p>
+<h2>Step 7 — QA + aktualizace Content Plan</h2>
+<h3>Content validace — marketingový expert review</h3>
+<ul>
+<li>[x] Všechna fakta technicky přesná — standardní, nesporné marketingové koncepty (definice KPI, SMART, lagging/leading, funnel fáze), žádné kontroverzní tvrzení</li>
+<li>[x] Žádné zjednodušení, které by čtenáře zmátlo — SMART písmena, lagging/leading pár u SEO/PPC/e-mailu vysvětleny s konkrétními příklady, ne jen abstraktně</li>
+<li>[x] Koncepty vysvětleny ve správném pořadí — definice → výběr metody (SMART, lagging/leading) → příklady dle kanálu/funnelu → měření a reporting → časté chyby → závěr</li>
+<li>[x] Příklady realistické a relevantní — modelový příklad (e-shop CTR→CPA) explicitně označen jako ilustrativní, ne jako neověřitelný reálný klientský výsledek (Structure Guide sekce 3)</li>
+<li>[x] Nic nechybí, co by čtenář v tématu očekával — hloubkový GA4/GSC výklad záměrně vynechán kvůli kanibalizaci v rámci clusteru (zdůvodněno v Kroku 2), zbytek tématu pokryt kompletně</li>
+</ul>
+<h3>QA Checklist</h3>
+<p><strong>Přesnost obsahu</strong><br>
+- [x] Všechna fakta odpovídají zdroji citovanému v Kroku 3 (zdroje teď jen v sekci "Zdroje", ne inline — viz Krok 6)<br>
+- [x] Žádné informace nepřidány ani neodebrány oproti schválenému draftu (Krok 5–6 měnily jen prezentaci: nadpisy, callout label, odstranění pracovních citačních značek)<br>
+- [x] Odkazy strukturálně validní — 5 interních odkazů míří na Published články z ledgeru (SEO-07, SEO-21, SEO-19, SEO-27, PPC-12), 5 externích zdrojů dohledáno WebSearchem v Kroku 1<br>
+- [ ] Obrázky na správných pozicích — N/A, článek je čistě textový (žádná Mapa obrázků v osnově Kroku 2)</p>
+<p><strong>ToV compliance</strong><br>
+- [x] Tón odpovídá ToV Guide (How-to/edukativní) — ověřeno v Kroku 4 (4 problémy nalezeny a opraveny), žádný nález při finální kontrole<br>
+- [x] Žádné zakázané fráze — potvrzeno v Kroku 4<br>
+- [x] Žádné garance konkrétních výsledků — modelový příklad rámovaný jako ilustrativní</p>
+<p><strong>Structure compliance</strong><br>
+- [x] E-E-A-T prvky přítomny — autor box (placeholder "Content Team" / "evisions Advertising", Content Plan Sheet nemá u SEO-30 vyplněné "zpracoval"), datum aktualizace auto-generováno, sekce Zdroje s 5 citacemi<br>
+- [x] Hierarchie nadpisů správná — 1× H1, 7× H2, 6× H3, žádné přeskočené úrovně<br>
+- [x] Interní odkazy přítomny — 5/5 z plánu Kroku 2</p>
+<p><strong>Technické</strong><br>
+- [x] HTML se správně renderuje — ověřeno čtením vygenerovaného souboru (ToC anchor ID odpovídají heading ID, callouty mají správné CSS třídy, tabulky a seznamy strukturálně validní)<br>
+- [ ] Obrázky se načítají — N/A<br>
+- [x] Žádné nefunkční odkazy zjištěny při statické kontrole (viz "Přesnost obsahu" výše)</p>
+<p><strong>Doplňkové (Write Workflow)</strong><br>
+- [x] Zdrojové citace u všech faktických tvrzení — 5 zdrojů v sekci "Zdroje"<br>
+- [x] Žádné [SOURCE NEEDED], [IMAGE NEEDED] ani jiné placeholder značky — ověřeno grep kontrolou nad finálním markdownem</p>
+<p><strong>Verdikt: PASS</strong></p>
+<h3>Soubory k uložení — kontrola 4/4</h3>
+<ul>
+<li>[x] <code>article_marketingove-kpi-jak-je-vybrat-a-merit_CZ.md</code></li>
+<li>[x] <code>article_marketingove-kpi-jak-je-vybrat-a-merit_CZ_log.md</code></li>
+<li>[x] <code>article_marketingove-kpi-jak-je-vybrat-a-merit_CZ.html</code></li>
+<li>[x] <code>article_marketingove-kpi-jak-je-vybrat-a-merit_CZ_log.html</code></li>
+</ul>
+<h3>Aktualizace Content Plan Sheetu a lokálního ledgeru</h3>
+<p><strong>Rozhodnutí:</strong> Status v ledgeru ZŮSTÁVÁ "In Progress", NEpřesunuto na "Published". Workflow guide (sekce 12) předpokládá přesun na Published + zápis živé URL po skutečném publikování — ten zatím neproběhl (článek nebyl nahrán na živý web, URL sloupec v ledgeru je stále "—"). Označení "Published" bez živé URL by bylo nepřesné a mohlo by v ledgeru vytvořit falešný dojem, že je téma vyřízené. Ledger i xlsx mirror proto zůstávají beze změny — QA proběhlo a obsah je připraven k publikaci, ale samotné publikování (nahrání na evisions.cz) je krok mimo tento nástroj.</p>
+<p><strong>Až bude článek nahraný na živý web:</strong> dodat živou URL, pak provést: (1) editovat řádek SEO-30 v <code>data/output/content_plan_index.md</code> — Status → Published, doplnit URL; (2) <code>.venv/Scripts/python.exe src/generate_content_plan_xlsx.py</code>; (3) vypsat řádek k ručnímu vložení do Google Sheetu (ID SEO-30, Status Published, URL).</p>
+</body>
+</html>

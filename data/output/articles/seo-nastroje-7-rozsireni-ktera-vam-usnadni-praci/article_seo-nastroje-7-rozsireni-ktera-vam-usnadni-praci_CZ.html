@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO nástroje + 7 rozšíření, která vám usnadní práci | evisions.cz Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --evi-accent: #0057ff;
+    --evi-dark: #12131a;
+    --evi-navy: #0a0b12;
+    --evi-silver: #c6c6c6;
+    --evi-gray: #6b7280;
+    --evi-light: #f8f9fa;
+    --evi-border: #e1e5eb;
+    --max-width: 1160px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px; line-height: 1.7; color: #1f2937; background: #fff;
+}
+.header {
+    background: #000; padding: 1rem 2rem; position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.logo { color: #fff; font-size: 1.25rem; font-weight: 700; text-decoration: none; }
+.nav { display: flex; gap: 2rem; }
+.nav a { color: #ccc; text-decoration: none; font-size: 0.875rem; font-weight: 500; }
+.nav a:hover { color: #fff; }
+.header-cta {
+    background: var(--evi-accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: 4px; text-decoration: none; font-size: 0.875rem; font-weight: 600;
+}
+.breadcrumb {
+    background: var(--evi-light); padding: 0.75rem 2rem;
+    font-size: 0.875rem; border-bottom: 1px solid var(--evi-border);
+}
+.breadcrumb-inner { max-width: var(--max-width); margin: 0 auto; }
+.breadcrumb a { color: var(--evi-gray); text-decoration: none; }
+.breadcrumb span { color: var(--evi-gray); margin: 0 0.5rem; }
+.main { max-width: var(--max-width); margin: 0 auto; padding: 2rem; }
+h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; }
+h2 {
+    font-size: 1.5rem; font-weight: 600; margin: 2.5rem 0 1rem;
+    padding-top: 1rem; border-top: 1px solid var(--evi-border);
+}
+h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.75rem; }
+h4 { font-size: 1rem; font-weight: 600; margin: 1.25rem 0 0.5rem; }
+p { margin-bottom: 1rem; color: var(--evi-gray); }
+.intro-text { font-size: 1.125rem; color: #1f2937; line-height: 1.8; }
+strong { color: #1f2937; }
+a { color: var(--evi-accent); }
+ul, ol { margin: 1rem 0 1rem 1.5rem; color: var(--evi-gray); }
+li { margin-bottom: 0.5rem; }
+table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--evi-border); }
+th { background: var(--evi-light); font-weight: 600; color: var(--evi-dark); }
+td { color: var(--evi-gray); }
+.toc {
+    background: var(--evi-light); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;
+}
+.toc-title { font-size: 0.875rem; font-weight: 600; color: var(--evi-gray);
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+.toc ul { list-style: none; margin: 0; padding: 0; }
+.toc li { margin-bottom: 0.4rem; }
+.toc a {
+    color: var(--evi-dark); text-decoration: none; font-size: 0.9375rem;
+    display: flex; align-items: center; gap: 0.5rem;
+}
+.toc a::before {
+    content: ""; display: inline-block; width: 6px; height: 6px;
+    background: var(--evi-accent); border-radius: 50%; flex-shrink: 0;
+}
+.toc a:hover { color: var(--evi-accent); }
+.toc .toc-h3 { padding-left: 1.25rem; font-size: 0.875rem; }
+.callout {
+    padding: 1rem 1.25rem; margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0; font-size: 0.9375rem;
+}
+.callout-tip    { background: #e8f0fd; border-left: 4px solid var(--evi-accent); }
+.callout-warning { background: #fff3cd; border-left: 4px solid #ffc107; }
+.callout-important { background: #fde8e8; border-left: 4px solid #e53e3e; }
+.callout-note   { background: var(--evi-light); border-left: 4px solid var(--evi-gray); }
+.callout-keep-in-mind { background: #f0f7ee; border-left: 4px solid #5a8a4a; }
+.callout-example { background: #f5f5f5; border-left: 4px solid #999; }
+.callout strong { display: block; margin-bottom: 0.25rem; }
+figure.article-image { margin: 1.5rem 0; }
+figure.article-image img {
+    width: 100%; height: auto; border-radius: 8px;
+    border: 1px solid var(--evi-border); display: block;
+}
+figure.article-image figcaption {
+    margin-top: 0.5rem; font-size: 0.875rem;
+    color: var(--evi-gray); text-align: center; font-style: italic;
+}
+.video-container {
+    position: relative; padding-bottom: 56.25%; height: 0;
+    overflow: hidden; margin: 2rem 0; border-radius: 8px; background: #000;
+}
+.video-container iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+}
+.takeaways {
+    background: linear-gradient(135deg, var(--evi-navy) 0%, var(--evi-dark) 100%);
+    color: #fff; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;
+}
+.takeaways h2 { color: #fff; border: none; margin-top: 0; padding-top: 0; }
+.takeaways ul { color: #ccc; }
+.author-box {
+    background: var(--evi-light); border-radius: 12px; padding: 1.5rem; margin: 2rem 0;
+}
+.author-box-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--evi-border);
+}
+.author-box-title { font-weight: 600; font-size: 1rem; }
+.author-dates { font-size: 0.8125rem; color: var(--evi-gray); display: flex; gap: 1.5rem; }
+.author-card { display: flex; align-items: center; gap: 0.875rem; }
+.author-avatar {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--evi-dark);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 600; font-size: 1rem; flex-shrink: 0;
+}
+.author-role {
+    font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--evi-accent); font-weight: 600; margin-bottom: 0.125rem;
+}
+.author-name { font-weight: 600; color: var(--evi-dark); font-size: 0.9375rem; }
+.disclaimer {
+    background: var(--evi-light); padding: 1rem 1.25rem; border-radius: 4px;
+    font-size: 0.875rem; color: var(--evi-gray); margin: 1rem 0;
+}
+.footer { background: #000; color: #fff; padding: 3rem 2rem; margin-top: 4rem; }
+.footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;
+}
+.footer-logo { font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+.footer-desc { color: #888; font-size: 0.875rem; line-height: 1.6; }
+.footer h4 {
+    font-size: 0.875rem; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 1rem; color: #888;
+}
+.footer ul { list-style: none; margin: 0; padding: 0; }
+.footer li { margin-bottom: 0.5rem; }
+.footer a { color: #ccc; text-decoration: none; font-size: 0.9375rem; }
+.footer a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a class="logo" href="https://www.evisions.cz">evisions</a>
+        <nav class="nav">
+            <a href="https://www.evisions.cz/blog/">Blog</a>
+            <a href="https://www.evisions.cz">evisions.cz</a>
+        </nav>
+        <a class="header-cta" href="https://www.evisions.cz/kontakt/">Kontaktujte nás</a>
+    </div>
+</header>
+
+<div class="breadcrumb">
+    <div class="breadcrumb-inner">
+        <a href="https://www.evisions.cz/blog/">Blog</a>
+        <span>›</span>
+        <a href="https://www.evisions.cz/blog/seo-nastroje-7-rozsireni-ktera-vam-usnadni-praci/">SEO nástroje + 7 rozšíření, která vám usnadní práci</a>
+    </div>
+</div>
+
+<main class="main">
+
+<div class="toc"><p class="toc-title">Obsah</p><ul><li class=""><a href="#základní-nástroje-seo-ve-kterých-se-musíte-orientovat-247">Základní nástroje SEO, ve kterých se musíte orientovat 24/7</a></li><li class="toc-h3"><a href="#google-search-console">Google Search Console</a></li><li class="toc-h3"><a href="#google-analytics">Google Analytics</a></li><li class="toc-h3"><a href="#seznam-webmaster-tools">Seznam Webmaster Tools</a></li><li class=""><a href="#jakými-nástroji-se-vyzbrojit-na-analýzu-klíčových-slov">Jakými nástroji se vyzbrojit na analýzu klíčových slov?</a></li><li class="toc-h3"><a href="#marketing-miner">Marketing Miner</a></li><li class="toc-h3"><a href="#google-keyword-planner-a-sklik">Google Keyword Planner a Sklik</a></li><li class="toc-h3"><a href="#excel-a-openrefine">Excel a OpenRefine</a></li><li class=""><a href="#crawler-a-nástroje-na-technický-audit">Crawler a nástroje na technický audit</a></li><li class="toc-h3"><a href="#screaming-frog">Screaming Frog</a></li><li class="toc-h3"><a href="#pagespeed-insight">PageSpeed Insight</a></li><li class=""><a href="#linkbuilding-off-page-faktory-konkurence">Linkbuilding, off-page faktory, konkurence…</a></li><li class="toc-h3"><a href="#ahrefs">Ahrefs</a></li><li class="toc-h3"><a href="#semrush">Semrush</a></li><li class="toc-h3"><a href="#mangools">Mangools</a></li><li class="toc-h3"><a href="#moz-pro">Moz Pro</a></li><li class="toc-h3"><a href="#majestic">Majestic</a></li><li class=""><a href="#evidence-a-monitoring">Evidence a monitoring</a></li><li class="toc-h3"><a href="#collabim">Collabim</a></li><li class=""><a href="#reporting">Reporting</a></li><li class="toc-h3"><a href="#google-data-studio">Google Data Studio</a></li><li class=""><a href="#vychytávky-které-vám-usnadní-práci">Vychytávky, které vám usnadní práci</a></li><li class="toc-h3"><a href="#ahrefs-seo-toolbar">Ahrefs SEO Toolbar</a></li><li class="toc-h3"><a href="#scraper">Scraper</a></li><li class="toc-h3"><a href="#quick-javascript-switcher">Quick JavaScript switcher</a></li><li class="toc-h3"><a href="#redirect-path">Redirect Path</a></li><li class="toc-h3"><a href="#semor">SEMOR</a></li><li class="toc-h3"><a href="#counting-characters">Counting Characters</a></li><li class="toc-h3"><a href="#grammarly">Grammarly</a></li><li class=""><a href="#souhrn-základních-seo-nástrojů">Souhrn základních SEO nástrojů</a></li><li class="toc-h3"><a href="#seo-nástroje-zdarma">SEO nástroje zdarma</a></li><li class="toc-h3"><a href="#placené-nástroje">Placené nástroje</a></li></ul></div>
+
+<h1>SEO nástroje + 7 rozšíření, která vám usnadní práci</h1>
+<p class="intro-text">Žádný SEO konzultant se neobejde bez potřebných SEO nástrojů, které mu umožňují dělat svou práci.</p>
+<p>I se základním portfoliem SEO nástrojů je však možné doručit klientům skvělé výsledky. Rozdíl mezi dobrým a skvělým SEO specialistou není v počtu nástrojů, které ovládá, nýbrž v tom, <strong>jaké závěry a doporučení dokáže získat i z těch nejzákladnějších.</strong> Nezapomínejme používat hlavně selský rozum a základní marketingové principy.</p>
+<p>Každá kapitola tohoto článku je obohacena <strong>o konkrétní tipy</strong> a v textu si navíc kromě nejdůležitějších online SEO nástrojů popíšeme i <strong>několik užitečných rozšíření do prohlížeče, které vám dokážou ušetřit desítky minut týdně.</strong> Proto, pokud se vyznáte v základech, přejděte rovnou na vychytávky na závěr.</p>
+<hr/>
+<h2 id="základní-nástroje-seo-ve-kterých-se-musíte-orientovat-247">Základní nástroje SEO, ve kterých se musíte orientovat 24/7</h2>
+<p>Jsou to SEO nástroje zdarma, ke kterým máte přístup a podávají vám základní a zároveň nejdůležitější informace. Nepodceňujte přínos těchto nástrojů a naučte se s nimi pracovat opravdu do detailu. Pokud jste v SEO samouky, není na škodu založit si vlastní zkušební web a testovat a poznávat vlastnoručně zákoutí těchto nástrojů. O významu testování více informujeme v článku SEO pro začátečníky.</p>
+<h3 id="google-search-console"><strong>Google Search Console</strong></h3>
+<p><a href="https://search.google.com/search-console/about">Google Search Console</a> je alfa omega každého SEO konzultanta a měli byste ji kontrolovat alespoň na týdenní bázi. V porovnání s některými ostatními nástroji není naštěstí Google Search Console tak složitá. Mějte zde nahrané soubory Sitemap, sledujte potenciální problémy s indexací, monitorujte výkon webu a hledejte nové příležitosti.</p>
+<p><figure class="article-image"><img alt="Rozhraní nástroje Google Search Console" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_15_13h14_59_1024x546_a43faeb2bb.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Rozhraní nástroje Google Search Console</figcaption></figure></p>
+<p>Google Search Console se podobně jako ostatní nástroje vyvíjí a v nedávné době se objevila nová funkce: takzvané <em>Core Web Vitals</em>, neboli nejdůležitější životní funkce, které souvisí s rychlostí webu (a celkově UX). Google <a href="https://developers.google.com/search/blog/2020/05/evaluating-page-experience">explicitně zmínil</a>, že <em>Core Web Vitals</em> budou ze strany Googlu v budoucnu hodnoticím faktorem.</p>
+<p>Pokud chcete z Google Search Console vytáhnout maximum, využijte API: pomocí něj stáhnete z nástroje více dat, než je v klasickém rozhraní (limit 1 000 dotazů). Google Search Console si nejlépe rozumí s Excelem a s pomocí různých vzorců můžete v datech nalézt mnoho informací o nových a ztracených klíčových slovech a hledat nové příležitosti.</p>
+<div class="callout callout-tip">
+<p><strong>Tip:</strong> Typickým quick-winem je optimalizace snippetů stránek, které už dosahují dobrých pozic, ale nevyužívají svého potenciálu. Vyfiltrujte si stránky s vysokými impresemi (například 1 000+) nebo s pozicemi v cca TOP7, ale zároveň s CTR nižším než 1 %. Pak se podívejte na podobu výsledků vyhledávaní těchto stránek a popřemýšlejte, jak by šlo snippet optimalizovat za účelem dosažení lepší <a href="https://www.evisions.cz/blog/maji-rich-snippets-vzdy-pozitivni-vliv-na-miru-prokliku/">míry prokliku (CTR)</a>.</p>
+</div>
+<h3 id="google-analytics"><strong>Google Analytics</strong></h3>
+<p><a href="https://analytics.google.com/analytics/web/">Google Analytics</a> je základním nástrojem napříč všemi obory online marketingu, který byste měli používat na téměř denní bázi. Je to však zároveň nástroj velmi komplexní a spousta specialistů nezná zdaleka všechny jeho funkce a používá sotva polovinu. Mezi takové funkce patří například opravdu detailní přehled o konverzích, ze kterého lze získat velmi zajímavé informace třeba o asistovaných konverzích. Tím se však dnes zabývat nebudeme.</p>
+<p>Jedním ze zcela základních reportů, který byste měli v Analytics pravidelně sledovat, je níže uvedená sekce.</p>
+<p><figure class="article-image"><img alt="Report vstupních stránek v Google Analytics filtrovaný na organický provoz" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_15_13h57_57_1024x474_4641cefb39.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Report vstupních stránek v Google Analytics filtrovaný na organický provoz</figcaption></figure></p>
+<p>V reportu vstupních stránek postupujte takto:</p>
+<ol>
+<li>Přidejte sekundární dimenzi obsahující <em>médium</em>.</li>
+<li>Vpravo v <em>rozšířený</em> vyfiltrujte pouze <em>organic</em>.</li>
+<li>Filtrujte podle konkrétních stránek nebo kategorií webu.</li>
+</ol>
+<p>Následně se vám zobrazí seznam stránek s výkonnostními ukazateli v organickém vyhledávání. Tady už můžete sledovat vývoj v čase, porovnávat a hledat nové příležitosti.</p>
+<p>V dnešní době je v SEO velkým tématem automatizace, kterou je možné zavést i do Google Analytics. V sekci <em>Správce</em> je možné si nastavit upozornění na změny v konkrétních metrikách. V první řadě si nastavte upozornění hlavně na náhlé změny v organické návštěvnosti. Čas vám během pravidelného sledování výkonnosti ušetří také správně nastavené segmenty, které je dobré mít připravené hlavně na prioritní kategorie, filtraci a brand/nonbrand.</p>
+<h3 id="seznam-webmaster-tools"><strong>Seznam Webmaster Tools</strong></h3>
+<p>V českém internetovém rybníčku je potřeba nezapomínat na Seznam. V některých segmentech je stále zdrojem nezanedbatelné návštěvnosti. Naučte se proto pracovat také s nástrojem <a href="https://reporter.seznam.cz/wm/">Seznam Webmaster Tools</a>, který funguje na podobném principu jako Google Search Console. Neobsahuje sice zdaleka tolik funkcí, ale může vám pomoci odhalit zásadní problémy s indexací na Seznamu.</p>
+<p>Data ze Seznam Webmaster Tools je možné přehledně vizualizovat do nástroje Google Data Studio. Detailní postup naleznete v <a href="https://digitalniarchitekti.cz/2019/04/14/data-api-seznam-webmaster-google-dokumenty-google-docs/">článku od Digitálních architektů</a>.</p>
+<hr/>
+<h2 id="jakými-nástroji-se-vyzbrojit-na-analýzu-klíčových-slov">Jakými nástroji se vyzbrojit na analýzu klíčových slov?</h2>
+<p>Právě začínáte na SEO pracích pro nového klienta? Pak bude pravděpodobně jedním z vašich prvních výstupů analýza klíčových slov. Nezapomínejte ji ale na pravidelné bázi aktualizovat. Analýza klíčových slov je jedním ze základních výstupů SEO specialisty a každý z nich by měl mít alespoň její základy v malíčku. Ač je to analýza komplexní a s velkým množstvím dat, dá se zpracovat jen na základě informací dostupných z jednoho nástroje.</p>
+<h3 id="marketing-miner"><strong>Marketing Miner</strong></h3>
+<p><a href="https://www.marketingminer.com/cs">Marketing Miner</a> od Filipa Podstavce patří mezi naše oblíbené nástroje, a navíc se stále rozšiřuje. Kromě analýzy klíčových slov ho lze používat také na pravidelný monitoring, technické SEO i linkbuilding.</p>
+<p>Pro účely analýzy klíčových slov vás budou nejvíce zajímat minery <em>Našeptávače</em> a <em>Related Search</em> a dále minery podávající informace o klíčových slovech.</p>
+<p><figure class="article-image"><img alt="Minery Marketing Mineru pro analýzu klíčových slov" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_15_14h59_41_1024x510_b30a1038a7.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Minery Marketing Mineru pro analýzu klíčových slov</figcaption></figure></p>
+<div class="callout callout-tip">
+<p><strong>Tip:</strong> Marketing Miner vám dokáže poskytnout spoustu údajů o klíčových slovech včetně měsíčních hledaností, ze kterých lze odhadovat trendovost. Pokud jste ale fanoušci grafů a potřebujete zjistit sezónnost rychle a jen pro pár jednotek klíčových slov, použijte <a href="https://trends.google.com/trends/">Google Trends</a>.</p>
+</div>
+<h3 id="google-keyword-planner-a-sklik"><strong>Google Keyword Planner a Sklik</strong></h3>
+<p>Pokud spravujete i PPC kampaně, máte hledanost k dispozici zdarma přímo z reklamních platforem. <a href="https://ads.google.com/intl/cs_cz/home/tools/keyword-planner/">Google Keyword Planner</a> je součástí Google Ads a ukáže vám orientační objem vyhledávání i návrhy souvisejících klíčových slov. Obdobně funguje <a href="https://www.sklik.cz/">Sklik</a> od Seznamu, jehož plánovač klíčových slov bývá pro český trh přesnější než globální nástroje.</p>
+<p>Data z obou nástrojů berte jako orientační — Google Keyword Planner zaokrouhluje menší objemy do širokých pásem, pokud na účtu neběží aktivní kampaň s dostatečným rozpočtem.</p>
+<h3 id="excel-a-openrefine"><strong>Excel a OpenRefine</strong></h3>
+<p>V procesu tvorby analýzy klíčových slov se neobejdete bez Excelu, který ale snad umí používat každý z nás. Pokud však chcete být u tvorby analýzy klíčových slov maximálně efektivní, naučte se pracovat s nástrojem <a href="https://openrefine.org/">OpenRefine</a>, jehož použití hezky vysvětluje <a href="https://www.zatkovic.cz/aks-na-maximum-automatizace/">Martin Žatkovič ve svém článku</a>.</p>
+<hr/>
+<h2 id="crawler-a-nástroje-na-technický-audit">Crawler a nástroje na technický audit</h2>
+<p>Máte za sebou analýzu klíčových slov? Skvělé, vaše další kroky by měly směřovat k auditu celého webu.</p>
+<h3 id="screaming-frog"><strong>Screaming Frog</strong></h3>
+<p><a href="https://www.screamingfrog.co.uk/">Screaming Frog</a> se řadí mezi crawlery. To jsou nástroje, které dokáží projít celý web a zkontrolovat především problémy s procházením a indexací webu. Pomáhá také s analýzou on-page faktorů jako jsou titulky, meta popisky, nadpisy, interní prolinkování a podobně. Hodí se také na analýzu obrázků. Proč doporučujeme právě Screaming Frog? Je nejvýhodnější, co se týče poměru cena/výkon.</p>
+<div class="callout callout-tip">
+<p><strong>Tip:</strong> Nenechte se uvést v omyl, že by Screaming Frog nedokázal data vizualizovat vůbec. Pomocí <em>Force-Directed Crawl Diagram</em> si můžete zobrazit vizualizaci struktury vašeho webu a odhalit nedostatky v hierarchii a interním prolinkování.</p>
+</div>
+<p><figure class="article-image"><img alt="Force-Directed Crawl Diagram v nástroji Screaming Frog" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_16_13h30_57_1024x780_88e9f18ec0.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Force-Directed Crawl Diagram v nástroji Screaming Frog</figcaption></figure></p>
+<div class="callout callout-keep-in-mind">
+<p><strong>Keep in Mind:</strong> Pokud máte rádi hezké vizualizace, stojí za zmínku crawler <a href="https://sitebulb.com/">SiteBulb</a> nebo <a href="https://spotibo.com/seo-analyzer">Spotibo</a>. Připlatíte si však za ně dost peněz.</p>
+</div>
+<h3 id="pagespeed-insight"><strong>PageSpeed Insight</strong></h3>
+<p>Nástroj přímo od Googlu, který poskytuje analýzu rychlosti webu na mobilních i desktopových zařízení. To je <a href="https://developers.google.com/speed/pagespeed/insights/">PageSpeed Insight</a>. Na nástroji oceňujeme, že vám kromě zhodnocení stavu navrhne také konkrétní příležitosti, jak lze rychlost v případě vašeho webu optimalizovat.</p>
+<p><figure class="article-image"><img alt="Výsledek testu rychlosti webu v nástroji PageSpeed Insight" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_16_13h36_17_6db8809ed7.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Výsledek testu rychlosti webu v nástroji PageSpeed Insight</figcaption></figure></p>
+<p>Vyzkoušejte také nástroj <a href="https://web.dev/measure/">web.dev</a>, který podává velmi podobné informace, ale obohacuje je o další výkonnostní ukazatele a o informace o přístupnosti webu.</p>
+<p>V neposlední řadě k technickému auditu využijete také nástroj <strong>Google Search Console,</strong> který poskytuje v sekci <em>Pokrytí</em> zásadní informace o indexaci vašeho webu. Google Search Console je zkrátka nástroj, který využijete pro technickou analýzu, analýzu výkonnosti webu a také pro správu odkazů díky sekci <em>Links</em>.</p>
+<hr/>
+<h2 id="linkbuilding-off-page-faktory-konkurence">Linkbuilding, off-page faktory, konkurence…</h2>
+<p>Máte vyřešené základní nedostatky z oblasti <a href="https://www.evisions.cz/blog/pruvodce-migraci-webu-z-pohledu-seo-aneb-nezahravejte-si-s-organickou-navstevnosti/">technického SEO</a> a přecházíte na kontinuální SEO správu? Pak byste měli mimo jiné investovat čas do linkbuildingu a také do monitoringu konkurence. A k tomu vám na českém trhu nejlépe poslouží Ahrefs.</p>
+<h3 id="ahrefs"><strong>Ahrefs</strong></h3>
+<p><a href="https://ahrefs.com/dashboard">Ahrefs</a> je nástroj sice vcelku drahý, ale k práci hlavně na linkbuildingu nezbytný. Za několik let své existence se Ahrefs vyvinul z primárně linkbuildingového nástroje na komplexní SEO nástroj, jehož všechny funkce by se slušelo popsat v samostatném článku.</p>
+<p>V oblasti linkbuildingu vám pomůže především díky funkcím <em>Keywords explorer</em> a <em>Competing domains</em>, díky kterým budou linkbuildingové rešerše snazší. Poskytne vám také základní informace o doménách, ze kterých se budete snažit získat odkaz.</p>
+<p><figure class="article-image"><img alt="Dashboard nástroje Ahrefs s přehledem zpětných odkazů" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_16_17h00_42_1024x558_01959ce7eb.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Dashboard nástroje Ahrefs s přehledem zpětných odkazů</figcaption></figure></p>
+<p>Nezapomeňte hlavně také na nastavení upozornění na zmínky vašeho brandu a na pravidelný monitoring ztracených a rozbitých odkazů. Práce SEO konzultanta nespočívá pouze v zisku nových odkazů, ale také v monitoringu a správě stávajícího odkazového profilu.</p>
+<p>Ahrefs kromě klasického nástroje nabízí i vlastní <a href="https://ahrefs.com/webmaster-tools">Ahrefs Webmaster Tools</a>. Nástroj jsme otestovali a dojmy jsou více než skvělé. Rozšiřuje působnost nástroje Ahrefs do dalších oblastí a je zároveň uživatelsky velmi příjemný.</p>
+<h3 id="semrush"><strong>Semrush</strong></h3>
+<p><a href="https://www.semrush.com/">Semrush</a> pokrývá podobné oblasti jako Ahrefs — analýzu klíčových slov, linkbuilding, technický audit i monitoring konkurence. Navíc nabízí silnější nástroje pro PPC a správu sociálních sítí, pokud spravujete kampaně napříč více kanály. Databázi pro český trh má o něco menší než Ahrefs, ale u mezinárodních projektů je to jeden z referenčních nástrojů.</p>
+<h3 id="mangools"><strong>Mangools</strong></h3>
+<p><a href="https://mangools.com/">Mangools</a> je balík nástrojů (KWFinder, SERPWatcher, SERPChecker, LinkMiner, SiteProfiler) cílený na menší rozpočty. KWFinder se hodí na hledání long-tail klíčových slov s nižší konkurencí, SERPWatcher pak na sledování pozic. Ve srovnání s Ahrefsem nebo Semrushem má menší databázi zpětných odkazů, zato je jednodušší na ovládání pro začátečníky.</p>
+<h3 id="moz-pro"><strong>Moz Pro</strong></h3>
+<p><a href="https://moz.com/products/pro">Moz Pro</a> je jeden z nejstarších all-in-one SEO nástrojů na trhu. Kombinuje analýzu klíčových slov, audit webu a přehled zpětných odkazů, včetně vlastní metriky Domain Authority. Pro český trh má slabší pokrytí dat než Ahrefs nebo Semrush, ale u anglicky psaného obsahu je to solidní alternativa.</p>
+<h3 id="majestic"><strong>Majestic</strong></h3>
+<p><a href="https://majestic.com/">Majestic</a> se specializuje výhradně na analýzu zpětných odkazů. Místo širokého záběru nabízí hlubší pohled na odkazový profil — metriky Trust Flow a Citation Flow vám pomůžou odhadnout důvěryhodnost domény nezávisle na Ahrefs/Semrush skórování. Hodí se jako doplňkový zdroj dat při due diligence před nákupem odkazů nebo doménou.</p>
+<table>
+<thead>
+<tr>
+<th>Nástroj</th>
+<th>Zaměření</th>
+<th>Cenová hladina</th>
+<th>Vhodné pro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ahrefs</td>
+<td>All-in-one, silná data pro CZ trh</td>
+<td>Vyšší</td>
+<td>Agentury, denní SEO práci</td>
+</tr>
+<tr>
+<td>Semrush</td>
+<td>All-in-one + PPC/sociální sítě</td>
+<td>Vyšší</td>
+<td>Mezinárodní projekty, multi-kanálovou správu</td>
+</tr>
+<tr>
+<td>Mangools</td>
+<td>All-in-one, jednodušší</td>
+<td>Nižší</td>
+<td>Menší weby, začátečníky</td>
+</tr>
+<tr>
+<td>Moz Pro</td>
+<td>All-in-one, metrika Domain Authority</td>
+<td>Střední</td>
+<td>Anglicky psaný obsah</td>
+</tr>
+<tr>
+<td>Majestic</td>
+<td>Jen zpětné odkazy</td>
+<td>Střední</td>
+<td>Hloubkovou link analýzu</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="evidence-a-monitoring">Evidence a monitoring</h2>
+<p>Nejen monitoring výkonnostních ukazatelů v Google Search Console a Google Analytics, ale i monitoring pozic a odkazů je neodmyslitelnou součástí práce SEO konzultanta.</p>
+<h3 id="collabim"><strong>Collabim</strong></h3>
+<p><a href="https://www.collabim.cz/">Collabim</a> patří mezi nejpoužívanější nástroje v Česku a slouží především k monitoringu pozic a odkazů. Nabízí také možnost jednorázových analýz, které vám ale lépe zpracuje Marketing Miner. Co se ale týče monitoringu projektu, je Collabim stále ještě číslo 1.</p>
+<p><figure class="article-image"><img alt="Monitoring pozic ve vyhledávačích v nástroji Collabim" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_16_17h18_24_1024x356_a73fbdcfab.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Monitoring pozic ve vyhledávačích v nástroji Collabim</figcaption></figure></p>
+<p>Collabim není nutné dlouze popisovat. Na 14 dní si můžete všechny jeho funkce vyzkoušet zcela zdarma, a to bez nutnosti zadání údajů platební karty, jak tomu bývá zvykem.</p>
+<p>S monitoringem projektu bezmezně souvisí správně nastavená upozornění. Kromě Google Analytics a Ahrefs si nastavte upozornění také v Collabimu. Ten vás pak bude e-mailem informovat například o změnách obsahu stránky nebo nefunkčních odkazech. Klient vás platí a očekává maximální efektivitu. Neztrácejte proto každý měsíc hodiny na činnostech, které lze automatizovat.</p>
+<hr/>
+<h2 id="reporting">Reporting</h2>
+<p>Pravidelné reportování je další činnost, které se musí věnovat každý SEO konzultant. Který nástroj pro tento účel použít?</p>
+<h3 id="google-data-studio"><strong>Google Data Studio</strong></h3>
+<p>Existuje lepší nástroj k vizualizaci reportů než <a href="https://datastudio.google.com/">Google Data Studio</a>? Jen těžko. Na několik libovolně rozsáhlých stránek můžete tahat data ze všech možných nástrojů jako Collabim, Google Analytics, Google Search Console a podobně. Nezapomínejte ale ukazatele a vývoj relevantně slovně popsat, aby se v reportu vyznal i váš klient.</p>
+<p>Google Data Studio nemusí sloužit pouze jako reportovací nástroj. Může se vám hodit také pro pravidelný monitoring. Pokud vám nevyhovuje kontrolovat pořád dokola ukazatele z několika různých nástrojů, převeďte si to nejdůležitější napříč nástroji do přehledu v Google Data Studio a můžete vše pravidelně sledovat na jednom místě.</p>
+<hr/>
+<h2 id="vychytávky-které-vám-usnadní-práci">Vychytávky, které vám usnadní práci</h2>
+<table>
+<thead>
+<tr>
+<th>Rozšíření</th>
+<th>K čemu slouží</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ahrefs SEO Toolbar</td>
+<td>Základní info o URL a doméně přímo v SERPu i na webu</td>
+</tr>
+<tr>
+<td>Scraper</td>
+<td>Hromadný sběr podobných odkazů a dat z webu</td>
+</tr>
+<tr>
+<td>Quick JavaScript switcher</td>
+<td>Rychlé přepnutí zobrazení stránky s vypnutým a zapnutým JavaScriptem</td>
+</tr>
+<tr>
+<td>Redirect Path</td>
+<td>Zobrazení cesty přesměrování stránky</td>
+</tr>
+<tr>
+<td>SEMOR</td>
+<td>Počet indexovaných stránek pro aktuální dotaz (i na Seznamu)</td>
+</tr>
+<tr>
+<td>Counting Characters</td>
+<td>Počet znaků textu přímo v prohlížeči</td>
+</tr>
+<tr>
+<td>Grammarly</td>
+<td>Korekce a vylepšení anglických textů</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ahrefs-seo-toolbar"><strong>Ahrefs SEO Toolbar</strong></h3>
+<p>Perfektní SEO rozšíření, které využijete především pro linkbuildingové řešerše. Pokud si platíte jednu ze základních verzí Ahrefsu, tak se vám určitě už někdy stalo, že jste dosáhli týdenního limitu domén, které můžete zanalyzovat. S rozšířením <a href="https://ahrefs.com/seo-toolbar">Ahrefs SEO Toolbar</a> se vám to již nestane, protože se díky němu dozvíte základní informace o URL stránce a doméně přímo na daném webu a není potřeba doménu analyzovat v nástroji Ahrefs.</p>
+<p><figure class="article-image"><img alt="Rozšíření Ahrefs SEO Toolbar zobrazující informace o doméně přímo na webu" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_16_14h17_20_1024x109_c6401d928a.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Rozšíření Ahrefs SEO Toolbar zobrazující informace o doméně přímo na webu</figcaption></figure></p>
+<p>Kromě toho vám tento nástroj rozšíří přehledně o stejné ukazatele také SERP.</p>
+<p><figure class="article-image"><img alt="Rozšíření Ahrefs SEO Toolbar s ukazateli přímo ve výsledcích vyhledávání (SERP)" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_16_14h21_23_1024x710_63a1dfcd5f.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Rozšíření Ahrefs SEO Toolbar s ukazateli přímo ve výsledcích vyhledávání (SERP)</figcaption></figure></p>
+<h3 id="scraper"><strong>Scraper</strong></h3>
+<p>Rozšíření, které vám usnadní práci nejen při analýze klíčových slov. Po instalaci rozšíření <a href="https://chrome.google.com/webstore/detail/scraper/mbigbapnjcgaffohmbkdlecaccepngjd">Scraper</a> postupujte takto:</p>
+<ol>
+<li>Na kategorii na webu klikněte pravým tlačítkem myši.</li>
+<li>Vyberte <em>Scrape similar…</em>.</li>
+<li>Vyjede vám přehled všech podobných odkazů.</li>
+</ol>
+<p>Hodí se při jakémkoliv sběru dat z webu.</p>
+<p><figure class="article-image"><img alt="Rozšíření Scraper pro hromadný sběr odkazů z webu" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_16_14h25_12_1024x403_aa5eaf9b34.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Rozšíření Scraper pro hromadný sběr odkazů z webu</figcaption></figure></p>
+<h3 id="quick-javascript-switcher"><strong>Quick JavaScript switcher</strong></h3>
+<p>JavaScript je téma, které budete řešit často například v souvislostí s filtrací, schovaným kategorickým textem pod tlačítkem <em>zobrazit více</em> a podobně. Dejte si vždy pozor, aby byl text pro vyhledávací roboty viditelný i s vypnutým JavaScriptem. To zjistíte díky rozšíření <a href="https://chrome.google.com/webstore/detail/quick-javascript-switcher/geddoclleiomckbhadiaipdggiiccfje">Quick JavaScript switcher</a>, pomocí kterého jedním klikem měníte mezi zobrazením stránky s a bez JavaScriptu.</p>
+<h3 id="redirect-path"><strong>Redirect Path</strong></h3>
+<p>Informace o přesměrováních můžete získat několika cestami. K hromadné analýze poslouží nejlépe crawlovací nástroj jako Screaming Frog, ale pokud chcete zjistit detail o přesměrování jen jednotek stránek, rozšíření <a href="https://chrome.google.com/webstore/detail/redirect-path/aomidfkchockcldhbkggjokdkkebmdll">Redirect Path</a> je pro takové účely ideální. Poté, co na rozšíření kliknete, zobrazí se vám <a href="https://www.evisions.cz/blog/uspesna-seo-migrace-webu-foodora-cz-od-stareho-k-novemu/">cesta přesměrování</a>.</p>
+<p><figure class="article-image"><img alt="Rozšíření Redirect Path zobrazující cestu přesměrování stránky" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_16_16h18_46_1024x409_80815e7501.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Rozšíření Redirect Path zobrazující cestu přesměrování stránky</figcaption></figure></p>
+<p>Jedná se o skvělé rozšíření k odhalení zacyklených a jinak problematických přesměrování.</p>
+<h3 id="semor"><strong>SEMOR</strong></h3>
+<p>Jak zjistit počet indexovaných stránek ve vyhledávači Google? Jednoduše. Zjistíte to přímo v SERPu. Jak na Seznamu? Pomocí rozšíření <a href="https://chrome.google.com/webstore/detail/semor/igcjcgdkngjanadjligggkimempkknnp?hl=cs">SEMOR</a>. Jakmile na rozšíření kliknete, zobrazí se vám počet výsledků pro aktuální dotaz.</p>
+<p><figure class="article-image"><img alt="Rozšíření SEMOR s počtem indexovaných stránek ve vyhledávači" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_16_14h42_01_1024x363_e2e9aa802e.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Rozšíření SEMOR s počtem indexovaných stránek ve vyhledávači</figcaption></figure></p>
+<h3 id="counting-characters"><strong>Counting Characters</strong></h3>
+<p>Doposud jste text kopírovali do MS Word a zjišťovali počet znaků touto cestou? Ode dneška už ne. Stáhněte si rozšíření <a href="https://chrome.google.com/webstore/detail/counting-characters-1-let/gmaddeabdjpmjkghhhhfdkeemfcnknpl">Counting Characters</a>, pomocí kterého můžete zjistit počet znaků textu přímo v prohlížeči.</p>
+<h3 id="grammarly"><strong>Grammarly</strong></h3>
+<p>Pracujete i se zahraničními klienty? Pak je pro vás nezbytnou nutností rozšíření <a href="https://chrome.google.com/webstore/detail/grammarly-for-chrome/kbfnbcaeplbcioakkpcpgfkobkghlhen">Grammarly</a>, které vřele doporučujeme. Hned během psaní anglických textů vám toto rozšíření opravuje zásadní chyby a navíc navrhuje zlepšení textu podle toho, jaký styl psaní jste si na začátku zvolili (formální, informativní, kamarádský, …). Rozšíření si můžete stáhnout i do počítače a používat také pro MS Word.</p>
+<p><figure class="article-image"><img alt="Rozšíření Grammarly opravující chyby v anglickém textu" src="https://picfit.evisions.cz/display?url=https://api.evisions.cz/uploads/2020_10_16_16h23_55_1024x533_3dabe7036b.png&amp;w=960&amp;op=resize&amp;q=90&amp;fmt=png&amp;upscale=0&amp;=1"/><figcaption>Rozšíření Grammarly opravující chyby v anglickém textu</figcaption></figure></p>
+<hr/>
+<h2 id="souhrn-základních-seo-nástrojů">Souhrn základních SEO nástrojů</h2>
+<p>A jak tedy vypadá seznam základních nástrojů, které by měl ovládat každý SEO specialista?</p>
+<h3 id="seo-nástroje-zdarma"><strong>SEO nástroje zdarma</strong></h3>
+<ul>
+<li>Google Search Console</li>
+<li>Google Analytics</li>
+<li>Seznam Webmaster Tools</li>
+<li>Excel a OpenRefine</li>
+<li>Google Data Studio</li>
+<li>Google Keyword Planner a Sklik</li>
+</ul>
+<h3 id="placené-nástroje"><strong>Placené nástroje</strong></h3>
+<ul>
+<li>Marketing Miner</li>
+<li>Screaming Frog (nebo jiný crawler)</li>
+<li>Ahrefs</li>
+<li>Collabim</li>
+<li>Semrush</li>
+<li>Mangools</li>
+<li>Moz Pro</li>
+<li>Majestic</li>
+</ul>
+<p>Na trhu je k dispozici mnoho dalších nástrojů a fajnšmekři, kterým nevadí si připlatit za další nástroje, ocení například <a href="https://semrush.com/">Semrush</a> nebo <a href="https://www.similarweb.com/">SimilarWeb</a>. Bohatě byste si ale měli vystačit se SEO nástroji a rozšířeními uvedenými v článku.</p>
+<p>Používáte jiné nástroje? Nebo znáte některá další rozšíření, která jsme nezmínili a vy na ně nedáte dopustit? Podělte se o ně s námi v komentáři.</p>
+<hr/>
+<p><strong>Autor:</strong> Marek Foršt<br/>
+<strong>Role:</strong> Head of SEO<br/>
+<strong>Aktualizováno:</strong> 2026-09-01</p>
+<hr/>
+
+<div class="author-box">
+    <div class="author-box-header">
+        <span class="author-box-title">O tomto článku</span>
+        <div class="author-dates">
+            <span>Aktualizováno: 2026-09-01</span>
+        </div>
+    </div>
+    <div class="author-card">
+        <div class="author-avatar">EV</div>
+        <div>
+            <div class="author-role">Content Team</div>
+            <div class="author-name">evisions Advertising</div>
+        </div>
+    </div>
+</div>
+
+<div class="disclaimer">
+    <strong>Poznámka k obsahu:</strong> Tento článek má edukativní charakter.
+    Konkrétní doporučení pro váš projekt vám rádi připravíme na míru.
+</div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div>
+            <div class="footer-logo">evisions</div>
+            <p class="footer-desc">Digitální marketingová agentura — SEO, PPC, analytika a obsah.</p>
+        </div>
+        <div>
+            <h4>Blog</h4>
+            <ul>
+                <li><a href="https://www.evisions.cz/blog/">Všechny články</a></li>
+                <li><a href="https://www.evisions.cz">evisions.cz</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

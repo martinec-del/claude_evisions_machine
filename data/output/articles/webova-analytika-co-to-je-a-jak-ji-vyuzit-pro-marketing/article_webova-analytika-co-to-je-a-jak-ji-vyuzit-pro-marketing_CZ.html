@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Co je webová analytika a jak ji využít | evisions.cz Blog</title>
+    <meta name="description" content="Webová analytika propojuje chování návštěvníků webu s konkrétním marketingovým rozhodnutím. Zjistěte, jak číst klíčové metriky a vybrat správné nástroje.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --evi-accent: #0057ff;
+    --evi-dark: #12131a;
+    --evi-navy: #0a0b12;
+    --evi-silver: #c6c6c6;
+    --evi-gray: #6b7280;
+    --evi-light: #f8f9fa;
+    --evi-border: #e1e5eb;
+    --max-width: 1160px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px; line-height: 1.7; color: #1f2937; background: #fff;
+}
+.header {
+    background: #000; padding: 1rem 2rem; position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.logo { color: #fff; font-size: 1.25rem; font-weight: 700; text-decoration: none; }
+.nav { display: flex; gap: 2rem; }
+.nav a { color: #ccc; text-decoration: none; font-size: 0.875rem; font-weight: 500; }
+.nav a:hover { color: #fff; }
+.header-cta {
+    background: var(--evi-accent); color: #fff; padding: 0.5rem 1rem;
+    border-radius: 4px; text-decoration: none; font-size: 0.875rem; font-weight: 600;
+}
+.breadcrumb {
+    background: var(--evi-light); padding: 0.75rem 2rem;
+    font-size: 0.875rem; border-bottom: 1px solid var(--evi-border);
+}
+.breadcrumb-inner { max-width: var(--max-width); margin: 0 auto; }
+.breadcrumb a { color: var(--evi-gray); text-decoration: none; }
+.breadcrumb span { color: var(--evi-gray); margin: 0 0.5rem; }
+.main { max-width: var(--max-width); margin: 0 auto; padding: 2rem; }
+h1 { font-size: 2.25rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; }
+h2 {
+    font-size: 1.5rem; font-weight: 600; margin: 2.5rem 0 1rem;
+    padding-top: 1rem; border-top: 1px solid var(--evi-border);
+}
+h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.75rem; }
+h4 { font-size: 1rem; font-weight: 600; margin: 1.25rem 0 0.5rem; }
+p { margin-bottom: 1rem; color: var(--evi-gray); }
+.intro-text { font-size: 1.125rem; color: #1f2937; line-height: 1.8; }
+strong { color: #1f2937; }
+a { color: var(--evi-accent); }
+ul, ol { margin: 1rem 0 1rem 1.5rem; color: var(--evi-gray); }
+li { margin-bottom: 0.5rem; }
+table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9375rem; }
+th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--evi-border); }
+th { background: var(--evi-light); font-weight: 600; color: var(--evi-dark); }
+td { color: var(--evi-gray); }
+.toc {
+    background: var(--evi-light); padding: 1.5rem; border-radius: 8px; margin: 2rem 0;
+}
+.toc-title { font-size: 0.875rem; font-weight: 600; color: var(--evi-gray);
+    text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+.toc ul { list-style: none; margin: 0; padding: 0; }
+.toc li { margin-bottom: 0.4rem; }
+.toc a {
+    color: var(--evi-dark); text-decoration: none; font-size: 0.9375rem;
+    display: flex; align-items: center; gap: 0.5rem;
+}
+.toc a::before {
+    content: ""; display: inline-block; width: 6px; height: 6px;
+    background: var(--evi-accent); border-radius: 50%; flex-shrink: 0;
+}
+.toc a:hover { color: var(--evi-accent); }
+.toc .toc-h3 { padding-left: 1.25rem; font-size: 0.875rem; }
+.callout {
+    padding: 1rem 1.25rem; margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0; font-size: 0.9375rem;
+}
+.callout-tip    { background: #e8f0fd; border-left: 4px solid var(--evi-accent); }
+.callout-warning { background: #fff3cd; border-left: 4px solid #ffc107; }
+.callout-important { background: #fde8e8; border-left: 4px solid #e53e3e; }
+.callout-note   { background: var(--evi-light); border-left: 4px solid var(--evi-gray); }
+.callout-keep-in-mind { background: #f0f7ee; border-left: 4px solid #5a8a4a; }
+.callout-example { background: #f5f5f5; border-left: 4px solid #999; }
+.callout strong { display: block; margin-bottom: 0.25rem; }
+figure.article-image { margin: 1.5rem 0; }
+figure.article-image img {
+    width: 100%; height: auto; border-radius: 8px;
+    border: 1px solid var(--evi-border); display: block;
+}
+figure.article-image figcaption {
+    margin-top: 0.5rem; font-size: 0.875rem;
+    color: var(--evi-gray); text-align: center; font-style: italic;
+}
+.video-container {
+    position: relative; padding-bottom: 56.25%; height: 0;
+    overflow: hidden; margin: 2rem 0; border-radius: 8px; background: #000;
+}
+.video-container iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+}
+.takeaways {
+    background: linear-gradient(135deg, var(--evi-navy) 0%, var(--evi-dark) 100%);
+    color: #fff; padding: 1.5rem; border-radius: 8px; margin: 2rem 0;
+}
+.takeaways h2 { color: #fff; border: none; margin-top: 0; padding-top: 0; }
+.takeaways ul { color: #ccc; }
+.author-box {
+    background: var(--evi-light); border-radius: 12px; padding: 1.5rem; margin: 2rem 0;
+}
+.author-box-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--evi-border);
+}
+.author-box-title { font-weight: 600; font-size: 1rem; }
+.author-dates { font-size: 0.8125rem; color: var(--evi-gray); display: flex; gap: 1.5rem; }
+.author-card { display: flex; align-items: center; gap: 0.875rem; }
+.author-avatar {
+    width: 48px; height: 48px; border-radius: 50%; background: var(--evi-dark);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 600; font-size: 1rem; flex-shrink: 0;
+}
+.author-role {
+    font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--evi-accent); font-weight: 600; margin-bottom: 0.125rem;
+}
+.author-name { font-weight: 600; color: var(--evi-dark); font-size: 0.9375rem; }
+.disclaimer {
+    background: var(--evi-light); padding: 1rem 1.25rem; border-radius: 4px;
+    font-size: 0.875rem; color: var(--evi-gray); margin: 1rem 0;
+}
+.footer { background: #000; color: #fff; padding: 3rem 2rem; margin-top: 4rem; }
+.footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;
+}
+.footer-logo { font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+.footer-desc { color: #888; font-size: 0.875rem; line-height: 1.6; }
+.footer h4 {
+    font-size: 0.875rem; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 1rem; color: #888;
+}
+.footer ul { list-style: none; margin: 0; padding: 0; }
+.footer li { margin-bottom: 0.5rem; }
+.footer a { color: #ccc; text-decoration: none; font-size: 0.9375rem; }
+.footer a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a class="logo" href="https://www.evisions.cz">evisions</a>
+        <nav class="nav">
+            <a href="https://www.evisions.cz/blog/">Blog</a>
+            <a href="https://www.evisions.cz">evisions.cz</a>
+        </nav>
+        <a class="header-cta" href="https://www.evisions.cz/kontakt/">Kontaktujte nás</a>
+    </div>
+</header>
+
+<div class="breadcrumb">
+    <div class="breadcrumb-inner">
+        <a href="https://www.evisions.cz/blog/">Blog</a>
+        <span>›</span>
+        <a href="https://www.evisions.cz/blog/webova-analytika-co-to-je-a-jak-ji-vyuzit-pro-marketing/">Webová analytika: co to je a jak ji využít pro marketing</a>
+    </div>
+</div>
+
+<main class="main">
+
+<div class="toc"><p class="toc-title">Obsah</p><ul><li class=""><a href="#co-je-webová-analytika">Co je webová analytika</a></li><li class="toc-h3"><a href="#webová-analytika-vs-analýza-webu">Webová analytika vs. analýza webu</a></li><li class=""><a href="#jaké-nástroje-webovou-analytiku-umožňují">Jaké nástroje webovou analytiku umožňují</a></li><li class=""><a href="#klíčové-metriky-a-jak-je-číst">Klíčové metriky a jak je číst</a></li><li class="toc-h3"><a href="#metriky-vs-dimenze">Metriky vs. dimenze</a></li><li class="toc-h3"><a href="#konverzní-poměr-metrika-která-rozhoduje-o-rozpočtu">Konverzní poměr — metrika, která rozhoduje o rozpočtu</a></li><li class="toc-h3"><a href="#míra-okamžitého-opuštění-a-zdroje-návštěvnosti">Míra okamžitého opuštění a zdroje návštěvnosti</a></li><li class=""><a href="#jak-webovou-analytiku-využít-pro-marketingová-rozhodnutí">Jak webovou analytiku využít pro marketingová rozhodnutí</a></li><li class=""><a href="#časté-chyby-při-interpretaci-dat">Časté chyby při interpretaci dat</a></li><li class=""><a href="#klíčové-závěry">Klíčové závěry</a></li><li class=""><a href="#zdroje">Zdroje</a></li></ul></div>
+
+<h1>Webová analytika: co to je a jak ji využít pro marketing</h1>
+<p class="intro-text">Digitální marketing bez dat je jen odhad. Webová analytika tento odhad mění na měřitelné rozhodnutí — kolik návštěvníků nakoupí, odkud přišli a proč část z nich odejde hned po vstupu na stránku. V článku ukážeme, jak vybrat základní nástroje, přečíst klíčové metriky a hlavně jak z nich vytěžit konkrétní marketingové rozhodnutí, ne jen další graf v dashboardu.</p>
+<h2 id="co-je-webová-analytika">Co je webová analytika</h2>
+<p>Webová analytika je sběr a vyhodnocování dat o chování návštěvníků na webu s cílem podpořit konkrétní marketingové rozhodnutí. Zahrnuje metriky jako počet návštěv, konverzní poměr nebo zdroje návštěvnosti — vždy ale s otázkou, co s daným číslem uděláte dál. Bez této vazby na rozhodnutí zůstává analytika jen sbírkou grafů.</p>
+<p>Pojem se často zaměňuje se širším pojmem <em>analýza webu</em>, případně synonymem <em>digitální analytika</em>. Rozdíl je hlavně v rozsahu záběru — a záměna může vést ke špatnému očekávání od reportu, který dostanete.</p>
+<p>Pro marketéra má webová analytika smysl přesně v okamžiku, kdy přestane být samoúčelným sledováním čísel a stane se podkladem pro rozhodnutí o rozpočtu, obsahu nebo cílení kampaně. Bez tohoto propojení se z ní snadno stane administrativní úkol — dashboard, který se občas otevře, ale nikdo podle něj nic nemění.</p>
+<h3 id="webová-analytika-vs-analýza-webu">Webová analytika vs. analýza webu</h3>
+<p>Webová analytika se soustředí na chování návštěvníků a jejich cestu k cíli — od vstupu na web až po konverzi. Analýza webu bývá širší pojem, který kromě chování návštěvníků může zahrnovat i technický SEO audit, konkurenční analýzu nebo kontrolu přístupnosti. V praxi se oba pojmy prolínají, ale stojí za to je od sebe odlišit.</p>
+<table>
+<thead>
+<tr>
+<th>Pojem</th>
+<th>Co zahrnuje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Webová analytika</td>
+<td>Chování návštěvníků, konverze, zdroje návštěvnosti, průběžné vyhodnocování</td>
+</tr>
+<tr>
+<td>Analýza webu</td>
+<td>Širší audit — SEO, technický stav, konkurence, UX, přístupnost</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jaké-nástroje-webovou-analytiku-umožňují">Jaké nástroje webovou analytiku umožňují</h2>
+<p>Analytické nástroje se liší podle toho, jestli měří chování na webu, výkon ve vyhledávání, nebo obojí. Základem pro většinu webů je kombinace Google Analytics 4 (GA4) a Google Search Console — oba nástroje jsou zdarma a společně pokrývají chování na webu i výkon ve vyhledávání. Google Universal Analytics, předchůdce GA4, přestal zpracovávat data k 1. červenci 2023. Přechodu a nastavení GA4 jsme se podrobně věnovali v článku <a href="https://www.evisions.cz/blog/universal-analytics-konci-at-zije-google-analytics-4/">Universal Analytics končí, ať žije Google Analytics 4!</a>.</p>
+<p>Search Console zase propojuje organickou návštěvnost s konkrétními vyhledávacími dotazy — jak ji využít naplno, popisujeme v článku <a href="https://www.evisions.cz/blog/google-search-console-jak-ji-v-seo-vyuzit-naplno/">Google Search Console: Jak ji v SEO využít naplno?</a>. Google Tag Manager pak slouží k centrální správě měřicích kódů bez zásahu do kódu webu — tomuto nástroji se budeme věnovat v samostatném článku.</p>
+<p>Pro weby s vyššími nároky na ochranu dat existuje alternativa Matomo. Na rozdíl od GA4, který data odesílá na servery Google, umožňuje Matomo hostovat analytiku na vlastním serveru — data tak zůstávají výhradně majiteli webu.</p>
+<p>Výběr nástroje přitom neovlivňuje jen to, kam se data ukládají, ale i to, jak přesná ve výsledku budou. Nástroje závislé na cookies třetích stran ztrácejí přehled o návštěvnících dřív než ty, které stojí na vlastních doménách a serverovém zpracování — k tématu přesnosti dat se vrátíme v sekci o častých chybách.</p>
+<table>
+<thead>
+<tr>
+<th>Nástroj</th>
+<th>Co měří</th>
+<th>Kdy použít</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Analytics 4</td>
+<td>Chování, konverze, cesty návštěvníků</td>
+<td>Základní nástroj pro většinu webů zdarma</td>
+</tr>
+<tr>
+<td>Google Search Console</td>
+<td>Výkon ve vyhledávání, dotazy, indexace</td>
+<td>Doplněk k GA4 pro organickou návštěvnost</td>
+</tr>
+<tr>
+<td>Matomo</td>
+<td>Stejná data jako GA4, hostovaná na vlastním serveru</td>
+<td>Weby s vyššími nároky na ochranu dat/GDPR</td>
+</tr>
+<tr>
+<td>Heatmapy (Smartlook, Hotjar)</td>
+<td>Vizuální chování na stránce (kliky, scroll)</td>
+<td>Kvalitativní doplněk k číselným datům</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-tip">
+<p><strong>Tip:</strong> Pro většinu menších webů stačí kombinace GA4 a Search Console zdarma. Heatmapy a Matomo přidejte, až budete řešit konkrétní UX problém nebo nároky na soukromí dat.</p>
+</div>
+<h2 id="klíčové-metriky-a-jak-je-číst">Klíčové metriky a jak je číst</h2>
+<p>Tento oddíl se soustředí na metriky, které si spočítáte přímo v GA4 nebo Search Console. Pokud navíc sledujete konkurenční viditelnost, funguje na podobném principu specializovaná metrika <a href="https://www.evisions.cz/blog/share-of-voice-sov-k-cemu-je-a-jak-metriku-spocitat/">Share of Voice</a> — číslo samo o sobě nic neřeší, dokud ho nespojíte s kontextem trhu.</p>
+<h3 id="metriky-vs-dimenze">Metriky vs. dimenze</h3>
+<p>Metrika je číslo — počet návštěv, konverzní poměr, míra okamžitého opuštění. Dimenze dává tomuto číslu kontext — zdroj návštěvnosti, typ zařízení nebo konkrétní stránku. Samotná metrika bez dimenze je jen statistika. Teprve v kombinaci s dimenzí se stává podkladem pro rozhodnutí.</p>
+<p>Typická chyba je číst reporty jen na úrovni metrik — "návštěvnost vzrostla o 10 %" — bez toho, aby se k číslu přidala alespoň jedna dimenze. Až odpověď na otázku "u koho, odkud a na jakém zařízení" dělá z pozorování použitelný podklad pro rozhodnutí.</p>
+<h3 id="konverzní-poměr-metrika-která-rozhoduje-o-rozpočtu">Konverzní poměr — metrika, která rozhoduje o rozpočtu</h3>
+<p>Konverze je akce, kterou web od návštěvníka očekává — nákup, odeslání formuláře, stažení ceníku. Konverzní poměr je podíl konverzí na celkovém počtu návštěv nebo uživatelů. Google Analytics tuto metriku nedávno přejmenoval na key event rate, princip výpočtu se ale nemění.</p>
+<p>U e-shopu s 10 000 měsíčními návštěvami a konverzním poměrem 2 % to znamená 200 objednávek. Zvýšení poměru na 2,5 % bez jediné koruny navíc do PPC přinese 50 objednávek navíc — proto je konverzní poměr metrika, která přímo ovlivňuje, kam alokovat rozpočet.</p>
+<p>U B2B webu s formulářem místo košíku se logika nemění, jen se posouvá definice konverze. Cílem není nákup, ale odeslaný poptávkový formulář nebo stažení ceníku — konverzní poměr pak ukazuje, jak efektivně web mění návštěvnost v konkrétní obchodní příležitost, ne v objednávku.</p>
+<h3 id="míra-okamžitého-opuštění-a-zdroje-návštěvnosti">Míra okamžitého opuštění a zdroje návštěvnosti</h3>
+<p>Míra okamžitého opuštění (bounce rate) měří podíl návštěv, při kterých uživatel odejde po zobrazení jediné stránky, aniž by dál interagoval s webem. Sama o sobě ale nic neříká — vysoký bounce rate z placené kampaně signalizuje jiný problém než stejné číslo u organického vyhledávání.</p>
+<p>Proto se bounce rate vždy čte společně se zdrojem návštěvnosti. Kombinace obou dimenzí ukáže, jestli problém leží v kampani, v obsahu stránky, nebo v očekávání, se kterým návštěvník na web přišel.</p>
+<h2 id="jak-webovou-analytiku-využít-pro-marketingová-rozhodnutí">Jak webovou analytiku využít pro marketingová rozhodnutí</h2>
+<p>Samotné sledování metrik nikoho neposune dál. Rozdíl dělá krok, který následuje po zjištění čísla — analýza dat, která vede ke konkrétnímu rozhodnutí, kam dál.</p>
+<table>
+<thead>
+<tr>
+<th>Metrika</th>
+<th>Co ukazuje</th>
+<th>Jaké rozhodnutí z toho plyne</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Konverzní poměr klesá na mobilu</td>
+<td>Problém v mobilním UX nebo checkoutu</td>
+<td>Prioritizovat mobilní UX audit před dalším PPC rozpočtem</td>
+</tr>
+<tr>
+<td>Vysoký bounce rate z placené kampaně</td>
+<td>Nesoulad mezi reklamou a landing page</td>
+<td>Upravit landing page nebo přecílit kampaň</td>
+</tr>
+<tr>
+<td>Nízký podíl návratných návštěvníků</td>
+<td>Slabá retence, ne akviziční problém</td>
+<td>Investovat do remarketingu nebo e-mailu místo dalšího náboru</td>
+</tr>
+<tr>
+<td>UTM data ukazují kanál s nejvyšší konverzí</td>
+<td>Který kanál reálně přivádí platící zákazníky</td>
+<td>Přesunout rozpočet směrem k ověřenému kanálu</td>
+</tr>
+</tbody>
+</table>
+<p>Bez UTM parametrů analytika nepozná, který konkrétní kanál přivedl konverzi — jen obecný zdroj návštěvnosti. UTM parametry se přidávají k odkazu a označují zdroj, médium a název kampaně; Google pro jejich generování nabízí vlastní Campaign URL Builder. Bez nich zůstává rozhodování o rozpočtu jen odhadem.</p>
+<p>Heatmapy doplňují číselná data o vizuální pohled na chování na stránce — kam uživatelé klikají, kam scrollují a kde opouštějí formulář. Nenahrazují metriky z GA4, ale vysvětlují, proč se dané číslo chová tak, jak se chová.</p>
+<div class="callout callout-example">
+<p><strong>Example:</strong> Pokud konverzní poměr klesne jen na mobilních zařízeních a zdroj návštěvnosti zůstává stejný, problém je pravděpodobně v mobilním UX, ne v kampani samotné. Heatmapa v tomto případě rychle ukáže, kde uživatelé formulář opouštějí.</p>
+</div>
+<p>Stejný princip propojení dat napříč kanály popisujeme v článku o <a href="https://www.evisions.cz/blog/synergie-ppc-a-seo-klic-k-digitalnimu-uspechu/">synergii PPC a SEO</a> — analytika je spojnice, která rozhoduje, kam rozpočet přesunout dál.</p>
+<p>Rozhodnutí založená na datech přitom nemusí čekat na měsíční report. Konverzní poměr a zdroje návštěvnosti se vyplatí sledovat týdně, UTM data po každé nové kampani a heatmapy vždy, když se mění klíčová stránka — landing page, košík nebo formulář.</p>
+<h2 id="časté-chyby-při-interpretaci-dat">Časté chyby při interpretaci dat</h2>
+<p><strong>Sledování metrik bez vazby na cíl.</strong> Počet návštěv roste, ale bez propojení na konverze jde jen o vanity metriku — číslo, které dobře vypadá v reportu, ale samo o sobě nic neřídí.</p>
+<p><strong>Ignorování dopadu cookie souhlasu na přesnost dat.</strong> Odmítnutí trackování snižuje objem zachycených dat, takže výsledná čísla jsou vždy jen odhad, ne přesný součet. Souvislost mezi souhlasem uživatele a přesností měření jsme rozebrali v článku <a href="https://www.evisions.cz/blog/co-je-google-consent-mode-v2-a-musite-to-resit/">Co je Google Consent Mode V2 a musíte to řešit?</a>.</p>
+<p><strong>Srovnávání nesourodých období nebo kanálů.</strong> Porovnání víkendu s pracovním týdnem u B2B webu, nebo organické návštěvnosti s placenou kampaní bez zohlednění rozdílného chování, vede k mylným závěrům o tom, co skutečně funguje.</p>
+<p><strong>Spoléhání na souhrnný dashboard bez segmentace.</strong> Průměrný konverzní poměr celého webu skryje rozdíly mezi mobilem a desktopem, novými a vracejícími se návštěvníky nebo jednotlivými kampaněmi. Rozhodnutí založené na jednom souhrnném čísle tak snadno míří na špatný problém.</p>
+<div class="callout callout-keep-in-mind">
+<p><strong>Keep in Mind:</strong> Žádný analytický nástroj neměří 100 % návštěvnosti. Nástroj Intelligent Tracking Prevention od Applu omezuje životnost cookies nastavených přes JavaScript na sedm dní, což zkresluje počet skutečně vracejících se návštěvníků. Data z analytiky jsou model reality, ne přesný součet — důležitější je trend v čase než jednotlivé přesné číslo.</p>
+</div>
+<h2 id="klíčové-závěry">Klíčové závěry</h2>
+<ul>
+<li>Webová analytika má smysl jen tehdy, když každá sledovaná metrika vede ke konkrétnímu rozhodnutí.</li>
+<li>Metriku vždy čtěte v kontextu dimenze — zdroje, zařízení, časového období. Samostatné číslo nic neříká.</li>
+<li>Konverzní poměr a UTM data jsou nejsilnější dvojice pro rozhodování o rozpočtu.</li>
+<li>Data z žádného nástroje nejsou stoprocentně přesná — počítejte s tím při interpretaci.</li>
+<li>Pro start stačí GA4 a Search Console zdarma, další nástroje přidávejte podle konkrétní potřeby.</li>
+</ul>
+<h2 id="zdroje">Zdroje</h2>
+<ul>
+<li><a href="https://blog.google/products/ads-commerce/upgrade-to-google-analytics-4-before-july-1/">Upgrade to Google Analytics 4 before July 1 — Google Blog</a></li>
+<li><a href="https://support.google.com/analytics/answer/9267568?hl=en">About key events — Google Analytics Help</a></li>
+<li><a href="https://support.google.com/analytics/answer/12195621?hl=en">Engagement rate and bounce rate — Google Analytics Help</a></li>
+<li><a href="https://support.google.com/analytics/answer/10917952?hl=en">URL builders: Collect campaign data with custom URLs — Google Analytics Help</a></li>
+<li><a href="https://matomo.org/100-data-ownership/">100% Data Ownership — Matomo</a></li>
+<li><a href="https://www.customerlabs.com/blog/understanding-safari-intelligent-tracking-prevention-apple-itp-impact/">Understanding Safari's Intelligent Tracking Prevention (ITP) and Its Impact — CustomerLabs</a></li>
+</ul>
+
+<div class="author-box">
+    <div class="author-box-header">
+        <span class="author-box-title">O tomto článku</span>
+        <div class="author-dates">
+            <span>Aktualizováno: 2026-08-18</span>
+        </div>
+    </div>
+    <div class="author-card">
+        <div class="author-avatar">EV</div>
+        <div>
+            <div class="author-role">Content Team</div>
+            <div class="author-name">evisions Advertising</div>
+        </div>
+    </div>
+</div>
+
+<div class="disclaimer">
+    <strong>Poznámka k obsahu:</strong> Tento článek má edukativní charakter.
+    Konkrétní doporučení pro váš projekt vám rádi připravíme na míru.
+</div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div>
+            <div class="footer-logo">evisions</div>
+            <p class="footer-desc">Digitální marketingová agentura — SEO, PPC, analytika a obsah.</p>
+        </div>
+        <div>
+            <h4>Blog</h4>
+            <ul>
+                <li><a href="https://www.evisions.cz/blog/">Všechny články</a></li>
+                <li><a href="https://www.evisions.cz">evisions.cz</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
